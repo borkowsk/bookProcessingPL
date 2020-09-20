@@ -2,7 +2,6 @@
 //Model "pożaru lasu" jest bardzo klasyczny, choć tu mamy wersję autorską
 //z próbą urealnienia stosunków czasowych
 ///////////////////////////////////////////////////////////////////////////
-
 //One step is equivalential to one hour
 int week=24*7;    //how many steps is equivalential to one week?
 float year=365.5*24;//how many steps is equivalential to one YEAR?
