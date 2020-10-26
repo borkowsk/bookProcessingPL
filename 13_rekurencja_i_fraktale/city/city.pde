@@ -5,7 +5,7 @@ int   avenuecount=0;
 
 void setup()
 {
-  size(600,900);//513?
+  size(600,600);//513?
   noSmooth();
   street(0,height);//Ulice są poziome
   avenue(0,width);//Aleje są pionowe

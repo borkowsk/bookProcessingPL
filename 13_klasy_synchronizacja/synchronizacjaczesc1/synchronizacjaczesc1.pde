@@ -27,7 +27,7 @@ int Ws=400;
 void setup()
 {
   size(1200,400);
-  
+  frameRate(300);
  // First=new singlel // tworzymy nowy obiekt, bedzie typu singiel wpisujem konstrukt singiel
  First=new singiel(random(1.0), 3.5+random(0.5), DefaultAlfa);// 3,5 do 5 bo patrzymy na synchronnizacje w chaosie, wtedy jest najciekawsza
  Second=new singiel(random(1.0), 3.5+random(0.5), DefaultAlfa);//dwaa systey od siebie niezależne, wpływając na alfa możemy zwiekszac ich wzajmna synchronizacje

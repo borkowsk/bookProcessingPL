@@ -5,7 +5,7 @@ float limit=3;
  
 void setup() 
 {
-   size(513,514);//Okno powinno być trochę wyższe niż szersze
+   size(729, 730);//Okno powinno być trochę wyższe niż szersze
    noSmooth();
    background(0); strokeWeight(5); strokeCap(SQUARE);
    noLoop();//nie ma potrzeby używać draw()
