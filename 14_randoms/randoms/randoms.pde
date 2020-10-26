@@ -66,7 +66,7 @@ void draw()
   //Trochę losowań
   for(int s=0;s<NumOfProbesPerDraw;s++)
   {
-    double rndval=MyRandom0();//MyRandomM();//Powinno być w zakresie 0..1
+    double rndval=MyRandom2();//MyRandomM();//Powinno być w zakresie 0..1
     
     //Testowanie spełnienia założenia. W C++ byłoby może assert()
     if(rndval<0) { println("Niemożliwe!!! rndval=",rndval); continue;}
