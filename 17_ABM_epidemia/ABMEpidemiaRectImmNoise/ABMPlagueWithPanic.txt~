@@ -1,9 +1,0 @@
-final String  modelName="ABMPlague";//Plague to DŻUMA!
-final int     randomSeed=1;//Jak 0 to pozostaje inicjacja automatyczna
-final int     side=200;//DŁUGOŚĆ BOKU ŚWIATA
-final float   density=0.66;//Gęstość zaludnienia
-final int     duration=14;//Czas trwania infekcji!
-final float   pDeath=0.33/duration; //Średnie prawdopodobieństwo śmierci w danym dniu choroby
-final float   pFarTrans=0.000001;   //Prawdopodobieństwo spontanicznego ruchu
-final boolean panic=true; //Czy ludzie uciekają przed pustką i smiercią
-final int     infectionPoint=100;//Moment infekcji -1 - brak!
