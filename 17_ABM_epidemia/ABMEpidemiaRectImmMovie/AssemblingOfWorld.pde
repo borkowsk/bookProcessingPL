@@ -8,11 +8,11 @@ class World
   //OR
   Agent agents[][];//DWUWYMIAROWA TABLICA AGENTÓW
   
-  World(int side)//KONSTRUKTOR ŚWIATA
+  World(int side,int wside)//KONSTRUKTOR ŚWIATA
   {
-    //agents=new Agent[side];
+    //agents=new Agent[wside];
     //OR
-    agents=new Agent[side][940];//VIDEO!!!!
+    agents=new Agent[side][wside];//for VIDEO we need parity //<>//
   }
 }
 

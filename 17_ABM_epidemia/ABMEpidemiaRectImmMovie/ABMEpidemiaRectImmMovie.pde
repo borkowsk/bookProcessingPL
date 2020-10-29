@@ -7,8 +7,7 @@ int side=200;//DŁUGOŚĆ BOKU ŚWIATA
 String modelName="ABMEpidemia";
 float density=0.66;
 
-World TheWorld=new World(side);//INICJALIZACJA JEST KONCZONA 
-                               //W FUNKCJI setup()
+World TheWorld;//=new World(side);//INICJALIZACJA JEST W FUNKCJI setup()
 
 //Coś w rodzaju stałych ;-)
 final int Duration=7;//Czas trwania infekcji!
@@ -40,13 +39,21 @@ int STATUSHEIGH=150;//WYSOKOŚĆ PASKA STATUSU NA DOLE OKNA
 int STEPSperVIS=1;//JAK CZĘSTO URUCHAMIAMY WIZUALIZACJĘ
 int FRAMEFREQ=50; //ILE RAZY NA SEKUNDĘ URUCHAMIA SIĘ draw()
 
-boolean WITH_VIDEO=true;//CZY CHCEMY ZAPIS DO PLIKU FILMOWEGO (wymagany modu… RTMVideo.pde)
+boolean WITH_VIDEO=false;//CZY CHCEMY ZAPIS DO PLIKU FILMOWEGO (wymagany modu… RTMVideo.pde)
 boolean simulationRun=true;//FLAGA Start/stop DZIAŁANIA SYMULACJI
 
 void setup()
 {
   //GRAFIKA
-  size(940,350);//NIESTETY TU MOGĄ BYĆ TYLKO WARTOŚCI PODANE LITERALNIE CZYLI "LITERAŁY"!!!
+  float reqwidth=16*100;
+  float reqheight=9*100;
+  println("Set size(reqwidth,reqheight);");
+  size(1600,900);//NIESTETY TU MOGĄ BYĆ TYLKO WARTOŚCI PODANE LITERALNIE CZYLI "LITERAŁY"!!!
+  
+  //OBLICZAMY WYMAGANE PARAMTERY OKNA 
+  cwidth=(height-STATUSHEIGH)/side;//DOPASOWUJEMY ROZMIAR KOMÓREK DO OKNA JAKIE JEST
+  STATUSHEIGH=int(height*0.15);
+  
   noSmooth();   //Znacząco przyśpiesza wizualizacje
   frameRate(FRAMEFREQ);
   background(255,255,200);
@@ -54,15 +61,13 @@ void setup()
   //randomSeed(-1013);//Zasianie generatora gdy chcemy mieć powtarzalny przebieg np. 107 albo 1013
   
   //INICJALIZACJA MODELU I (ewentualnie) STATYSTYK
+  int wside=width/cwidth;
+  TheWorld=new World(side,wside); //<>//
   initializeModel(TheWorld);//DOKONCZENIE INICJALIZACJI ŚWIATA
   //initializeStats();      //ODKOMENTOWAĆ JEŚLI UŻYWAMY STATYSTYK
   //doStatistics(TheWorld); //J.W.
   
-  //OBLICZAMY WYMAGANY ROZMIAR OKNA DLA size() 
-  println(modelName+": REQUIRED SIZE OF PAINTING AREA IS "
-          +(cwidth*side)+"x"+(cwidth*side+STATUSHEIGH));
-  cwidth=(height-STATUSHEIGH)/side;//DOPASOWUJEMY ROZMIAR KOMÓREK DO OKNA JAKIE JEST
-  
+   
   //INICJALIZACJA ZAPISU FILMU  (jeśli używamy RTMVideo.pde)
   if(WITH_VIDEO) {initVideoExport(this,modelName+".mp4",FRAMEFREQ);FirstVideoFrame();}
   
@@ -99,7 +104,10 @@ void draw()
 
 void writeStatusLine()
 {
-  fill(0);rect(0,side*cwidth,width,STATUSHEIGH);fill(128);
+  fill(0);
+  rectMode(CORNERS);
+  rect(0,cwidth*side,width,height);fill(128);
+  rectMode(CORNER);
   histogram(TheWorld.agents,0,height-16,STATUSHEIGH-16);//Histogram wg. odporności  
   textAlign(LEFT,TOP);
   text("Odporność",0,height-STATUSHEIGH);
