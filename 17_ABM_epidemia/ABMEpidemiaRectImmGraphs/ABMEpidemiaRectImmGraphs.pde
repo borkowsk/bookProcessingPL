@@ -46,7 +46,10 @@ boolean simulationRun=true;//FLAGA Start/stop DZIAŁANIA SYMULACJI
 void setup()
 {
   //GRAFIKA
-  size(1200,750);//NIESTETY TU MOGĄ BYĆ TYLKO WARTOŚCI PODANE LITERALNIE CZYLI "LITERAŁY"!!!
+  //fullScreen();
+  size(800,600);
+  STATUSHEIGH=int(height*0.2);//Trzeba dopasować do proporcji ekranu
+  
   noSmooth();   //Znacząco przyśpiesza wizualizacje
   frameRate(FRAMEFREQ);
   background(255,255,200);
@@ -70,10 +73,7 @@ void setup()
   println("CURRENT SIZE OF PAINTING AREA IS "+width+"x"+height);//-myMenu.bounds.height???
   visualizeModel(TheWorld);//PIERWSZA PO INICJALIZACJI WIZUALIZACJA ŚWIATA
   
-  //if(!simulationRun) //WYMAGA MODUŁU RTMEvents.pde
-  //  println("PRESS 'r' or 'ESC' to start simulation");
-  //else
-  //  println("PRESS 's' or 'ESC' to pause simulation");
+  println("PRESS 's' or 'ESC' to STOP simulation");
   
   //NextVideoFrame();//PIERWSZA REALNA KLATKA FILMU (o ile używamy RTMVideo.pde)
 }
@@ -99,7 +99,10 @@ void draw()
 
 void writeStatusLine()
 {
-  fill(0);rect(0,side*cwidth,width,STATUSHEIGH);fill(128);
+  fill(0);
+  rectMode(CORNERS);
+  rect(0,cwidth*side,width,height);fill(128);
+  rectMode(CORNER);
   histogram(TheWorld.agents,0,height-16,STATUSHEIGH-16);//Histogram wg. odporności  
    
   //Legenda i historie trzech zmiennych dziennych każda w swojej skali
