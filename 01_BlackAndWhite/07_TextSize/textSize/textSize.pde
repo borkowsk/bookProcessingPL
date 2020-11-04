@@ -1,7 +1,8 @@
-//Big centered text in big window
+//Duży wyśrodkowany tekst w dużym oknie
+
 size(500,500);
-textAlign(CENTER, CENTER);//Text alignment
-textSize(32); //Font size
+textAlign(CENTER, CENTER);//Wyrównanie tekstu
+textSize(32); //Rozmiar czcionki
 text("This window is big",250,250);
 
 //http://processingwedukacji.blogspot.com

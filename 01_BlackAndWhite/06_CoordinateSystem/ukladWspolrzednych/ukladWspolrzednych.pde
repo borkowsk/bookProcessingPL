@@ -1,6 +1,6 @@
-// Współrzędne ekranowe
+// Jak wyglądają współrzędne w oknie?
 
-size(500,500);
+size(500,500);//Rozmiar okna
 
 textAlign(CENTER, CENTER);//Tekst wycentrowany poziomo i pionowo
 

@@ -1,4 +1,4 @@
-//Elipsa gruba z szarym konturem
+//Elipsa z grubym z szarym konturem
 size(200,200);
 
 stroke(128);

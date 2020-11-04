@@ -1,1 +1,1 @@
-text("Witaj na kursie PROCESSING W EDUKACJI!",10,50);
+text("Witaj na kursie\nProcessingu!",10,50);
