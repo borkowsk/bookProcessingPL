@@ -1,0 +1,16 @@
+# Uncomment these types if you want even more clean repository. But be careful.
+# It can make harm to an existing project source. Read explanations below.
+#
+*~
+*#
+*.mp4
+*.txt
+*.png
+
+
+
+# compiler-generated binaries (safe to delete)
+*.exe
+
+
+
