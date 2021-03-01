@@ -1,4 +1,4 @@
-//Losowe linie
+//Losowe linie wzdłuż osi Y
 
 size(200,300);
 
