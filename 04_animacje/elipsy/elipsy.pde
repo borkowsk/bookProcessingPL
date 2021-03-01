@@ -1,22 +1,29 @@
-//Control parameters
-int W=600;
+//Przezroczyste losowe elipsy
+float W;//global variable
 
+void setup()
+{
+  size(600,600);  //rozmiar okna
+  frameRate(100); //szybkośc animacji
+  noStroke();     //bez konturów
+  //Gdy już wiadomo jakie wymiary okna szukamy mniejszego
+  W=min(width,height);//wartość minimalna z dwóch wartości
+}
+
+//Własna funkcja
 int radius()
 {
   return int(random(W/10));
 }
 
-//Initialisation
-void setup()
-{
-  //size(W,W);//NIE DZIAŁA W MODZIE JavaScript !!!
-  size(600,600);
-}
-
-//Running - visualisation and dynamics (about 30 times per sec.)
+//visualisation and dynamics
 void draw()
 {
-  fill(random(255),random(255),random(255),random(255));
+  float alfa=random(128);//Z wylosowaną przezroczystością
+  fill(random(255),random(255),random(255),alfa);
   float r=radius();
   ellipse(random(W),random(W),r,r);
 }
+
+//https://github.com/borkowsk/bookProcessingEN
+//https://github.com/borkowsk/bookProcessingPL

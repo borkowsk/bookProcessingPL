@@ -36,7 +36,7 @@ void setup()
   println(  funkcja_dostaje_int_i_zwraca_int(2) );
   println(  funkcja_dostaje_int_i_zwraca_float(2) );
   println(  funkcja_dostaje_float_i_zwraca_float(2) );
-  Float X=new Float("3.5");
+  Float X=new Float("3.0");
   println(  X );
   println(  funkcja_dostaje_Float_i_zwraca_float(X) );
 }
