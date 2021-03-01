@@ -1,11 +1,11 @@
-// Dwuwymiarowy, probalilistyczny (kroki MC) automat komórkowy 
-// - reguła "Żyj jesli nie masz za dużo sąsiadów". 
+// Dwuwymiarowy, asynchroniczny (kroki MC) automat komórkowy 
+// - reguła "Min=Best:1 Max:2 sąsiadów". 
 // Zasiewanie tablicy na początku z zadaną gęstością lub pojedynczą komórką
 /////////////////////////////////////////////////////////////////////////////////
 
-int WorldSize=400;//Ile chcemy elementów w linii i ile linii (tablica kwadratowa)
+int WorldSide=400;//Ile chcemy elementów w linii i ile linii (tablica kwadratowa)
 
-int[][] World=new int[WorldSize][WorldSize];//Tworzenie tablicy świata 
+int[][] World=new int[WorldSide][WorldSide];//Tworzenie tablicy świata 
                                             //- w Processingu zawsze za pomocą alokacji
 
 float IDens=0.0;//Początkowa gęstość w tablicy
@@ -23,7 +23,7 @@ void setup()
   }
   else
   {
-    World[WorldSize/2][WorldSize/2]=1;
+    World[WorldSide/2][WorldSide/2]=1;
   }
  frameRate(50);
 }
@@ -52,10 +52,10 @@ void draw()
        int j=(int)random(World.length);
        
        //Reguła - "ZLICZ SĄSIADÓW"
-       int right = (i+1) % WorldSize;      
-       int left  = (WorldSize+i-1) % WorldSize;
-       int dw=(j+1) % WorldSize;   
-       int up=(WorldSize+j-1) % WorldSize;
+       int right = (i+1) % WorldSide;      
+       int left  = (WorldSide+i-1) % WorldSide;
+       int dw=(j+1) % WorldSide;   
+       int up=(WorldSide+j-1) % WorldSide;
        
        int ile = World[left][j]
                 +World[right][j]

@@ -55,10 +55,8 @@ void setup()
   }
 }
 
-
-int t=0;
-void draw()
-{  
+void visualAndStats()
+{
   //Do zbierania statystyk
   int jedynki=0,zera=0;
   
@@ -78,7 +76,12 @@ void draw()
   output.println(t+SEPARATOR+zera+SEPARATOR+jedynki);//Tu zapisujemy do logu. Musi być jeden łańcuch tekstowy
   if(t%100==0) // co sto kroków
      output.flush();//Zrzucamy bufor pliku do systemu
-  
+}
+
+int t=0;
+void draw()
+{  
+  visualAndStats();
   
   for(int i=0;i<WorldOld.length;i++)//Zmiana stanu automatu
   {

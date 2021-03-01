@@ -41,24 +41,27 @@ void setup()
   }
 }
 
+void visualisation()
+{
+    for(int i=0;i<WorldOld.length;i++)//Wizualizacja czyli "rysowanie na ekranie" 
+     for(int j=0;j<WorldOld.length;j++) 
+      {
+        switch(WorldOld[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w komórce
+        //case N:stroke( , , );break; //w Life Conwaya potrzebne tylko dwa kolory, ale może jeszcze przydać się poźniej
+        case 1:stroke(255,255,0);break;//Normalnie tylko to
+        case 0:stroke(0,0,0);break;//Lub to
+        default: stroke(255,0,0);//To się pojawiac nie powinno - jest po to żeby wychwywytywac błędy w implementacji
+        break;
+        }
+        if( (WorldOld[i][j] != WorldNew[i][j]) ) //na WorldNew jest stara zawartość 
+          point(i,j);//Rysujemy tylko nową (Usprawnienie 2.)
+      }
+}
 
 int t=0;
 void draw()
 {  
-  for(int i=0;i<WorldOld.length;i++)//Wizualizacja czyli "rysowanie na ekranie" 
-    for(int j=0;j<WorldOld.length;j++) 
-    {
-      switch(WorldOld[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w komórce
-      //case N:stroke( , , );break; //w Life Conwaya potrzebne tylko dwa kolory, ale może jeszcze przydać się poźniej
-      case 1:stroke(255,255,0);break;//Normalnie tylko to
-      case 0:stroke(0,0,0);break;//Lub to
-      default: stroke(255,0,0);//To się pojawiac nie powinno - jest po to żeby wychwywytywac błędy w implementacji
-      break;
-      }
-      if( (WorldOld[i][j] != WorldNew[i][j]) ) //na WorldNew jest stara zawartość 
-        point(i,j);//Rysujemy tylko nową (Usprawnienie 2.)
-    }
-  
+  visualisation();
   for(int i=0;i<WorldOld.length;i++)//Zmiana stanu automatu
   {
        //Reguła - "LIFE"
@@ -97,7 +100,8 @@ void draw()
        }
    }
    
-   int[][] WorldTmp=WorldOld;//Zamiana tablic
+   //Zamiana tablic
+   int[][] WorldTmp=WorldOld;
    WorldOld=WorldNew;
    WorldNew=WorldTmp;
    

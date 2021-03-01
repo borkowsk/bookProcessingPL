@@ -1,4 +1,4 @@
-// Dwuwymiarowy, probalilistyczny (kroki MC) automat komórkowy - reguła "ZSUMUJ Z SĄSIADAMI I WEŹ MODULO". 
+// Dwuwymiarowy, asynchroniczny (kroki MC) automat komórkowy - reguła "ZSUMUJ Z SĄSIADAMI I WEŹ MODULO". 
 // Zasiewanie tablicy na początku z zadaną gęstością lub pojedynczą komórką
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

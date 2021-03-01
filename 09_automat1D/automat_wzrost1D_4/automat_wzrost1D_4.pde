@@ -1,4 +1,4 @@
-// Jednowymiarowy, probabilistyczny automat komórkowy 
+// Jednowymiarowy, asynchroniczny automat komórkowy 
 //  (najprostrza symulacja CA w postaci funkcyjnej) 
 ////////////////////////////////////////////////////////////////////////////////////////////
 int WorldSize=500;//Ile chcemy elementów w linii?

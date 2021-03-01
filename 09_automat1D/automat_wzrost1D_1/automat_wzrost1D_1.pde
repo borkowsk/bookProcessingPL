@@ -1,4 +1,4 @@
-//Jednowymiarowy, probabilistyczny automat komórkowy - szkielet i najprostrza symulacja w postaci "bez funkcyjnej" 
+//Jednowymiarowy, asynchroniczny automat komórkowy - szkielet i najprostrza symulacja w postaci "bez funkcyjnej" 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Przykład pokazuje też zastosowanie tablic w Processingu - niestety nie takie proste jak w Pascalu
 //bo tu tablice nie są prostymi typami jak int czy char czy float...
