@@ -7,10 +7,11 @@ int Rozbieg=100;
 singiel First, Second;// uchwyty do obiektow, jak zwykła liczba float czy integer, 
                       //to że je zadeklarujemy nie oznacza ze istnieja same obiekty. 
                       //Obiekty powstana dalej, wiec uchwycą dopiero to co powstanie
-                      
+
+int Ws=400;                      
 void setup()
 {
-  size(900,600);//3*Ws , 2* Ws
+  size(1200,800);//3*Ws , 2* Ws
   frameRate(1000);
   
  // First=new singlel // tworzymy nowy obiekt, bedzie typu singiel wpisujem konstrukt singiel
@@ -21,7 +22,7 @@ void setup()
  println("2st:",Second.x1+" "+Second.r+" alfa:"+Second.alpha());// kropka i nazwa pola lub nazwa metody
 }
 
-int Ws=300;
+
 float scaleY(double X)
 {
   return Ws-(float)X*Ws;
@@ -47,14 +48,18 @@ void draw()
     line(N-1,scaleY(Second.x1),N,scaleY(Second.x2));
     stroke(0,0,25);
   
+    stroke(255);
     point(N,scaleY(abs(First.x2-Second.x2)));
+    
+    stroke(0,255,0);
     point(2*Ws+First.x2*Ws,scaleY(Second.x2));
     
     if(N>Rozbieg)//to wyrzucić to będzie widać doście do atraktora
     {
-       fill(0,Gre,0);ellipse(2*Ws+First.x2*Ws,scaleY(Second.x2),4.0,4.0);
-       fill(Red,0,0);ellipse(First.x1*Ws,Ws+scaleY(First.x2),4.0,4.0);
-       fill(0,0,Blu);ellipse(Ws+Second.x1*Ws,Ws+scaleY(Second.x2),4.0,4.0);
+       noStroke();
+       fill(0,Gre,0);ellipse(2*Ws+First.x2*Ws,scaleY(Second.x2),4.5,4.0);
+       fill(Red,0,0);ellipse(First.x1*Ws,Ws+scaleY(First.x2),4.5,4.0);
+       fill(0,0,Blu);ellipse(Ws+Second.x1*Ws,Ws+scaleY(Second.x2),4.5,4.0);
     }
     
     N++; // tu kończymy wyrzucanie
