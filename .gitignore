@@ -5,8 +5,10 @@
 *#
 *.mp4
 *.txt
+*.log
 *.png
-
+*.xls*
+*.zip
 
 
 # compiler-generated binaries (safe to delete)
