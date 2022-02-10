@@ -12,6 +12,7 @@ void setup() {
 /*
 void exit(){
   reader.close();//Exception w analizie kodu! Błąd PROCESSINGU
+  super.exit();
 }
 */
 
