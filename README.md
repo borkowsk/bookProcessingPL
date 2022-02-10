@@ -17,3 +17,7 @@ http://grafit.mchtr.pw.edu.pl/~mozaryn/publikacje/Processing_lab1.pdf
 
 Jak wydzielić subfolder jako osobne repozytorium:
 https://help.github.com/en/github/using-git/splitting-a-subfolder-out-into-a-new-repository
+
+**COFFEE**
+Możesz wesprzeć tworzenie tych materiałów "stawiając mi kawę": 
+https://www.buymeacoffee.com/wborkowsk 
