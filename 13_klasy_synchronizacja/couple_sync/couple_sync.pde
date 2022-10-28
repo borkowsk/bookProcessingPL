@@ -1,6 +1,6 @@
 // Przykład użycia klasy
 ////////////////////////////////////
-static float DefaultAlpha=0.01;//.25;
+static float DefaultAlpha=0.1;//.25;
 static float DefaultR=3.5;
 static int   FR=255;
 
