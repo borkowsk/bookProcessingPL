@@ -70,9 +70,7 @@ void status()
 void setup()
 {
   long unixTime = System.currentTimeMillis() / 1000L;
-  
   if(MyRSeed==0) MyRSeed=unixTime;
-  
   if(MyRSeed!=0) randomSeed(MyRSeed);
   
   First=new  singiel(random(1000)/1000.0,3.4+random(600)/1000.0,DefaultAlfa);

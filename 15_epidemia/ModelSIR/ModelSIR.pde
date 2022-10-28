@@ -24,9 +24,9 @@ final float PDeath=0.03;      //Średnie prawdopodobieństwo śmierci w danym dn
                               //PDeath + PRecovery < 1  !!!
 
 //STATYSTYKI LICZONE W TRAKCIE SYMULACJI
-int kranken=0;//Zachorowanie
-int geheilt=0;//Wyzdrowienia
-int starben=0;//Ci co umarli
+int kranken=0; //Zachorowanie
+int geheilt=0; //Wyzdrowienia
+int starben=0; //Ci co umarli
 
 void setup()
 {
