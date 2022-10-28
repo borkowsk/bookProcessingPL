@@ -4,6 +4,7 @@
 
 *~
 sketch.properties
+ffmpeg.txt
 
 # Applications products
 *.mp4
@@ -12,6 +13,7 @@ sketch.properties
 *.png
 *.xls*
 *.zip
+*.lst
 
 
 # compiler-generated binaries (safe to delete)
