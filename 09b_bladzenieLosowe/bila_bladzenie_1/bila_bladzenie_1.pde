@@ -1,5 +1,5 @@
-//"BILA" - MODEL RUCHU PUNKTU MATERIALNEGO - BŁĄDZENIE LOSOWE
-//////////////////////////////////////////////////////////////////
+// "BILA" - MODEL RUCHU PUNKTU MATERIALNEGO - BŁĄDZENIE LOSOWE
+//*////////////////////////////////////////////////////////////////
 int FR=20; //Na ile kroków dzielimy sekundę?
 float h=height/2; //Położenie pionowe
 float x=width/2;  //Położenie poziome
@@ -11,10 +11,10 @@ float B=0.90; //Wydajność odbicia sprężystego
 
 void setup() //Jest wykonywane raz - po uruchomieniu. Nie musi być na poczatku kodu ale jest
 {
-size(500,500);
-h=height/2; x=width/2;
-background(0,0,200);//rgB
-frameRate(FR);
+  size(500,500);
+  h=height/2; x=width/2;
+  background(0,0,200);//rgB
+  frameRate(FR);
 }
               
 int count=0;//Licznik klatek obrazu

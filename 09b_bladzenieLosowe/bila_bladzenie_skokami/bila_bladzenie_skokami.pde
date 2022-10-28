@@ -1,7 +1,7 @@
-//"BILA" - MODEL RUCHU PUNKTU MATERIALNEGO - uproszczenie
-//////////////////////////////////////////////////////////////////
-//Program Processingu w trybie 2 - z widocznymi funkcjami
-//////////////////////////////////////////////////////////////////
+// "BILA" - MODEL RUCHU PUNKTU MATERIALNEGO - uproszczenie
+//*////////////////////////////////////////////////////////////////
+// Program Processingu w trybie 2 - z widocznymi funkcjami
+//*////////////////////////////////////////////////////////////////
 int FR=100; //Na ile kroków dzielimy sekundę?
 float h=height/2;
 float x=width/2;
@@ -9,12 +9,12 @@ float maxD=25;
 
 void setup() //Jest wykonywane raz - po uruchomieniu
 {
-size(500,500);
-h=height/2;
-x=width/2;
-//noSmooth();//Bez wygładzania lini? Po prostu odkomentować 
-background(0,0,200);//rgB
-frameRate(FR);
+  size(500,500);
+  h=height/2;
+  x=width/2;
+  //noSmooth(); //Bez wygładzania lini? Po prostu odkomentować 
+  background(0,0,200); //rgB
+  frameRate(FR);
 }
 
 void draw() //Jest wykonywane w niewidocznej pętli
@@ -38,16 +38,16 @@ void draw() //Jest wykonywane w niewidocznej pętli
   else
   if(height<h)
   {
-    h=height;//Trochę oszukujemy
+    h=height; //Trochę oszukujemy
   }
   else //A jakby to wykomentować?
   if(x<0)
   {
-     x=0;//Trochę oszukujemy
+     x=0; //Trochę oszukujemy
   }
   else
   if(width<x)
   {
-     x=width;//Trochę oszukujemy
+     x=width; //Trochę oszukujemy
   }
 }

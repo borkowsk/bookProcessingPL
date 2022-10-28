@@ -1,7 +1,7 @@
-//"BILA" - MODEL RUCHU PUNKTU MATERIALNEGO - kolejne przybliżenia
-//////////////////////////////////////////////////////////////////
-//Program Processingu w trybie 2 - z widocznymi funkcjami
-//////////////////////////////////////////////////////////////////
+// "BILA" - MODEL RUCHU PUNKTU MATERIALNEGO - kolejne przybliżenia
+//*////////////////////////////////////////////////////////////////
+// Program Processingu w trybie 2 - z widocznymi funkcjami
+//*////////////////////////////////////////////////////////////////
 int FR=50; //Na ile kroków dzielimy sekundę?
 float h=height/2;
 float x=width/2;
@@ -10,15 +10,14 @@ float vx=0;//prędkość pozioma
 float maxV=150;
 float B=0.90; //Wydajność odbicia sprężystego 1-B = ile energi kinetycznej się rozprasza nie wraca do prędkości po odbiciu
 
-
 void setup() //Jest wykonywane raz - po uruchomieniu
 {
-size(500,500);
-h=height/2;
-x=width/2;
-//noSmooth();//Bez wygładzania lini? Po prostu odkomentować 
-background(0,0,200);//rgB
-frameRate(FR);
+  size(500,500);
+  h=height/2;
+  x=width/2;
+  //noSmooth();//Bez wygładzania lini? Po prostu odkomentować 
+  background(0,0,200);//rgB
+  frameRate(FR);
 }
 
 int count=0;
