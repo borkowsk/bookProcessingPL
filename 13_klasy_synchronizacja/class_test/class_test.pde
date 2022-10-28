@@ -1,5 +1,5 @@
-// Przykład użycia klasy
-////////////////////////////////////
+/// Przykład użycia klasy
+//*//////////////////////////////////
 static float DefaultR=3.5;
 static int   FR=10;
 
