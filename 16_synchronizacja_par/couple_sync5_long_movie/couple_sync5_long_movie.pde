@@ -84,10 +84,10 @@ void setup()
   delay(100);
   frameRate(250);
   //noSmooth();
-  
   radius=width/4;
   pos=radius;
   vert=height/2;
+  
   initVideoExport(this,"couple5_"+nf(MyRSeed,11,0)+".mp4",Frames);
   FirstVideoFrame();
 

@@ -40,7 +40,7 @@ void setup()
   initnakrok=int(N*N*SeedsPerSt);//A ile nasion w jednym kroku
   
   frameRate(2);//Nie za szybko
-  initVideoExport(this,"Nowak-Latane-sila_"+nf(MyRSeed>>32)+nf(MyRSeed & 0x00000000ffffffff)+".mp4",2);
+  initVideoExport(this,"Nowak-Latane-sila_"+nf(MyRSeed>>32)+"-"+nf(MyRSeed & 0x00000000ffffffffL)+".mp4",2);
   FirstVideoFrame();
   NextVideoFrame(); //Video frame
 }

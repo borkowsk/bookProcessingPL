@@ -1,25 +1,25 @@
-// Dwuwymiarowy, probalilistyczny (kroki MC) automat komórkowy - reguła SIR
+// Dwuwymiarowy, probabilistyczny (kroki MC) automat komórkowy - reguła SIR
 // Zasiewanie tablicy na początku z zadaną gęstością zdrowych oraz pojedynczą komórką zarażona
 // LICZBA INTERAKCJI 4, ale prawdopodobieństwo zarażenia nie równe 1 tylko PTransfer 
 // CHOROBA trwa u zarażonego Duration kroków chyba ze umrze (PDeath)
 // ZBIERAMY STATYSTYKI SUMARYCZNE Z CAŁEJ EPIDEMI: int sumInfected,sumRecovered,sumDeath;
 ////////////////////////////////////////////////////////////////////////////////////////////////
-long   MyRSeed=0; // Inicjalizacja liczb losowych - jak 0 to z czasu.
+long   MyRSeed=666; // Inicjalizacja liczb losowych - jak 0 to z czasu.
 
 int WorldSize=400;//Ile chcemy elementów w linii i ile linii (tablica kwadratowa)
 
 int[][] World=new int[WorldSize][WorldSize];//Tworzenie tablicy świata - w Processingu zawsze za pomocą alokacji
 
-float IDens=0.60; //Początkowa gęstość w tablicy - jaka jest gęstość progowa,
+float IDens=0.666; //Początkowa gęstość w tablicy - jaka jest gęstość progowa,
                   //przy której epidemia zaatakuje ZAWSZE cały świat? (o ile już się zacznie)
                   //Choć mogą być małe rejony które ominęła
 
 //Coś w rodzaju stałych ;-)
-final int Duration=7;//Czas trwania infekcji!
-final int Empty=0; 
-final int Susceptible=1;
-final int Infected=2;
-final int Recovered=Infected+Duration;
+final int   Duration=7; //Czas trwania infekcji!
+final int   Empty=0; 
+final int   Susceptible=1;
+final int   Infected=2;
+final int   Recovered=Infected+Duration;
 final float PTransfer=0.75;   //Prawdopodobieństwo zarażenia agenta w pojedynczej interakcji
 final float PDeath=0.01;      //Średnie prawdopodobieństwo śmierci w danym dniu choroby
 
@@ -50,8 +50,8 @@ void setup()
  World[WorldSize/2][WorldSize/2]=Infected;
   
  frameRate(100);
- String filename="ModelSIR5_"+nf(IDens,0,3)+"_"+nf(MyRSeed,11,0);
- initVideoExport(this,filename+".mp4",50);
+ String filename="ModelSIR5_"+nf(IDens,0,3)+"_"+nf(MyRSeed);
+ initVideoExport(this,filename+".mp4",100);
  FirstVideoFrame();
  NextVideoFrame(); //Video frame
 }
