@@ -10,7 +10,7 @@ float density=0.55;
 World TheWorld=new World(side);//... but also will be initialised inside setup()
 
 //Parameters of visualisation etc...
-int cwidth=8;//size of cell
+int cwidth=8; //size of cell
 int STATUSHEIGH=40;
 int STEPSperVIS=1;
 int FRAMEFREQ=20;
