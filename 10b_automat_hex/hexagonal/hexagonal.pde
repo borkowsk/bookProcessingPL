@@ -1,31 +1,32 @@
 //Dwuwymiarowy, DETERMINISTYCZNY automat komórkowy - reguła "ZSUMUJ Z SĄSIADAMI I WEŹ MODULO". Kroki synchroniczne
 // NA SIATCE Hexagonalnej
 //========================
-int WorldSize=275; //Ile chcemy elementów w linii?
+int WorldSize=27; //Ile chcemy elementów w linii?
 float IDens=0.00; //Początkowa gęstość w tablicy (0 oznacza inicjację w środku)
 int Div=5;
 
 int[][] World=new int[WorldSize][WorldSize];
 
-float CellSize=2; //Użyjemy możliwości podawania współrzędnych ekranu jako `float`
+float CellSize=22; //Użyjemy możliwości podawania współrzędnych ekranu jako `float`
 
-void settings() // SPECJALNA FUNCJA POZWALAJĄCA UŻYĆ WYRAŻENIA OKREŚLAJĄCEGO ROZMIAR OKNA
+void settings() // SPECJALNA FUNCJA POZWALAJĄCA UŻYĆ WYRAŻENIA OKREŚLAJĄCEGO ROZMIARY OKNA ORAZ INNYCH USTAWIEŃ OKNA
 {
+   //noSmooth(); //Jeśli istnieje funkcja `settings()` to ta komenda musi być w niej i przed `size()`
    //Proporcje okna 3:2
    size(int(WorldSize*1.5*CellSize),int(WorldSize*CellSize) ); // Tu akurat parametry muszą być typu `int`
 }
 
-void setup()
+void setup() // KLASYCZNY SETUP JEST URUCHAMIANY PO `settings()`
 {
   initialize(); //Inicjalizacja świata
   visualize();  //pierwsza wizualizacja świata
   visualise_connections(); //wizializacja połączen/interakcji komórek
-  frameRate(999);
+  frameRate(9);
 }
 
 void draw()
 {
-  if(frameCount<2) delay(1000); //Na sekundę stan początkowy
+  if(frameCount<2) delay(1000*5/*n*/); //Na n-sekund stan początkowy
   change();     //zmiana świata
   visualize();  //kolejna wizualizacja świata
   fill(255);
@@ -45,6 +46,23 @@ void initialize() ///Inicjalizacja świata
   {
     World[WorldSize/2][WorldSize/2]=int(random(Div));
   }
+}
+
+// hexagon(center x-coordinate, center y-coordinate, width, height)
+// Źródło: https://forum.processing.org/two/discussion/21083/creating-a-simple-function-to-draw-a-hexagon.html
+void hexagon(float x, float y, float gsX, float gsY) ///< "Narzędzie" do rysowania hexagonu
+{  
+  float sqrt3=sqrt(3);
+  gsX/=4;
+  gsY/=3.5;
+  beginShape();
+  vertex(x - gsX, y - sqrt3 * gsY);
+  vertex(x + gsX, y - sqrt3 * gsY);
+  vertex(x + 2 * gsX, y);
+  vertex(x + gsX, y + sqrt3 * gsY);
+  vertex(x - gsX, y + sqrt3 * gsY);
+  vertex(x - 2 * gsX, y);
+  endShape(CLOSE);
 }
 
 void visualize() ///Wizualizacja świata
@@ -68,8 +86,8 @@ void visualize() ///Wizualizacja świata
     float lineIsEven=(j%2==0?offsetX:0); //Co drugi wiersz będzie bardziej przesuniety!
     float X=offsetX+i*1.5*CellSize+lineIsEven;
     float Y=offsetY+j*CellSize;
-    
-    ellipse(X,Y,CellSize*1.5,CellSize); //elipsy reprezentują komórki
+    hexagon(X,Y,CellSize*1.5,CellSize);
+    //ellipse(X,Y,CellSize*1.5,CellSize); //elipsy reprezentują komórki
     //stroke(255,255,0);point(X,Y);noStroke(); //Środki elips
   }
 }
@@ -96,8 +114,17 @@ void visualise_connections() //Wizualizacja połączeń w prawo i w dół
     float X1=offsetX+right*1.5*CellSize+(j%2==0?offsetX:0);
     line(X,Y,X1,Y);
     
+    if(i==1)
+    {
+       stroke(255,0,0);
+       X1=offsetX+left*1.5*CellSize+(j%2==0?offsetX:0);
+       line(X,Y,X1,Y);
+    }
+    
+    // Inne kolor dla parzystych i nieparzystych wierszy
     if(j%2==0) stroke(0,255,255);
-    else stroke(255,255,0);                    
+    else stroke(255,255,0);             
+    
     //World[add][dw]
     float Y1=offsetY+dw*CellSize;
     X1=offsetX+i*1.5*CellSize+(dw%2==0?offsetX:0);
