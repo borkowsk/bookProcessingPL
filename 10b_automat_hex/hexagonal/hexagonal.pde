@@ -82,7 +82,7 @@ void visualize() ///Wizualizacja świata
     
     //Użyjemy możliwości podawania współrzędnych ekranu jako `float`
     float offsetY=CellSize*0.5; //Połowa wysokości elipsy
-    float offsetX=offsetY*1.5;  //Połowa szarokości elipsy
+    float offsetX=offsetY*1.5;  //Połowa szerokości elipsy
     float lineIsEven=(j%2==0?offsetX:0); //Co drugi wiersz będzie bardziej przesuniety!
     float X=offsetX+i*1.5*CellSize+lineIsEven;
     float Y=offsetY+j*CellSize;
@@ -145,7 +145,7 @@ void change() //zmiana świata - tu asynchroniczna Monte Carlo
        
        //Reguła - "ZSUMUJ Z SĄSIADAMI I WEŹ MODULO"
        int right = (i+1) % WorldSize;      
-       int left  = (WorldSize+i-1) % WorldSize;
+       int left  = (WorldSize+i-1) % WorldSize; 
        int dw    = (j+1) % WorldSize;
        int up    = (WorldSize+j-1) % WorldSize;
        int add   = (j%2==0 ?  right   //wiersz parzysty dodatkowo bierze lewych 
@@ -158,7 +158,7 @@ void change() //zmiana świata - tu asynchroniczna Monte Carlo
                  +World[add][up] // dodatkowy górny
                  +World[i][dw]  
                  +World[add][dw] // dodatkowy dolny
-                 ;//suma pięciu brana potem modulo div
+                 ; //suma siedmiu brana potem modulo div
       
         World[i][j]=ile % Div;//Nowy stan zapisujemy do tablicy
    }
