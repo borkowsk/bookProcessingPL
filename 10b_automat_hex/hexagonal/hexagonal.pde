@@ -9,15 +9,16 @@ int[][] World=new int[WorldSize][WorldSize];
 
 float CellSize=22; //Użyjemy możliwości podawania współrzędnych ekranu jako `float`
 
-void settings() // SPECJALNA FUNCJA POZWALAJĄCA UŻYĆ WYRAŻENIA OKREŚLAJĄCEGO ROZMIARY OKNA ORAZ INNYCH USTAWIEŃ OKNA
+void settings() /// SPECJALNA FUNCJA POZWALAJĄCA UŻYĆ WYRAŻENIA OKREŚLAJĄCEGO ROZMIARY OKNA ORAZ INNYCH USTAWIEŃ OKNA
 {
    //noSmooth(); //Jeśli istnieje funkcja `settings()` to ta komenda musi być w niej i przed `size()`
    //Proporcje okna 3:2
    size(int(WorldSize*1.5*CellSize),int(WorldSize*CellSize) ); // Tu akurat parametry muszą być typu `int`
 }
 
-void setup() // KLASYCZNY SETUP JEST URUCHAMIANY PO `settings()`
+void setup() /// KLASYCZNY SETUP JEST URUCHAMIANY PO `settings()`
 {
+  background(16);
   initialize(); //Inicjalizacja świata
   visualize();  //pierwsza wizualizacja świata
   visualise_connections(); //wizializacja połączen/interakcji komórek
@@ -26,14 +27,14 @@ void setup() // KLASYCZNY SETUP JEST URUCHAMIANY PO `settings()`
 
 void draw()
 {
-  if(frameCount<2) delay(1000*5/*n*/); //Na n-sekund stan początkowy
+  if(frameCount<2) delay(1000*3/*n*/); //Na n-sekund stan początkowy
   change();     //zmiana świata
   visualize();  //kolejna wizualizacja świata
   fill(255);
   text("ST:"+frameCount,0,10);
 }
 
-void initialize() ///Inicjalizacja świata
+void initialize() /// Inicjalizacja świata
 {
   if(IDens>0)
   {
@@ -44,7 +45,7 @@ void initialize() ///Inicjalizacja świata
   }
   else
   {
-    World[WorldSize/2][WorldSize/2]=int(random(Div));
+    World[WorldSize/2][WorldSize/2]=int(random(Div)); //Tylko jedna zasiana na początek
   }
 }
 
@@ -65,10 +66,10 @@ void hexagon(float x, float y, float gsX, float gsY) ///< "Narzędzie" do rysowa
   endShape(CLOSE);
 }
 
-void visualize() ///Wizualizacja świata
+void visualize() /// Wizualizacja świata
 {
   noStroke();
-  for(int i=0;i<World.length;i++)//Wizualizacja czyli "rysowanie na ekranie" 
+  for(int i=0;i<World.length;i++)
   for(int j=0;j<World.length;j++) 
   {
     switch(World[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w konmórce
@@ -76,7 +77,7 @@ void visualize() ///Wizualizacja świata
     case 2:fill(255,0,0);break;
     case 1:fill(0,0,255);break;
     case 0:fill(0,0,0);break;
-    default: fill(0,255,0);//To się pojawiac nie powinno
+    default: fill(0,255,0); //To się pojawiać nie powinno
     break;
     }
     
@@ -92,9 +93,9 @@ void visualize() ///Wizualizacja świata
   }
 }
 
-void visualise_connections() //Wizualizacja połączeń w prawo i w dół
+void visualise_connections() ///Wizualizacja połączeń w prawo i w dół
 {
-  for(int i=1;i<World.length-1;i++)//Wizualizacja czyli "rysowanie na ekranie" 
+  for(int i=1;i<World.length-1;i++)
   for(int j=0;j<World.length-1;j++) 
   {    
     //Użyjemy możliwości podawania współrzędnych ekranu jako `float`
@@ -135,11 +136,11 @@ void visualise_connections() //Wizualizacja połączeń w prawo i w dół
   }
 }
 
-void change() //zmiana świata - tu asynchroniczna Monte Carlo
+void change() ///zmiana świata - tu asynchroniczna Monte Carlo
 {
-  for(int a=0;a<World.length*World.length;a++)//Tyle losowań ile komórek
+  for(int a=0;a<World.length*World.length;a++)//Tyle losowań ile komórek/agentów
   {
-       //Losowanie agenta 
+       //Losowanie komórki/agenta 
        int i=(int)random(World.length);
        int j=(int)random(World.length);
        
@@ -148,7 +149,7 @@ void change() //zmiana świata - tu asynchroniczna Monte Carlo
        int left  = (WorldSize+i-1) % WorldSize; 
        int dw    = (j+1) % WorldSize;
        int up    = (WorldSize+j-1) % WorldSize;
-       int add   = (j%2==0 ?  right   //wiersz parzysty dodatkowo bierze lewych 
+       int add   = (j%2==0 ?  right   //wiersz parzysty dodatkowo bierze lewych sąsiadów z góry i dołu
                            :  left    //wiersz nieparzysty dodatkowo bierze prawych 
                            );
        int ile = World[i][j] //Żeby było jeszcze ciekawiej robimy regułę modulo
@@ -158,9 +159,9 @@ void change() //zmiana świata - tu asynchroniczna Monte Carlo
                  +World[add][up] // dodatkowy górny
                  +World[i][dw]  
                  +World[add][dw] // dodatkowy dolny
-                 ; //suma siedmiu brana potem modulo div
+                 ; //suma siedmiu brana potem modulo `Div`
       
-        World[i][j]=ile % Div;//Nowy stan zapisujemy do tablicy
+        World[i][j]=ile % Div; //Nowy stan zapisujemy do tablicy świata
    }
 }
 

@@ -1,16 +1,17 @@
 //Dwuwymiarowy, DETERMINISTYCZNY automat komórkowy - reguła "ZSUMUJ Z SĄSIADAMI I WEŹ MODULO". SYNCHRONICZNY.
-// NA SIATCE Hexagonalnej
-//========================
-// Wyswietlanie optymalizowane tablicą zmian (Changed)
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-int WorldSize=176; //Ile chcemy elementów w linii?
-int[][] WorldOld=new int[WorldSize][WorldSize]; //Tworzenie tablic - w Processingu zawsze za pomocą alokacji
+// NA SIATCE Hexagonalnej - Wyswietlanie optymalizowane tablicą zmian (Changed)
+//=============================================================================
+//
+int WorldSize=202; //Ile chcemy elementów w linii?
+int[][] WorldOld=new int[WorldSize][WorldSize]; //Tworzenie tablic - w Processingu zawsze za pomocą alokacji!
 int[][] WorldNew=new int[WorldSize][WorldSize];
-boolean[][] Changed=new boolean[WorldSize][WorldSize]; //Flagi zmiany do rysowania
+boolean[][] Changed=new boolean[WorldSize][WorldSize]; //Tablica flag zmian do rysowania
 
-float IDens=0.0;//Początkowa gęstość w tablicy
-int Div=6; //Jaki dzielnik w regule automatu
-float CellSize=5; //Bok celki
+float IDens=0.0; //Początkowa gęstość w tablicy
+int   Div=6; //Jaki dzielnik w regule automatu
+
+float CellSize=3; //Wysokość komórki
+int   FRAME_RATE_REQ=9; //Ile klatek na sekundę byśmy chcieli
 
 void settings() // SPECJALNA FUNCJA POZWALAJĄCA UŻYĆ WYRAŻENIA OKREŚLAJĄCEGO ROZMIARY OKNA ORAZ INNYCH USTAWIEŃ OKNA
 {
@@ -21,7 +22,7 @@ void settings() // SPECJALNA FUNCJA POZWALAJĄCA UŻYĆ WYRAŻENIA OKREŚLAJĄCE
 
 void setup()
 {
-  background(0);
+  background(0); //Czarne tło okna
   if(IDens>0)
   {
    for(int i=0;i<WorldOld.length;i++) //Zasiewanie tablicy
@@ -29,7 +30,7 @@ void setup()
     {
       Changed[i][j]=true;
       if(random(1.0)<IDens)
-        WorldOld[i][j]=(int)(random(Div));//trzeba zmienić typ, bo tablica przechowuje int a nie float
+        WorldOld[i][j]=(int)(random(Div)); //trzeba zmienić typ (zrobić "rzut"), bo tablica przechowuje `int` a nie `float`
       else
         WorldOld[i][j]=0;
     }
@@ -43,17 +44,17 @@ void setup()
       WorldOld[i][j]=0;
      }
       
-    WorldOld[WorldSize/2][WorldSize/2]=1;//Tylko jeden w środku
+    WorldOld[WorldSize/2][WorldSize/2]=1; //Tylko jeden zasiany w środku
   }
   visualize();
-  frameRate(99);
+  frameRate(FRAME_RATE_REQ);
 }
 
 void draw()
 {  
   change();
   visualize();
-  fill(0,0,0);rect(10,height-16,20*8,16);
+  fill(0,0,0,128);rect(10,height-16,20*8,16);
   fill(255);
   text("ST: "+frameCount+" Fr: "+frameRate,10,height);
 }
@@ -75,20 +76,21 @@ void hexagon(float x, float y, float gsX, float gsY) ///< "Narzędzie" do rysowa
   endShape(CLOSE);
 }
 
-void visualize() ///Wizualizacja świata
+void visualize() /// Wizualizacja świata
 {
   noStroke();
-  for(int i=0;i<WorldOld.length;i++)//Wizualizacja czyli "rysowanie na ekranie" 
+  for(int i=0;i<WorldOld.length;i++)
   for(int j=0;j<WorldOld.length;j++) 
   {
     switch(WorldOld[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w konmórce
-      case 5:fill(128,128,255);break;
-      case 4:fill(0,128,0);break;
-      case 3:fill(128,128,0);break;
-      case 2:fill(255,0,0);break;
-      case 1:fill(0,0,255);break;
-      case 0:fill(0,0,0);break;
-      default: fill(0,255,0);//To się pojawiac nie powinno
+      case 0:fill(0,0,0);break; //Odpowiednio dobrany zestaw kolorów pozwala uzyskać ciekawe efekty
+      case 1:fill(0,255,0);break;
+      case 2:fill(64,128,64);break;
+      case 3:fill(128,64,128);break;
+      case 4:fill(255,0,200);break;
+      case 5:fill(64,0,255);break;
+      case 6:fill(0,0,255);break;
+      default: fill(255,255,255);//To się pojawiac nie powinno
       break;
     }
     
@@ -98,7 +100,7 @@ void visualize() ///Wizualizacja świata
     float lineIsEven=(j%2==0?offsetX:0); //Co drugi wiersz będzie bardziej przesuniety!
     float X=offsetX+i*1.5*CellSize+lineIsEven;
     float Y=offsetY+j*CellSize;
-    hexagon(X,Y,CellSize*1.5,CellSize);
+    hexagon(X,Y,CellSize*1.5,CellSize); //sześciokąty reprezentujące komórki
     //ellipse(X,Y,S*1.5,S); //zwykłe elipsy reprezentują komórki
     //stroke(255,255,0);point(X,Y);noStroke(); //Środki elips/hexagonów
   }
@@ -134,7 +136,7 @@ void change() //zmiana świata - tu synchroniczna
        }
    }
    
-   //Zamiana tablic - łatwa bo nie trzeba kopiować tablic, wystarczy "uchwyty" do nich
+   //Zamiana tablic - łatwa bo nie trzeba kopiować danych, wystarczy zamienić "uchwyty" do nich
    int[][] WorldTmp=WorldOld;
    WorldOld=WorldNew;
    WorldNew=WorldTmp;
