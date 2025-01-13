@@ -29,7 +29,7 @@ public class Work1 extends JFrame {
 
                      // change text of button after click
 
-                     if (btn.getText() == "abraCadabra"){
+                     if (btn.getText() == "abraCadabra"){ // This not work in Processing 3.x
                           btn.setText("click me again") ;
                      }
                      else  btn.setText("abraCadabra");

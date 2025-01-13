@@ -1,4 +1,4 @@
-//Przykład z forum 
+//Przykład z forum. W systemie POP_OS 22.04 ma błąd: "Profile GL4bc is not available on X11GraphicsDevice"
 int cols, rows;
 int scl = 20;
 int w = 2000;

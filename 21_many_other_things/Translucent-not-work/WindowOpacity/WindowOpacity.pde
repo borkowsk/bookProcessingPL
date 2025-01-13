@@ -1,4 +1,4 @@
-// Both version not work properly in Processing 3
+// Both version not work properly in Processing 3 ("RuntimeException: 'frame' has been removed from Processing 3, use fullScreen()")
 // https://forum.processing.org/two/discussion/11629/is-it-possible-to-make-a-transparent-window
 import com.sun.awt.AWTUtilities;
  
