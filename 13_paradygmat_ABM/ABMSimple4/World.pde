@@ -1,5 +1,5 @@
 /// The world & its dynamics.
-/// @date 2025-01-04 (modification)
+/// @date 2025-01-13 (modification)
 //*/////////////////////////////////////////////////////////////////////////////
 
 class World
