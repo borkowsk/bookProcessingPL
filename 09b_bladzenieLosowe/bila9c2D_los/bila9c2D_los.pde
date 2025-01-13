@@ -2,7 +2,7 @@
 //*////////////////////////////////////////////////////////////////
 //  Program Processingu w trybie 2 - z widocznymi funkcjami
 //*////////////////////////////////////////////////////////////////
-int FR=50; //Na ile kroków dzielimy sekundę?
+int FR=100; //Na ile kroków dzielimy sekundę?
 
 void setup() //Jest wykonywane raz - po uruchomieniu
 {
@@ -18,7 +18,7 @@ float vh=150; //prędkość pionowa w pikselach/SEKUNDE (!)
 float vx=150; //prędkość pozioma
 float ah=0;   //Przyśpieszenie/hamowanie - w pionie
 float ax=0;   //I w poziomie
-float M=0.75; //Wydajność odbicia sprężystego 1-B = ile energi kinetycznej się rozprasza nie wraca do prędkości po odbiciu
+float M=0.95; //Wydajność odbicia sprężystego 1-B = ile energi kinetycznej się rozprasza nie wraca do prędkości po odbiciu
 
 float R=random(255),G=random(255),B=random(255);
 void draw() //Jest wykonywane w niewidocznej pętli
