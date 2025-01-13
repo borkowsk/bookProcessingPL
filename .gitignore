@@ -14,6 +14,7 @@ ffmpeg.txt
 *.xls*
 *.zip
 *.lst
+*.out
 
 
 # compiler-generated binaries (safe to delete)
