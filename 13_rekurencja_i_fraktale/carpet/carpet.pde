@@ -1,11 +1,11 @@
-// RECURSIVE PATTERNS – THE SIERPINSKI CARPET
-// Wersja uproszczona
-///////////////////////////////////////////////////////////////////////////////////////////////
+/// RECURSIVE PATTERNS – THE SIERPINSKI CARPET
+/// Wersja uproszczona "dywanu Sierpińskiego"
+//-/////////////////////////////////////////////////////////////////////////////////////////////
 int limit=1;
  
 void setup() 
 {
-   size(513, 513);//Okno winno być symetryczne
+   size(513, 513); //Okno winno być symetryczne
    noLoop(); //wywołania draw() niepotrzebne
    background(255);stroke(0);fill(0); 
 
@@ -19,11 +19,11 @@ void sierpinskiCarpet(int x, int y, int size)
       
    size = size / 3;
    
-   rect(x+size, y+size, size, size);//Wycięcie
+   rect(x+size, y+size, size, size); //Wycięcie środka
    
    //Wywołania rekurencyjne dla 8 kwadratowych sąsiedztw
    sierpinskiCarpet(x,y,size);
    sierpinskiCarpet(x+2*size,y+2*size,size);
    //sierpinskiCarpet(x,y+2*size,size);
-   //... itd!!!
+   //... itd!!! UZUPEŁNIJ!
 }

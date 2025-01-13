@@ -1,12 +1,12 @@
-// RECURSIVE PATTERNS – THE SIERPINSKI CARPET
-// https://craftofcoding.wordpress.com/2018/05/10/recursive-patterns-the-sierpinski-carpet/
-///////////////////////////////////////////////////////////////////////////////////////////////
+/// RECURSIVE PATTERNS – THE SIERPINSKI CARPET
+/// https://craftofcoding.wordpress.com/2018/05/10/recursive-patterns-the-sierpinski-carpet/
+//-/////////////////////////////////////////////////////////////////////////////////////////////
 int dim;
 int limit, depth;
  
 void setup() 
 {
-   size(513, 513);//Okno musi być symetryczne
+   size(513, 513); //Okno musi być symetryczne
    dim = 513;
    limit = dim;
    depth = 6;

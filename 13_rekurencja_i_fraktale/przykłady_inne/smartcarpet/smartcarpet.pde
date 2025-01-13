@@ -1,10 +1,11 @@
-//This sketch display the fractal known as the "Sierpinski carpet" with 6 iterations
-// https://www.openprocessing.org/sketch/141019/
-///////////////////////////////////////////////////////////////////////////////////
-float s=729;  //length of the first iteration square's side (it should be a power 
-              //of 3 to get pixel accuracy)
-int cpt=0;    //used to display in the console the number of calls to the recursive 
-              //function that draws the fractal
+/// This sketch display the fractal known as the "Sierpinski carpet" with 6 iterations
+/// https://www.openprocessing.org/sketch/141019/
+//-///////////////////////////////////////////////////////////////////////////////////
+
+float s=729;  // length of the first iteration square's side (it should be a power 
+              // of 3 to get pixel accuracy)
+int cpt=0;    // used to display in the console the number of calls to the recursive 
+              // function that draws the fractal
 
 void setup()
 {
