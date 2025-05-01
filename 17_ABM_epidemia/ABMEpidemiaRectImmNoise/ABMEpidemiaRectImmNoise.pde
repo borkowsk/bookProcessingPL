@@ -42,7 +42,7 @@ int STATUSHEIGH=150;//WYSOKOŚĆ PASKA STATUSU NA DOLE OKNA
 int STEPSperVIS=1;//JAK CZĘSTO URUCHAMIAMY WIZUALIZACJĘ
 int FRAMEFREQ=50; //ILE RAZY NA SEKUNDĘ URUCHAMIA SIĘ draw()
 
-boolean WITH_VIDEO=true;//CZY CHCEMY ZAPIS DO PLIKU FILMOWEGO (wymagany modu… RTMVideo.pde)
+boolean WITH_VIDEO=false;//CZY CHCEMY ZAPIS DO PLIKU FILMOWEGO (wymagane RTMVideo.pde. Może nie działać pod Windows)
 boolean simulationRun=true;//FLAGA Start/stop DZIAŁANIA SYMULACJI
 
 World TheWorld;
@@ -53,7 +53,7 @@ void setup()
   float reqwidth=16*100;
   float reqheight=9*100;
   println("Set size(",reqwidth,",",reqheight,");");
-  size(1600,900);//NIESTETY TU MOGĄ BYĆ TYLKO WARTOŚCI PODANE LITERALNIE CZYLI "LITERAŁY"!!!
+  size(1200,900);//NIESTETY TU MOGĄ BYĆ TYLKO WARTOŚCI PODANE LITERALNIE CZYLI "LITERAŁY"!!!
   
   //OBLICZAMY WYMAGANE PARAMTERY OKNA 
   cwidth=(height-STATUSHEIGH)/side;//DOPASOWUJEMY ROZMIAR KOMÓREK DO OKNA JAKIE JEST
