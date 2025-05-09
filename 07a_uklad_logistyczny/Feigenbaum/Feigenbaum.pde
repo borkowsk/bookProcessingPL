@@ -1,7 +1,7 @@
 //Najprostszy (prawie) układ chaotyczny
 double r=3.000;//Parametr kontroli
 double X=0.99;//Zmienna stanu, stan układu
-float R=255,G=255,B=255;
+float R=255,G=155,B=255;
 int N=0;
 int Y=0;
 int Rozbieg=400;

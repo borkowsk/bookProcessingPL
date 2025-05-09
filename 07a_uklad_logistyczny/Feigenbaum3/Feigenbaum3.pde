@@ -11,7 +11,7 @@ void setup()
 {
   size(1000,1000);
   rectMode(CENTER);
-  frameRate(300);
+  frameRate(1000);
 }
 
 float scaleY(double X)

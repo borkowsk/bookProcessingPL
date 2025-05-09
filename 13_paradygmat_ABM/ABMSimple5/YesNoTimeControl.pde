@@ -4,7 +4,7 @@
 
 void keyPressed() //when key pressed, the numbers 1 to 9 change the speed and 'Q' ends the simulation.
 {
-  if(key==ESC) key=0; //Do not exit on ESCAPE //<>//
+  if(key==ESC) key=0; //Do not exit on ESCAPE
   else
   switch(key){
     case '1': frameRate(1); break; 
