@@ -11,6 +11,13 @@ https://www.facebook.com/ProcessingWEdukacji/
 W tym repozytorium są wyłącznie materiały do książki, 
 bez pozostałych materiałów do symulacji w Processingu.
 
+# WYMAGANIA
+
+Przetestowano na:
+ - Processing 3.x i 4.x
+ - Linux Ubuntu do 22.04 , MS Windows
+
+
 *LITERATURA DODATKOWA*
 
 http://grafit.mchtr.pw.edu.pl/~mozaryn/publikacje/Processing_lab1.pdf
