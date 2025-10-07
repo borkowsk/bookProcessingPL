@@ -1,13 +1,13 @@
-// Dwuwymiarowy, probalilistyczny (kroki MC) automat komórkowy - reguła SIR
-// Zasiewanie tablicy na początku z zadaną gęstością zdrowych oraz pojedynczą komórką zarażona
-// LICZBA INTERAKCJI 4, ale prawdopodobieństwo zarażenia nie równe 1 tylko PTransfer 
-// CHOROBA trwa u zarażonego w zależności od PRecovery lub PDeath
-// ZBIERAMY STATYSTYKI: int kranken,geheilt,starben;
-////////////////////////////////////////////////////////////////////////////////////////////////
+/// Dwuwymiarowy, probabilistyczny (kroki MC) automat komórkowy - reguła SIR
+/// Zasiewanie tablicy na początku z zadaną gęstością zdrowych oraz pojedynczą komórką zarażona
+/// LICZBA INTERAKCJI 4, ale prawdopodobieństwo zarażenia nie równe 1 tylko PTransfer 
+/// CHOROBA trwa u zarażonego w zależności od PRecovery lub PDeath
+/// ZBIERAMY STATYSTYKI: int kranken,geheilt,starben;
+//*//////////////////////////////////////////////////////////////////////////////////////////////
 
-int WorldSize=400;//Ile chcemy elementów w linii i ile linii (tablica kwadratowa)
+int WorldSize=400; //Ile chcemy elementów w linii i ile linii (tablica kwadratowa)
 
-int[][] World=new int[WorldSize][WorldSize];//Tworzenie tablicy świata - w Processingu zawsze za pomocą alokacji
+int[][] World=new int[WorldSize][WorldSize]; //Tworzenie tablicy świata - w Processingu zawsze za pomocą alokacji
 
 float IDens=0.66; //Początkowa gęstość w tablicy - jaka jest gęstość progowa,
                   //przy której epidemia zaatakuje ZAWSZE cały świat? (o ile już się zacznie)
@@ -30,7 +30,7 @@ int starben=0; //Ci co umarli
 
 void setup()
 {
- assert PDeath + PRecovery < 1 : "Za duże prawdopodobieństwa PDeath + PRecovery";//Asercja - sprawdzenie założeń
+ assert PDeath + PRecovery < 1 : "Za duże prawdopodobieństwa PDeath + PRecovery"; //Asercja - sprawdzenie założeń
  
  size(400,400);    //Okno kwadratowe
  noSmooth();       //Znacząco przyśpiesza wizualizacje
@@ -42,7 +42,7 @@ void setup()
       if(random(1.0)<IDens)
         World[i][j]=Susceptible;
       else
-        World[i][j]=Empty;//Dla pewności, gdyby Empty nie było zero.
+        World[i][j]=Empty; //Dla pewności, gdyby Empty nie było zero.
   }
  
  World[WorldSize/2][WorldSize/2]=Infected;
@@ -54,7 +54,7 @@ int t=0;
 
 void draw()
 {  
-  for(int i=0;i<World.length;i++)//Wizualizacja czyli "rysowanie na ekranie" 
+  for(int i=0;i<World.length;i++) //Wizualizacja czyli "rysowanie na ekranie" 
     for(int j=0;j<World.length;j++) 
     {
       switch(World[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w konmórce
@@ -62,16 +62,16 @@ void draw()
       case 2:stroke(255,0,0);break;
       case 1:stroke(0,0,255);break;
       case 0:stroke(0,0,0);break;
-      default: stroke(255);//To się pojawiac nie powinno
+      default: stroke(255); //To się pojawiać nie powinno
       break;
       } 
       point(i,j);
     }
   
-  kranken=0;geheilt=0;starben=0;//Zerowanie dla kroku. Jak wykomentowane to zbieramy statystykę całej epidemii
+  kranken=0;geheilt=0;starben=0; //Zerowanie dla kroku. Jak wykomentowane to zbieramy statystykę całej epidemii
   //Zmiana stanu automatu - krok Monte Carlo
   //STANY: Empty=0; Susceptible=1; Infected=2; Recovered=3;
-  for(int a=0;a<World.length*World.length;a++)//Tyle losowań ile komórek
+  for(int a=0;a<World.length*World.length;a++) //Tyle losowań ile komórek
   {
        //Losowanie agenta 
        int i=(int)random(World.length);
@@ -107,15 +107,15 @@ void draw()
        else if(prob<PRecovery+PDeath)//Albo jest wyleczony
              {World[i][j]=Recovered;geheilt++;}
             //else //NADAL CIERPI!
-   }//Koniec petli po wylosowanych agentach
+   } //Koniec petli po wylosowanych agentach
       
-   t++;//Kolejne pokolenie/krok/rok
+   t++ ;//Kolejne pokolenie/krok/rok
    text("ST:"+t+" Zachorowali:"+kranken+" Wyzdrowieli:"+geheilt+" Umarli:"+starben,0,10);
    println("ST:"+t+"\tZ\t"+kranken+"\tW\t"+geheilt+"\tU\t"+starben);
 }
 
-//////////////////////////////////////////////////////////////////////////////////
+//*////////////////////////////////////////////////////////////////////////////////
 // Autor: Wojciech T. Borkowski
 // Materiały do podręcznika "Processing w edukacji i symulacji
 // https://github.com/borkowsk/sym4processing/tree/master/ProcessingWEdukacji
-//////////////////////////////////////////////////////////////////////////////////
+//*////////////////////////////////////////////////////////////////////////////////

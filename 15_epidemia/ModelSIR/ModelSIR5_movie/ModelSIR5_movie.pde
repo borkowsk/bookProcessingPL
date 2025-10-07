@@ -1,18 +1,18 @@
-// Dwuwymiarowy, probabilistyczny (kroki MC) automat komórkowy - reguła SIR
-// Zasiewanie tablicy na początku z zadaną gęstością zdrowych oraz pojedynczą komórką zarażona
-// LICZBA INTERAKCJI 4, ale prawdopodobieństwo zarażenia nie równe 1 tylko PTransfer 
-// CHOROBA trwa u zarażonego Duration kroków chyba ze umrze (PDeath)
-// ZBIERAMY STATYSTYKI SUMARYCZNE Z CAŁEJ EPIDEMI: int sumInfected,sumRecovered,sumDeath;
-////////////////////////////////////////////////////////////////////////////////////////////////
+/// Dwuwymiarowy, probabilistyczny (kroki MC) automat komórkowy - reguła SIR
+/// Zasiewanie tablicy na początku z zadaną gęstością zdrowych oraz pojedynczą komórką zarażona
+/// LICZBA INTERAKCJI 4, ale prawdopodobieństwo zarażenia nie równe 1 tylko PTransfer 
+/// CHOROBA trwa u zarażonego Duration kroków chyba ze umrze (PDeath)
+/// ZBIERAMY STATYSTYKI SUMARYCZNE Z CAŁEJ EPIDEMI: int sumInfected,sumRecovered,sumDeath;
+//*//////////////////////////////////////////////////////////////////////////////////////////////
 long   MyRSeed=666; // Inicjalizacja liczb losowych - jak 0 to z czasu.
 
-int WorldSize=400;//Ile chcemy elementów w linii i ile linii (tablica kwadratowa)
+int WorldSize=400; //Ile chcemy elementów w linii i ile linii (tablica kwadratowa)
 
 int[][] World=new int[WorldSize][WorldSize];//Tworzenie tablicy świata - w Processingu zawsze za pomocą alokacji
 
 float IDens=0.666; //Początkowa gęstość w tablicy - jaka jest gęstość progowa,
-                  //przy której epidemia zaatakuje ZAWSZE cały świat? (o ile już się zacznie)
-                  //Choć mogą być małe rejony które ominęła
+                   //przy której epidemia zaatakuje ZAWSZE cały świat? (o ile już się zacznie)
+                   //Choć mogą być małe rejony które ominęła
 
 //Coś w rodzaju stałych ;-)
 final int   Duration=7; //Czas trwania infekcji!
@@ -24,9 +24,9 @@ final float PTransfer=0.75;   //Prawdopodobieństwo zarażenia agenta w pojedync
 final float PDeath=0.01;      //Średnie prawdopodobieństwo śmierci w danym dniu choroby
 
 //STATYSTYKI LICZONE W TRAKCIE SYMULACJI
-int sumInfected=0; //Zachorowanie
-int sumRecovered=0;//Wyzdrowienia
-int sumDeath=0;    //Ci co umarli
+int sumInfected=0;  //Zachorowanie
+int sumRecovered=0; //Wyzdrowienia
+int sumDeath=0;     //Ci co umarli
 
 void setup()
 { 
@@ -44,7 +44,7 @@ void setup()
       if(random(1.0)<IDens)
         World[i][j]=Susceptible;
       else
-        World[i][j]=Empty;//Dla pewności, gdyby Empty nie było zero.
+        World[i][j]=Empty; //Dla pewności, gdyby Empty nie było zero.
   }
  
  World[WorldSize/2][WorldSize/2]=Infected;
@@ -52,23 +52,23 @@ void setup()
  frameRate(100);
  String filename="ModelSIR5_"+nf(IDens,0,3)+"_"+nf(MyRSeed);
  initVideoExport(this,filename+".mp4",100);
- FirstVideoFrame();
- NextVideoFrame(); //Video frame
+ FirstVideoFrame(); //zapis pierwszej klatki filmu
+ NextVideoFrame();  //kolejna klatka filmu
 }
 
 int t=0;
 
 void draw()
 {  
-  for(int i=0;i<World.length;i++)//Wizualizacja czyli "rysowanie na ekranie" 
+  for(int i=0;i<World.length;i++) //Wizualizacja czyli "rysowanie na ekranie" 
     for(int j=0;j<World.length;j++) 
     {
       switch(World[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor
-      case Recovered:  stroke(0,255,0);break;//Wyleczony
-      case Infected:   stroke(255,0,0);break;//Zachorował
-      case Susceptible:stroke(0,0,255);break;//Podatny
-      case Empty:      stroke(0,0,0);break;//Pusty
-      default:         stroke(random(255),0,random(255));//Chory
+      case Recovered:  stroke(0,255,0);break; //Wyleczony
+      case Infected:   stroke(255,0,0);break; //Zachorował
+      case Susceptible:stroke(0,0,255);break; //Podatny
+      case Empty:      stroke(0,0,0);break;   //Pusty
+      default:         stroke(random(255),0,random(255)); //Chory
       break;
       } 
       point(i,j);
@@ -76,7 +76,7 @@ void draw()
   
   //Zmiana stanu automatu - krok Monte Carlo
   //STANY: Empty=0; Susceptible=1; Infected=2; Recovered=Infected+Duration;
-  for(int a=0;a<World.length*World.length;a++)//Tyle losowań ile komórek
+  for(int a=0;a<World.length*World.length;a++) //Tyle losowań ile komórek
   {
        //Losowanie agenta 
        int i=(int)random(World.length);
@@ -118,15 +118,15 @@ void draw()
         }
    }
       
-   t++;//Kolejne pokolenie/krok/rok
+   t++; //Kolejne pokolenie/krok/rok
    text("ST:"+t+" Zachorowali:"+sumInfected+" Wyzdrowieli:"+sumRecovered+" Umarli:"+sumDeath
          ,0,10);
    println("ST:"+t+"\tZ\t"+sumInfected+"\tW\t"+sumRecovered+"\tU\t"+sumDeath);
    NextVideoFrame(); //Video frame
 }
 
-//////////////////////////////////////////////////////////////////////////////////
+//*////////////////////////////////////////////////////////////////////////////////
 // Autor: Wojciech T. Borkowski
 // Materiały do podręcznika "Processing w edukacji i symulacji
 // https://github.com/borkowsk/sym4processing/tree/master/ProcessingWEdukacji
-//////////////////////////////////////////////////////////////////////////////////
+//*////////////////////////////////////////////////////////////////////////////////
