@@ -1,1 +1,1 @@
-line(0,100,100,0);//To jest komentarz do końca linii
+line(0,100,100,0); //To jest komentarz do końca tej linii

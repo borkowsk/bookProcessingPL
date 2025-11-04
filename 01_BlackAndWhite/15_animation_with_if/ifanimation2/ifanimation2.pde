@@ -1,3 +1,4 @@
+// Ciekawsza animacja oparta o ruch myszki
 // src: https://openprocessing.org/sketch/825836/
 
 void setup()
