@@ -1,5 +1,6 @@
 //Przezroczyste losowe elipsy
-float W;//global variable
+
+float W; //global variable
 
 void setup()
 {
@@ -7,7 +8,7 @@ void setup()
   frameRate(100); //szybkośc animacji
   noStroke();     //bez konturów
   //Gdy już wiadomo jakie wymiary okna szukamy mniejszego
-  W=min(width,height);//wartość minimalna z dwóch wartości
+  W=min(width,height); //wartość minimalna z dwóch wartości
 }
 
 //Własna funkcja

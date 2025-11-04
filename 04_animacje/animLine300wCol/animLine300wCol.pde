@@ -1,17 +1,20 @@
 //Color line animation
 
-void setup() {
+void setup() 
+{
   frameRate(32);
   size(256,300);
-  //strokeWeight(3); //Uncoment this for test
+  //strokeWeight(3); //Odkomentuj żeby zobaczyć co się stanie
 }
 
 int pos = 0;
 
 void draw() 
 {
-  //background(128); //Uncoment this for test
+  //background(128); //Odkomentuj żeby zobaczyć co się stanie
   pos++;
-  stroke(pos,50,50); // now color depends on position!
+  stroke(pos,50,50); //teraz kolor zależy od pozycji!
   line(pos, 20, pos, 280);
 }
+
+// https://github.com/borkowsk/bookProcessingPL

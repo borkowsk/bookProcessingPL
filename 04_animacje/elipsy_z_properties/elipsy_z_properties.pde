@@ -1,4 +1,4 @@
-//Control parameters
+//Parametr losowania 
 int W=600;
 
 int radius()
@@ -9,7 +9,7 @@ int radius()
 //Initialisation
 void setup()
 {
-  size(600,600);
+  size(600,600); //Musi być jak W
   //frameRate(100);
 }
 
