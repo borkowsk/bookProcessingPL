@@ -1,7 +1,7 @@
 //"BILA" - MODEL RUCHU PUNKTU MATERIALNEGO - uproszczenie
-//////////////////////////////////////////////////////////////////
 //Program Processingu w trybie 2 - z widocznymi funkcjami
-//////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////
+
 int FR=10; //Na ile kroków dzielimy sekundę?
 float h=height/2;
 float x=width/2;
@@ -11,12 +11,12 @@ float B=0.90; //Wydajność odbicia sprężystego 1-B = ile energi kinetycznej s
 
 void setup() //Jest wykonywane raz - po uruchomieniu
 {
-size(500,500);
-h=height/2;
-x=width/2;
-//noSmooth();//Bez wygładzania lini? Po prostu odkomentować 
-background(0,0,200);//rgB
-frameRate(FR);
+  size(500,500);
+  h=height/2;
+  x=width/2;
+  //noSmooth(); //Bez wygładzania lini? Po prostu odkomentować 
+  background(0,0,200); //rgB
+  frameRate(FR);
 }
 
 int count=0;
@@ -41,16 +41,18 @@ void draw() //Jest wykonywane w niewidocznej pętli
   else
   if(height<h)
   {
-    h=height;//Trochę oszukujemy
+    h=height; //Trochę oszukujemy
   }
   else //A jakby to wykomentować?
   if(x<0)
   {
-     x=0;//Trochę oszukujemy
+     x=0; //Trochę oszukujemy
   }
   else
   if(width<x)
   {
-     x=width;//Trochę oszukujemy
+     x=width; //Trochę oszukujemy
   }
 }
+
+// https://github.com/borkowsk/bookProcessingPL

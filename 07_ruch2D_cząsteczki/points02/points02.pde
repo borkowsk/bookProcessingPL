@@ -1,5 +1,6 @@
 // "BŁĄDZĄCE PUNKTY" - MODEL RUCHU BROWNA CZĄSTECZEK - BŁĄDZENIE LOSOWE
 //*//////////////////////////////////////////////////////////////////////
+
 int FR=200;   //Ile klatek na sekundę
 float maxd=3; //Jaki największy ruch 
 int Size=100; //Ile cząstek
@@ -12,8 +13,11 @@ void setup() //Jest wykonywane raz - po uruchomieniu. Nie musi być na poczatku 
   noSmooth();
   for(int i=0;i<Size;i++)
   {
-    h[i]=random(500);
-    x[i]=random(500);
+    //h[i]=random(500);
+    //x[i]=random(500);
+    //albo:
+    h[i]=height/2;
+    x[i]=width/2; 
   }
   background(0,0,200); //rgB
   frameRate(FR);
@@ -61,3 +65,5 @@ void draw() //Jest wykonywane w niewidocznej pętli
     h[i]=newh;
   }
 }
+
+// https://github.com/borkowsk/bookProcessingPL

@@ -1,5 +1,6 @@
 // "BILA" - MODEL RUCHU PUNKTU MATERIALNEGO - BŁĄDZENIE LOSOWE
 //*////////////////////////////////////////////////////////////////
+
 int FR=200;   //Na ile kroków dzielimy sekundę?
 float maxd=4; //Jaki największy ruch 
 float h=0;    //height/2; //Położenie pionowe
@@ -42,3 +43,5 @@ void draw()  //Jest wykonywane w niewidocznej pętli
   x=newx;
   h=newh;
 }
+
+// https://github.com/borkowsk/bookProcessingPL
