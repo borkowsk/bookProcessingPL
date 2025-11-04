@@ -1,3 +1,5 @@
+//Demo definiowania funkcji
+
 int funkcja_zwraca_int()
 {
   return 1;
@@ -20,12 +22,12 @@ float funkcja_dostaje_int_i_zwraca_float(int x)
 
 float funkcja_dostaje_float_i_zwraca_float(float x)
 {
-  return sqrt(x);//Pierwiastek kwadratowy z liczby zmiennoprzecinkowej
+  return sqrt(x); //Pierwiastek kwadratowy z liczby zmiennoprzecinkowej
 }
 
 float funkcja_dostaje_Float_i_zwraca_float(Float x)
 {
-  return sqrt(x);//Pierwiastek kwadratowy z liczby zmiennoprzecinkowej
+  return sqrt(x); //Pierwiastek kwadratowy z liczby zmiennoprzecinkowej
 }
 
 void setup()
@@ -41,7 +43,9 @@ void setup()
   println(  funkcja_dostaje_Float_i_zwraca_float(X) );
 }
 
-void draw() //Console only applet!
+void draw() //Program nie potrzebuje okna graficznego
 {
   surface.setVisible(false);
 }
+
+// https://github.com/borkowsk/bookProcessingPL
