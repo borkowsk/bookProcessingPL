@@ -1,6 +1,9 @@
+//Demo gwiezdnego nieba
+
 size(500,500);
 background(0,0,50);
-//STARS
+
+//GWIAZDY
 for(int i=0;i<1500;i+=10) //POWTARZAJ 150 razy. Ale dlaczego +=10?
 {
   float R=random(255);
@@ -9,3 +12,5 @@ for(int i=0;i<1500;i+=10) //POWTARZAJ 150 razy. Ale dlaczego +=10?
   stroke(R,G,B);
   point(random(500),random(500));
 }
+
+// https://github.com/borkowsk/bookProcessingPL

@@ -1,9 +1,12 @@
+//Demo gwiezdnego nieba - duże okno i duzy statek
+
 void setup()
 {
   size(820,462);
   background(0,0,50);
   frameRate(16);
-  //STARS
+  
+  //GWIAZDY
   for(int i=0;i<500;i+=1) //POWTARZAJ
   {
     float R=random(255);
@@ -15,6 +18,7 @@ void setup()
 }
 
 int SIZE=2;
+
 void draw()
 {
   //side A
@@ -57,3 +61,5 @@ void draw()
     SIZE=height;
   //saveFrame("starship-######.png");
 }
+
+// https://github.com/borkowsk/bookProcessingPL

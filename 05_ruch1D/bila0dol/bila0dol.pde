@@ -1,12 +1,12 @@
 //"BILA" - MODEL RUCHU PUNKTU MATERIALNEGO - kolejne przybliżenia
-//////////////////////////////////////////////////////////////////
 //Program Processingu w trybie 2 - z widocznymi funkcjami
-//////////////////////////////////////////////////////////
+//-///////////////////////////////////////////////////////////////
+
 void setup() //Jest wykonywane raz - po uruchomieniu
 {
-size(500,500);
-noSmooth();//Bez wygładzania lini 
-fill(250,250,0);
+  size(500,500);
+  noSmooth(); //Bez wygładzania lini 
+  fill(250,250,0);
 }
 
 int h=0;
@@ -20,3 +20,5 @@ void draw() //Jest wykonywane w niewidocznej pętli
   h++;
   h=h % height;
 }
+
+// https://github.com/borkowsk/bookProcessingPL

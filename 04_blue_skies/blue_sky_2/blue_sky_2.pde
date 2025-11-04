@@ -1,6 +1,9 @@
+//Demo gwiezdnego nieba - więcej gwiazd
+
 size(500,500);
 background(0,0,50);
-//STARS
+
+//GWIAZDY
 for(int i=0;i<9900;i+=1) //POWTARZAJ 9900
 {
   float R=random(255);
@@ -9,3 +12,5 @@ for(int i=0;i<9900;i+=1) //POWTARZAJ 9900
   stroke(R,G,B);
   point(random(500),random(500));
 }
+
+// https://github.com/borkowsk/bookProcessingPL

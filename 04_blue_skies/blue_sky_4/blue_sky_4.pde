@@ -1,9 +1,12 @@
+//Demo gwiezdnego nieba - ze zbliżającym się statkiem
+
 void setup()
 {
   size(600,300);
   background(0,0,50);
   frameRate(16);
-  //STARS
+  
+  //GWIAZDY
   for(int i=0;i<250;i+=1) //POWTARZAJ
   {
     float R=random(255);
@@ -57,3 +60,5 @@ void draw()
   if(SIZE>height) 
     SIZE=height;
 }
+
+// https://github.com/borkowsk/bookProcessingPL

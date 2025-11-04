@@ -1,8 +1,11 @@
+//Demo gwiezdnego nieba z procedurami i ze statkiem
+
 void setup()
 {
   size(600,300);
   background(0,0,50);
-  //STARS
+  
+  //GWIAZDY
   for(int i=0;i<200;i+=1) //POWTARZAJ
   {
     float R=random(255);
@@ -42,3 +45,5 @@ void draw()
     line(topX,topY,topX+100-i,topY-i/2);
   }
 }
+
+// https://github.com/borkowsk/bookProcessingPL
