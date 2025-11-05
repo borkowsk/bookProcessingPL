@@ -1,5 +1,5 @@
 /// The agent: its atributes, random initialisation and methods
-/// @date 2025-01-13 (modification)
+/// @date 2025-11-05 (modification)
 //*/////////////////////////////////////////////////////////////////////////////
 
 enum Dirs { UNKNOWN, N, NE, E, SE, S, SW, W, NW }; ///< all directions of the world.
@@ -42,10 +42,10 @@ class Agent
     other.direction=this.direction;
   }
   
-  void interactionS(Agent other) //!< Symmetric interaction.
-  {
-    Dirs newdirection=allDirs[int(random(1,allDirs.length))]; // Agents "establish" a new common direction.
-    this.direction=newdirection;
-    other.direction=newdirection;
-  }
+  //void interactionS(Agent other) //!< Symmetric interaction.
+  //{
+  //  Dirs newdirection=allDirs[int(random(1,allDirs.length))]; // Agents "establish" a new common direction.
+  //  this.direction=newdirection;
+  //  other.direction=newdirection;
+  //}
 } 
