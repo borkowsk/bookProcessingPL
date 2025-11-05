@@ -1,7 +1,7 @@
-//Do czego przydaje się zmienna
+//Do czego przydaje się zmienna?
 
-size(500,500);  //Trochę większe okno
-background(200);//Jasne tło (200/255 jasności)
+size(500,500);   //Trochę większe okno
+background(200); //Jasne tło (200/255 jasności)
 
 int a=20; //Inicjalizacja zmiennej <<a>>
 line(a-10,a-10,a+10,a+10);

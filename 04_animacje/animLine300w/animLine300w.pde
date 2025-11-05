@@ -1,6 +1,7 @@
 //Animacja lini  
 
-void setup() {
+void setup() 
+{
   frameRate(16);
   size(300,100);
 }
@@ -13,3 +14,5 @@ void draw()
   pos++;
   line(pos, 20, pos, 80);
 }
+
+// https://github.com/borkowsk/bookProcessingPL

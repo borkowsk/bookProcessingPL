@@ -1,6 +1,7 @@
 //Animacja lini  
 
-void setup() {
+void setup() 
+{
   size(300,130);
   frameRate(20);
 }

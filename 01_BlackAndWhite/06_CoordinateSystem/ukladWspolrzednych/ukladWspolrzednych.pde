@@ -1,8 +1,8 @@
 // Jak wyglądają współrzędne w oknie?
 
-size(500,500);//Rozmiar okna
+size(500,500); //Rozmiar okna
 
-textAlign(CENTER, CENTER);//Tekst wycentrowany poziomo i pionowo
+textAlign(CENTER, CENTER); //Tekst wycentrowany poziomo i pionowo
 
 text("0*0",0,0);
 text("100*100",100,100);

@@ -1,2 +1,3 @@
-//Po prostu wypiszemy coś na konsoli tekstowej
+//A teraz po prostu wypiszemy coś na konsoli tekstowej
+
 print("To jest konsola");

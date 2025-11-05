@@ -1,21 +1,24 @@
 //Program Processingu w trybie 2 - z widocznymi funkcjami
 //////////////////////////////////////////////////////////
+
 void setup() //Jest wykonywane raz - po uruchomieniu
 {
-size(500,500);
-background(0,0,200);//rgB
-noSmooth();//Bez wygładzania lini 
-ellipse(250, 250, 205, 205);
+  size(500,500);
+  background(0,0,200); //rgB
+  noSmooth(); //Bez wygładzania lini 
+  ellipse(250, 250, 205, 205);
 }
 
 //for(int i=0;i<inf;i+=10)
-int i=0,j=0;
+int i=0,j=0; //dwa różne liczniki...
 void draw() //Jest wykonywane w niewidocznej pętli
 {
   if(i>255)
     i=0;
-  fill(0,i,0);//rGb
+  fill(0,i,0); //rGb
   arc(250, 250, 200, 200, radians(j-10),radians(j));
   i+=10;
   j+=100;
 }
+
+// https://github.com/borkowsk/bookProcessingPL

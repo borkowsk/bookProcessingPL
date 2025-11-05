@@ -1,8 +1,9 @@
 //Elipsa ciemna z grubym konturem
+
 size(200,200);
 stroke(128);
 strokeWeight(2);
-fill(64);
+fill(64); //Ciemne wypełnienie
 ellipse(100,100, 85, 75);
 
 //http://processingwedukacji.blogspot.com

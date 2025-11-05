@@ -1,5 +1,6 @@
 // "BILA" - MODEL RUCHU PUNKTU MATERIALNEGO - BŁĄDZENIE LOSOWE
 //*////////////////////////////////////////////////////////////////
+
 int FR=20;        //Na ile kroków dzielimy sekundę?
 float h=height/2; //Położenie pionowe
 float x=width/2;  //Położenie poziome
@@ -13,7 +14,7 @@ void setup() //Jest wykonywane raz - po uruchomieniu. Nie musi być na poczatku 
 {
   size(500,500);
   h=height/2; x=width/2;
-  background(0,0,200);//rgB
+  background(0,0,200); //rgB
   frameRate(FR);
 }
               
@@ -61,3 +62,5 @@ void draw()  //Jest wykonywane w niewidocznej pętli
      x=width; //Trochę oszukujemy
   }
 }
+
+// https://github.com/borkowsk/bookProcessingPL

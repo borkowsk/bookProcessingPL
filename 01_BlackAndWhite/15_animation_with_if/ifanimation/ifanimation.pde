@@ -1,3 +1,4 @@
+// Animacja w reakcji na ruch myszy
 // src: https://openprocessing.org/sketch/825836/
 
 void setup()
