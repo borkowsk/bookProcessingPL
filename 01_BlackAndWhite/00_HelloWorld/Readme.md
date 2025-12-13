@@ -43,13 +43,17 @@ Okno domyślnie ma rozmiar 100 na 100 [pikseli](https://pl.wikipedia.org/wiki/Pi
 
 Możemy informacje o działaniu kodu umieścić w komentarzach:
 
-`//Jak użyć ‘line’?`   
-`//Można to rozumieć jako odcinek od x1y1 do x2y2.`  
-`line(0,100,100,0); //Pierwszy parametr to x1, drugi to y1,`   
-                   `//trzeci to x2, a czwarty to y2`
+```Processing
+//Jak użyć ‘line’?
+//Można to rozumieć jako odcinek od x1y1 do x2y2.
+line(0,100,100,0); //Pierwszy parametr to x1, drugi to y1,
+                   //trzeci to x2, a czwarty to y2
+```
 
-| Komentarze: W programowaniu komputerowym komentarz to czytelne dla programisty wyjaśnienie lub adnotacja w kodzie źródłowym programu komputerowego. Dodaje się je w celu ułatwienia ludziom zrozumienia kodu źródłowego i są generalnie ignorowane przez kompilatory i interpretery (z Wikipedii). W Processing mamy trzy typy komentarzy: // (komentarz jednowierszowy \- do końca linii) /\* \*/ (komentarz blokowy, obejmujący wiele wierszy) /\*\* \*/ (komentarz dokumentacyjny, używany do generowania automatycznej dokumentacji) |
-| :---- |
+__Komentarze__: W programowaniu komputerowym komentarz to czytelne dla programisty wyjaśnienie lub adnotacja w kodzie źródłowym programu komputerowego. Dodaje się je w celu ułatwienia ludziom zrozumienia kodu źródłowego i są generalnie ignorowane przez kompilatory i interpretery. W Processingu mamy trzy typy komentarzy:
+* // (komentarz jednowierszowy \- do końca linii) 
+* /\* \*/ (komentarz blokowy, obejmujący wiele wierszy) 
+* /\*\* \*/ (komentarz dokumentacyjny, używany do generowania automatycznej dokumentacji)
 
 A teraz trzy instrukcje “umiejące” w nieco większym oknie ( `size(500,500)` ) namalować elipsę. Oczywiście wykonają się jedna po drugiej. Ważne żeby `size` było pierwszą komendą. W przeciwnym wypadku Processing odmówi uruchomienia programu.
 
