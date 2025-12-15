@@ -75,7 +75,7 @@ Powinniście w nich trochę poeksperymentować z liczbami, co was może intuicyj
 ![](png/image153.png)
 
 Tu w użyciu jest kilka “instrukcji”, które warto jeszcze sprawdzić w “Reference”, choćby dla nabycia wprawy w korzystaniu:    
-[`‘()’`](https://processing.org/reference/parentheses.html)	 [`‘,’`](https://processing.org/reference/coma.html) 	 [`‘//’`](https://processing.org/reference/) 	 [`‘;’`](https://processing.org/reference/) 	 [`‘size’`](https://processing.org/reference/size.html)  [`‘point’`](https://processing.org/reference/point,html)  [`‘rect’`](https://processing.org/reference/rect.html)  [`‘stroke’`](https://processing.org/reference/stroke.html)  [`‘fill’`](https://processing.org/reference/fill.html) [`‘ellipse’`](https://processing.org/reference/ellipse.html).
+[`‘()’`](https://processing.org/reference/parentheses.html)	 [`‘,’`](https://processing.org/reference/coma.html) 	 [`‘//’`](https://processing.org/reference/) 	 [`‘;’`](https://processing.org/reference/) 	 [`‘size’`](https://processing.org/reference/size_.html)  [`‘point’`](https://processing.org/reference/point_.html)  [`‘rect’`](https://processing.org/reference/rect_.html)  [`‘stroke’`](https://processing.org/reference/stroke_.html)  [`‘fill’`](https://processing.org/reference/fill_.html) [`‘ellipse’`](https://processing.org/reference/ellipse_.html).
 
 Polecenie `rect()` rysuje na ekranie **prostokąt**. Prostokąt to czworokąt, w którym każdy kąt ma dziewięćdziesiąt stopni. Domyślnie, pierwsze dwa parametry określają lokalizację **lewego górnego rogu**, trzeci ustala **szerokość** (width), a czwarty ustala **wysokość** (height). Ale… można to zmienić\!
 
