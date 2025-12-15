@@ -39,6 +39,7 @@ Z kolei każdy tekst, który znajduje się po znakach **‘//’**, nazywamy **k
 Teraz wykonamy kilka prostszych ćwiczeń. Na przykład, linia będąca przekątną „obszaru roboczego” okna:
 
 ![][image2]
+![](png/image151.png)
 
 Okno domyślnie ma rozmiar 100 na 100 [pikseli](https://pl.wikipedia.org/wiki/Piksel)[^1], a liczby to współrzędne początku i końca linii. 
 
@@ -59,19 +60,22 @@ __Komentarze__: W programowaniu komputerowym komentarz to czytelne dla programis
 A teraz trzy instrukcje “umiejące” w nieco większym oknie ( `size(500,500)` ) namalować elipsę. Oczywiście wykonają się jedna po drugiej. Ważne żeby `size` było pierwszą komendą. W przeciwnym wypadku Processing odmówi uruchomienia programu.
 
 ![][image3]
+![](png/image150.png)
 
 Tylko po co to `smooth()`?  A to łatwo sprawdzić. W podręcznym menu wyświetlanym przez edytor dla tego słowa widnieje opcja “*Find in reference*” otwierająca w domyślnej przeglądarce internetowej stronę z opisem tej “*komendy*” (**w rzeczywistości to tzw. wywołanie funkcji bibliotecznej, ale nie komplikujmy przedwcześnie 😉** )
 
  ![][image4]
+ ![](png/image154.png)
 
 I jeszcze ze trzy nieco bardziej interesujące ćwiczenia ... 
 
 Powinniście w nich trochę poeksperymentować z liczbami, co was może intuicyjnie naprowadzi na coś, co za chwilę może nieco zaskoczyć.
 
 ![][image5]
+![](png/image153.png)
 
 Tu w użyciu jest kilka “instrukcji”, które warto jeszcze sprawdzić w “Reference”, choćby dla nabycia wprawy w korzystaniu:    
-[`‘()’`](https://processing.org/reference/parentheses.html) `	 ‘,’ 	 ‘//’ 	 ‘;’ 	 ‘size’  ‘point’  ‘rect’  ‘stroke’  ‘fill’ ‘ellipse’`.
+[`‘()’`](https://processing.org/reference/parentheses.html)	 [`‘,’`](https://processing.org/reference/coma.html) 	 [`‘//’`](https://processing.org/reference/) 	 [`‘;’`](https://processing.org/reference/) 	 [`‘size’`](https://processing.org/reference/size.html)  [`‘point’`](https://processing.org/reference/point,html)  [`‘rect’`](https://processing.org/reference/rect.html)  [`‘stroke’`](https://processing.org/reference/stroke.html)  [`‘fill’`](https://processing.org/reference/fill.html) [`‘ellipse’`](https://processing.org/reference/ellipse.html).
 
 Polecenie `rect()` rysuje na ekranie **prostokąt**. Prostokąt to czworokąt, w którym każdy kąt ma dziewięćdziesiąt stopni. Domyślnie, pierwsze dwa parametry określają lokalizację **lewego górnego rogu**, trzeci ustala **szerokość** (width), a czwarty ustala **wysokość** (height). Ale… można to zmienić\!
 
