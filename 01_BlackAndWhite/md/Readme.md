@@ -15,6 +15,7 @@ Możesz więc pobrać najnowszą wersję 3.x ze strony [https://processing.org/r
 Tak czy inaczej, jest to prawdopodobnie najłatwiejsze narzędzie programistyczne na świecie, zwłaszcza że każdy program wyświetla wynik w oknie graficznym bez żadnego wysiłku ze strony programisty:
 
 ![][image1]
+![](png/image148.png)
 
 Jak widać niewiele trzeba żeby uruchomić program w Processingu. **Wystarczy JEDNA linia kodu** i już mamy okno z efektem jej wykonania. 
 
