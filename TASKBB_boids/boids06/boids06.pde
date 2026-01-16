@@ -1,17 +1,18 @@
-/// flock of birds
-//-///////////////
+/// stado ptaków (boids 2D)
+//-////////////////////////
 
-final int     NORD_SOUTH=1000; ///< maximum distance from north to south
-final int     WEST_EAST=1000;  ///< maximum distance from east to west
-final int     MAX_CEIL=200;    ///< maximum flight ceiling
-final int     HM_BIRDS=100;    ///< how many birds
-final boolean TARGETED=false;  ///< Do they get their goals as part of initialization?
+final int NORD_SOUTH=1000; ///< maksymalna odległość z północy na południe
+final int WEST_EAST=1000;  ///< maksymalna odległość z zachodu na wschód
+final int MAX_CEIL=200;    ///< maksymalny pułap lotu
+final int HM_BIRDS=100;    ///< ile ptaków
+final boolean TARGETED=false;  ///< Czy otrzymują swoje cele w ramach inicjalizacji?
+
 final boolean VIEW_TARGETING=true; ///< Show lines for current targets?
 
-// Boids algorith parameters (see: https://people.ece.cornell.edu/land/courses/ece4760/labs/s2021/Boids/Boids.html)
-final float   protectedRange=min(NORD_SOUTH,WEST_EAST)/30.0; ///< "Range where they fly away from others"
+// Parametry algorytmu Boids (patrz: https://people.ece.cornell.edu/land/courses/ece4760/labs/s2021/Boids/Boids.html)
+final float   protectedRange=min(NORD_SOUTH,WEST_EAST)/50.0; ///< „Zakres, w którym odlatują od innych”
 final float   protectedRangeSquared=protectedRange*protectedRange;
-final float   visualRange=min(NORD_SOUTH,WEST_EAST)/15.0;   ///< "Range where they tend tooward center of mass"
+final float   visualRange=min(NORD_SOUTH,WEST_EAST)/15.0;   ///< „Zakres, w którym zmierzają do środka masy stada”
 final float   visualRangeSquared=visualRange*visualRange;
 final float   avoidFactor=0.04;
 final float   matchingFactor=0.05;
@@ -27,23 +28,23 @@ final float   southMargin=NORD_SOUTH-margin;
 final float   groundMargin=max(protectedRange,MAX_CEIL*0.05);
 final float   ceilMargin=MAX_CEIL*0.95;
 
-ArrayList<Bird> birds;         ///< all our birds in JAVA like container
+ArrayList<Bird> birds;     ///< wszystkie nasze ptaki w kontenerze z jezyka JAVA
 
 void initBirds()
 {
-  birds=new ArrayList(HM_BIRDS); // Constructs an empty list with the specified initial capacity.
+  birds=new ArrayList(HM_BIRDS);
   for(int i=0;i<HM_BIRDS;i++)
     birds.add(new Bird(NORD_SOUTH,WEST_EAST,MAX_CEIL,TARGETED));
 }
 
-/// @note We assume that the birds are always properly sorted in terms of height.
+/// @note Zakładamy, że ptaki są zawsze prawidłowo posegregowane pod względem wysokości.
 void showBirds()
 {
    for(int i=0;i<HM_BIRDS;i++)
    {
      Bird current=birds.get(i);
      float ZRatio=current.z/MAX_CEIL;
-     current.showBird(2+ZRatio*20); //any way of presenting the height for now
+     current.showBird(2+ZRatio*20); // Parametr - sposób na prezentację wysokości na teraz.
      if(VIEW_TARGETING && current.isTargeted())
      {
        stroke(red(current.co)/2,green(current.co)/2,blue(current.co)/2);
@@ -63,7 +64,7 @@ void setup()
   sortBirds();
   showBirds();
   decisions();
-  frameRate(25); // Slowly at first
+  frameRate(25);
   println("protectedRange:",protectedRange,"visualRange:",visualRange);
 }
 

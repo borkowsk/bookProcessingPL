@@ -1,4 +1,4 @@
-/// decisions and actions of birds
+/// decyzje i działania ptaków.
 void decisions()
 {
    for(int i=0;i<HM_BIRDS;i++)
@@ -18,14 +18,14 @@ int signum(float v)
   else return 0;
 }
 
-/// simple target orientation
+/// prosta orientacja na cel.
 void thinkAndDoTarget(Bird me)
 {
   float dx=me.tx-me.x;
   float dy=me.ty-me.y;
   float dz=me.tz-me.z;
   
-  //Has the goal been achieved?
+  // Czy cel został osiągnięty?
   if(sqrt(dx*dx+dy*dy+dz*dz)<=1.0)
   {
     println("Caught! Change a goal, now!");
@@ -34,14 +34,14 @@ void thinkAndDoTarget(Bird me)
     me.vz=0;
     if(me.tz<MAX_CEIL/2)
     {
-      me.tz=MAX_CEIL-1; //Target now unattainable height
+      me.tz=MAX_CEIL-1; // Taka wysokość jest możliwa do osiągnięcia.
     }
     else 
     {
       me.tx=-NORD_SOUTH;me.ty=-WEST_EAST;me.tz=MAX_CEIL+1; // Not the real target.
     }
   }
-  else //NO! Continue to approach!
+  else // JESZCZE NIE! Podejdź bliżej! :-)
   {
     me.vx=dx*0.01; if(abs(me.vx)<1) me.vx=signum(dx);
     me.vy=dy*0.01; if(abs(me.vy)<1) me.vy=signum(dy);
@@ -50,46 +50,46 @@ void thinkAndDoTarget(Bird me)
   }
 }
 
-/// Implementation of the boids algorithm.
-/// See: https://people.ece.cornell.edu/land/courses/ece4760/labs/s2021/Boids/Boids.html
+/// Implementacja algorytmu boids (teraz 3D)
+/// Zobacz: https://people.ece.cornell.edu/land/courses/ece4760/labs/s2021/Boids/Boids.html
 void thinkAndDoBoids(Bird boid,int my_index)
 {
-  // For every "boid" - is "upstairs" . . .  //for each boid (boid):
+  // Dla każdego "boidu" - jest jeden poziom wyżej. . .  //for each boid (boid):
   
-      // Zero all accumulator variables
+      // Wyzeruj wszystkie zmienne akumulatorowe.
       float xpos_avg, ypos_avg, zpos_avg, xvel_avg, yvel_avg, zvel_avg, neighboring_boids, close_dx, close_dy, close_dz;
       xpos_avg=ypos_avg=zpos_avg=xvel_avg=yvel_avg=zvel_avg=neighboring_boids=close_dx=close_dy=close_dz = 0.0;
   
-      // For every other boid in the flock . . .
+      // Dla każdego innego "dziecka" w stadzie . . .
       //for each other boid (otherboid):
       for(int i=0;i<HM_BIRDS;i++)
       if(i!=my_index)
       {
           Bird otherboid=birds.get(i);
           
-          // Compute differences in x and y coordinates
+          // Oblicz różnice we współrzędnych x,y,z
           float dx = boid.x - otherboid.x;
           float dy = boid.y - otherboid.y;
           float dz = boid.z - otherboid.z;
   
-          // Are both those differences less than the visual range?
+          // Czy wszystkie te różnice są mniejsze niż zasięg widzenia?
           if (abs(dx)<visualRange && abs(dy)<visualRange && abs(dz)<visualRange)
           {
-              // If so, calculate the squared distance
+              // Jeśli tak, oblicz kwadrat odległości
               float squared_distance = dx*dx + dy*dy + dz*dz;
   
-              // Is squared distance less than the protected range?
+              // Czy kwadratowa odległość jest mniejsza od zakresu chronionego?
               if (squared_distance < protectedRangeSquared)
               {
-                  // If so, calculate difference in x/y/z-coordinates to nearfield boid
+                  // Jeśli tak, dolicz różnicę współrzędnych x,y,z dla pobliskiego boida
                   close_dx += boid.x - otherboid.x;
                   close_dy += boid.y - otherboid.y;
                   close_dz += boid.z - otherboid.z;
               }
-              // If not in protected range, is the boid in the visual range?
+              // Jeśli inny nie znajduje się w zasięgu ochrony, to czy znajduje się w zasięgu wzroku?
               else if (squared_distance < visualRangeSquared)
                    {
-                      // Add other boid's x/y/z-coord and x/y/z vel to accumulator variables
+                      // Dodaj współrzędne x,y,z i prędkość x,y,z innego boidu do zmiennych akumulatorowych
                       xpos_avg += otherboid.x;
                       ypos_avg += otherboid.y;
                       zpos_avg += otherboid.z;
@@ -98,16 +98,16 @@ void thinkAndDoBoids(Bird boid,int my_index)
                       yvel_avg += otherboid.vy;
                       zvel_avg += otherboid.vz;
                       
-                      // Increment number of boids within visual range
-                      neighboring_boids += 1;
+                      // Zwiększ liczbę boidów w zasięgu wzroku o 1.
+                      neighboring_boids ++;
                    }
           }        
-      }
+      } // koniec dla "if (i!=myIndex)"
       
-      // If there were any boids in the visual range . . .            
+      // Gdy w zasięgu wzroku znajdowały się jakieś boidy...
       if (neighboring_boids > 0) 
       {
-          // Divide accumulator variables by number of boids in visual range
+          // Podziel zmienne akumulatora przez liczbę boidów w zasięgu wzroku
           xpos_avg = xpos_avg/neighboring_boids;
           ypos_avg = ypos_avg/neighboring_boids;
           zpos_avg = zpos_avg/neighboring_boids;
@@ -116,7 +116,7 @@ void thinkAndDoBoids(Bird boid,int my_index)
           yvel_avg = yvel_avg/neighboring_boids;
           zvel_avg = zvel_avg/neighboring_boids;
   
-          // Add the centering/matching contributions to velocity
+          // Dodaj wkład centrowania i dopasowania do prędkości (z odpowiednimi czynnikami skali)
           boid.vx = (boid.vx + 
                      (xpos_avg - boid.x)*centeringFactor + 
                      (xvel_avg - boid.vx)*matchingFactor);
@@ -130,13 +130,13 @@ void thinkAndDoBoids(Bird boid,int my_index)
                      (zvel_avg - boid.vz)*matchingFactor);           
       }
       
-      // Add the avoidance contribution to (x,y,z)-velocity
+      // Dodaj wkład unikania do prędkości (tez z czynnikiem skali)
       boid.vx = boid.vx + (close_dx*avoidFactor);
       boid.vy = boid.vy + (close_dy*avoidFactor);
       boid.vz = boid.vz + (close_dz*avoidFactor);
   
-      // If the boid is near an edge, make it turn by turnfactor
-      // but in proportion to the distance from the permitted area
+      // Jeśli boid znajduje się blisko krawędzi, spraw, aby obracał się o współczynnik obrotu, 
+      // ale proporcjonalnie do odległości od dozwolonego obszaru
       if(boid.x < westMargin)
           boid.vx = boid.vx + turnFactor*abs(boid.x - westMargin);
       if(boid.x > eastMargin)
@@ -152,11 +152,11 @@ void thinkAndDoBoids(Bird boid,int my_index)
       if(boid.z < groundMargin)
           boid.vz = boid.vz + turnFactor*abs(boid.z - groundMargin);
   
-      // Calculate the boid's speed
-      // Slow step! Lookup the "alpha max plus beta min" algorithm
-      float speed = sqrt(boid.vx*boid.vx + boid.vy*boid.vy + boid.vz*boid.vz);
+      // Oblicz nowa prędkość boidu.
+      // (Powolne! Wyszukaj algorytm „alfa max plus beta min”)
+      float speed = sqrt(boid.vx*boid.vx + boid.vy*boid.vy + boid.vz*boid.vz); // Funkcja sqrt jest dość "droga"
   
-      // Enforce min and max speeds
+      // Wymuszaj minimalne i maksymalne prędkości
       if (speed < minSpeed)
       {
           boid.vx = (boid.vx/speed)*minSpeed;
@@ -171,9 +171,7 @@ void thinkAndDoBoids(Bird boid,int my_index)
           boid.vz = (boid.vz/speed)*maxSpeed;
       }
       
-      // Update boid's position - is in worldphysics!
-      //boid.x = boid.x + boid.vx;
-      //boid.y = boid.y + boid.vy;
+      // Aktualizacja pozycji boida - jest w worldphysics!
 }
 
 
