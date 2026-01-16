@@ -1,19 +1,19 @@
-/// Birds' decisions and actions have physical consequences
+/// Decyzje i działania ptaków mają konsekwencje fizyczne.
 void moveBirds()
 {
    for(int i=0;i<HM_BIRDS;i++)
    {
      Bird current=birds.get(i);
-     //Moving...
+     //Przesuwanie...
      current.x+=current.vx;
      current.y+=current.vy;
      current.z+=current.vz;
      
-     //Cloud and ground collision check
+     // Sprawdzanie kolizji do chmur i ziemi.
      if(current.z>=MAX_CEIL)
      {
        current.z=MAX_CEIL;
-       current.vz=-1;
+       current.vz=-1; // Zawsze do dołu, bo nie wiadomo jakie vz ma boid!
      }
      else 
      if(current.z<=0)

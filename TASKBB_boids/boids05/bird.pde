@@ -1,12 +1,12 @@
-/// A class describing a bird in a separate tab and file.
+/// Klasa reprezentująca ptaka.
 class Bird
 {
-  float x,y,z;     //!< position
-  float vx,vy,vz;  //!< speed vector
-  float tx,ty,tz;  //!< position of current goal
-  color co; //!< we need color to distinguish birds
+  float x, y, z;     //!< pozycja
+  float vx, vy, vz;  //!< wektor szybkosci
+  float tx, ty, tz;  //!< pozycja aktualnego celu
+  color co; //!< potrzebujemy koloru, żeby odróżnić ptaki
   
-  Bird(float north_south,float east_west,float down_up,boolean targ) //!< Constructor
+  Bird(float north_south,float east_west,float down_up,boolean targ) //!< Konstruktor
   {
     co=color(random(256),random(256),random(256));
     if(targ)
@@ -18,7 +18,7 @@ class Bird
     }
     else
     {
-      tx=-north_south;ty=-east_west;tz=0; // Not the real target.
+      tx=-north_south;ty=-east_west;tz=0; // To nie jest prawdziwy cel.
       vx=random(north_south/1000)-north_south/2000;
       vy=random(east_west/1000)-east_west/2000;
       vz=0;
@@ -33,11 +33,11 @@ class Bird
     return tx>=0 && ty>=0;
   }
   
-  void showBird(float d) //!< visualization of a single bird
+  void showBird(float d) //!< wizualizacja pojedynczego ptaka.
   {
     stroke(co);
     fill(red(co),green(co),blue(co),128);
-    float angle=atan2(vy,vx); //The velocity vector is more versatile as a direction indicator.
+    float angle=atan2(vy,vx); // Wektor prędkości jest bardziej uniwersalnym wskaźnikiem kierunku.
     arc(x,y,d*0.9,d*0.9,angle-QUARTER_PI/6,angle+QUARTER_PI/6);
     noStroke();
     angle+=PI;
