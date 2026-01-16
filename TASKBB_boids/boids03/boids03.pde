@@ -1,28 +1,28 @@
-/// flock of birds
+/// stado ptaków
 //-///////////////
 
-final int NORD_SOUTH=1000; ///< maximum distance from north to south
-final int EAST_WEST=1000;  ///< maximum distance from east to west
-final int MAX_CEIL=100;    ///< maximum flight ceiling
-final int HM_BIRDS=10;      ///< how many birds
+final int NORD_SOUTH=1000; ///< maksymalna odległość z północy na południe
+final int WEST_EAST=1000;  ///< maksymalna odległość z zachodu na wschód
+final int MAX_CEIL=100;    ///< maksymalny pułap lotu
+final int HM_BIRDS=10;     ///< ile ptaków
 
-ArrayList<Bird> birds;     ///< all our birds in JAVA like container
+ArrayList<Bird> birds;     ///< wszystkie nasze ptaki w kontenerze z jezyka JAVA
 
 void initBirds()
 {
-  birds=new ArrayList(HM_BIRDS); // Constructs an empty list with the specified initial capacity.
+  birds=new ArrayList(HM_BIRDS); // Tworzy pustą listę o określonej pojemności początkowej.
   for(int i=0;i<HM_BIRDS;i++)
-    birds.add(new Bird(NORD_SOUTH,EAST_WEST,MAX_CEIL));
+    birds.add(new Bird(NORD_SOUTH,WEST_EAST,MAX_CEIL));
 }
 
-/// @note We assume that the birds are always properly sorted in terms of height.
+/// @note Zakładamy, że ptaki są zawsze prawidłowo posegregowane pod względem wysokości.
 void showBirds()
 {
    for(int i=0;i<HM_BIRDS;i++)
    {
      Bird current=birds.get(i);
      float ZRatio=current.z/MAX_CEIL;
-     current.showBird(2+ZRatio*100); //any way of presenting the height for now
+     current.showBird(2+ZRatio*100); // Parametr - sposób na prezentację wysokości na teraz.
      stroke(red(current.co),green(current.co),blue(current.co));
      line(current.x,current.y,current.tx,current.ty);
    }
@@ -30,7 +30,7 @@ void showBirds()
 
 void settings()
 {
-  size(EAST_WEST,NORD_SOUTH);
+  size(WEST_EAST,NORD_SOUTH);
 }
 
 void setup()
@@ -39,7 +39,7 @@ void setup()
   sortBirds();
   showBirds();
   decisions();
-  frameRate(20); // Slowly at first
+  frameRate(20); // Na początku powoli
 }
 
 void draw()
