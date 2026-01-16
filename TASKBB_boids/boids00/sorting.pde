@@ -1,9 +1,9 @@
-// Magic trick - Sorting taken from JAVA
-//-//////////////////////////////////////
+// Sztuczka magiczna - sortowanie zaczerpnięte z języka JAVA.
+//-//////////////////////////////////////////////////////////
 
 import java.util.*;
 
-void sortBirds() ///< birds flying lower must be drawn first!
+void sortBirds() ///< Sortowanie, bo ptaki lecące niżej muszą być narysowane jako pierwsze!
 {
   birds.sort(new Comparator<Bird>() {
       public int compare(Bird b1, Bird b2)
@@ -14,3 +14,5 @@ void sortBirds() ///< birds flying lower must be drawn first!
       }
     });
 }
+
+/// @date 2025-11-25 (modified)
