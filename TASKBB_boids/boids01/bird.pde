@@ -1,10 +1,10 @@
-/// A class describing a bird in a separate tab and file.
+/// Klasa opisująca ptaka w osobnej karcie i pliku .pde.
 class Bird
 {
-  float x,y,z;     //!< position
-  float vx,vy,vz;  //!< speed vector
-  float tx,ty,tz;  //!< position of current goal
-  color co; //!< we need color to distinguish birds
+  float x, y, z;     //!< pozycja
+  float vx, vy, vz;  //!< wektor szybkosci
+  float tx, ty, tz;  //!< pozycja aktualnego celu
+  color co; //!< potrzebujemy koloru, żeby odróżnić ptaki
   
   Bird(float north_south,float east_west,float down_up)
   {
