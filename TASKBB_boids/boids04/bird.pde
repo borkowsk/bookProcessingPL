@@ -1,12 +1,12 @@
-/// A class describing a bird in a separate tab and file.
+/// Klasa reprezentująca ptaka.
 class Bird
 {
-  float x,y,z;     //!< position
-  float vx,vy,vz;  //!< speed vector
-  float tx,ty,tz;  //!< position of current goal
-  color co; //!< we need color to distinguish birds
+  float x, y, z;     //!< pozycja
+  float vx, vy, vz;  //!< wektor szybkosci
+  float tx, ty, tz;  //!< pozycja aktualnego celu
+  color co; //!< potrzebujemy koloru, żeby odróżnić ptaki
   
-  Bird(float north_south,float east_west,float down_up) //!< Constructor
+  Bird(float north_south,float east_west,float down_up) //!< Konstruktor
   {
     co=color(random(256),random(256),random(256));
     vx=vy=vz=0; 
@@ -18,7 +18,7 @@ class Bird
     z=down_up/2+random(down_up/2);
   }
   
-  void showBird(float d) //!< visualization of a single bird
+  void showBird(float d) //!< wizualizacja pojedynczego ptaka.
   {
     stroke(co);
     fill(red(co),green(co),blue(co),128);

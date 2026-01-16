@@ -1,4 +1,4 @@
-/// decisions and actions of birds
+/// decyzje i działania ptaków.
 void decisions()
 {
    for(int i=0;i<HM_BIRDS;i++)
@@ -15,23 +15,23 @@ int signum(float v)
   else return 0;
 }
 
-/// simple target orientation
+/// prosta orientacja na cel.
 void thinkAndDo1(Bird me)
 {
   float dx=me.tx-me.x;
   float dy=me.ty-me.y;
   float dz=me.tz-me.z;
   
-  //Has the goal been achieved?
+  // Czy cel został osiągnięty?
   if(sqrt(dx*dx+dy*dy+dz*dz)<=1.0)
   {
     println("Caught! Go up!");
     me.vx=0;
     me.vy=0;
     me.vz=0;
-    me.tz=MAX_CEIL+1; //Target now unattainable height
+    me.tz=MAX_CEIL+1; // Taka wysokość docelowa jest jednak nieosiągalna
   }
-  else //NO! Continue to approach!
+  else //JESZCZE NIE! Podejdź bliżej! :-)
   {
     me.vx=dx*0.01; if(abs(me.vx)<1) me.vx=signum(dx);
     me.vy=dy*0.01; if(abs(me.vy)<1) me.vy=signum(dy);
