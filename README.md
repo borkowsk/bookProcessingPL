@@ -27,4 +27,4 @@ https://help.github.com/en/github/using-git/splitting-a-subfolder-out-into-a-new
 
 **COFFEE**
 Możesz wesprzeć tworzenie tych materiałów "stawiając mi kawę": 
-https://www.buymeacoffee.com/wborkowsk 
+<br>[☕☕☕<br>Coffee](https://buycoffee.to/adalbertus)
