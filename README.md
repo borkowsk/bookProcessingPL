@@ -11,6 +11,8 @@ https://www.facebook.com/ProcessingWEdukacji/
 W tym repozytorium są wyłącznie materiały do książki, 
 bez pozostałych materiałów do symulacji w Processingu.
 
+![UNDER CONSTRUCTION](./doc/under-construction-multi-tasking.gif)
+
 # WYMAGANIA
 
 Przetestowano na:
