@@ -1,5 +1,7 @@
 /// TODO Bardzo prosty algorytm genetyczny z samymi mutacjami.
 //-///////////////////////////////////////////////////////////
+/// @date 2026-06-05 (modified)
+
 import java.lang.Math;
 
 /// Jednowymiarowa Funkcja Rastrigina.

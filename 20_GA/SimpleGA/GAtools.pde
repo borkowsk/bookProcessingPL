@@ -1,6 +1,6 @@
 /// Narzędzia dla algorytmów ewolucyjnych.
 //-///////////////////////////////////////
-/// @date 2026 (modified)
+/// @date 2026-06-05 (modified)
 // Skomentowane w standardzie Doxygen.
 
 /// Tworzy string z reprezentacją hexadecymalną liczby typu integer (32-bitowy).
