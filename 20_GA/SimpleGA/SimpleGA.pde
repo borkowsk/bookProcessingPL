@@ -1,6 +1,6 @@
 /// TODO Bardzo prosty algorytm genetyczny z samymi mutacjami.
 //-///////////////////////////////////////////////////////////
-/// @date 2026-06-05 (modified)
+/// @date 2026-06-08 (modified)
 
 import java.lang.Math;
 
@@ -22,8 +22,37 @@ double Rastrigin(double x)
   return 10+x*x-10*Math.cos(2*x*Math.PI);
 }
 
+float zero=-5; ///< Pozycja Y==0 jako współrzędna w oknie.
+
+void draw_function()
+{
+  stroke(0);
+  line(512,height,512,0);
+  line(512,0,510,6);
+  line(512,0,514,6);
+  line(505,zero,519,zero);
+  
+  int mi=width-1;
+  float old_y=(float)Rastrigin(-5.13);
+  stroke(0,255,255);
+  for(int i=0;i<mi;i++)
+  {
+    double x=i/100.0-5.12;
+    float y=(float)Rastrigin(x); //println(x,y);
+    line(i-1,zero-old_y*10,i,zero-y*10);
+    old_y=y;
+  }
+}
+
 void setup()
 {
-  tests();
+  //tests();
   size(1024,450);
+  zero=height-5;
+}
+
+void draw()
+{
+  background(255);
+  draw_function();
 }
