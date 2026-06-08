@@ -10,6 +10,8 @@ int     population_size=100;
 float   selection_rate=0.33;
 float   mutation_rate=0.001;
 boolean use_Gray_code=false;
+boolean maximize=false;           ///< Czy szukamy maksimum funkcji? Gdy false to szukamy minimum.
+boolean selection_by_duels=false; ///< Czy używamy selekcji przez pojedynki czy klasycznej - z sortowaniem.
 /// @}
 
 GAPopulation Pop;
@@ -87,7 +89,6 @@ void setup()
   size(1024,450);
   zero=height-5;
   Pop=new GAPopulation(population_size,-5.12,5.12,use_Gray_code);
-  
 }
 
 void draw()
@@ -96,4 +97,13 @@ void draw()
   draw_function();
   calculate_fitnesses(Pop);
   draw_population(Pop);
+  if(selection_by_duels)
+  {
+    Pop.clonal_offspring_by_duels(selection_rate,mutation_rate,maximize);
+  }
+  else
+  {
+    Pop.sort_by_fitness(maximize);
+    Pop.clonal_offspring(selection_rate,mutation_rate);
+  }
 }
