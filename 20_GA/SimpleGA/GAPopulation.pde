@@ -158,6 +158,7 @@ class GAPopulation
   /// którzy wygrali pojedynki na wartość `fitness` w wylosowanych parach. 
   void clonal_offspring_by_duels(float selection_r,float mutation_r,boolean maximize)
   {
+    current_mutation_rate=mutation_r;
     int N=(int)(selection_r*all.length); //Ile nowych potomków, czyli ile pojedynków.
     for(int pair=0;pair<N;pair++)
     {
