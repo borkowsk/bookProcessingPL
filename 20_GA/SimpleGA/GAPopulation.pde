@@ -93,7 +93,7 @@ class GAPopulation
   void sort_by_fitness(boolean maximize)
   {
     if(maximize)
-      Arrays.sort(all); //<>//
+      Arrays.sort(all); //<>// //<>//
     else
       // Kod sortowania odwrotnego (malejąco po fitness):
       Arrays.sort(all, new Comparator() {
@@ -155,9 +155,37 @@ class GAPopulation
   /// @param maximize - czy szukamy/promujemy maksimum wartości `fitness` czy przeciwnie - minimum (co ma sens przy funkcjach).
   /// @details
   /// Powstaje `population_size*selection_r` nowych agentów będacych (niekiedy zmutowanymi) klonami rodziców,
-  /// którzy wygrali pojedynki na wartość `fitness` w parach wylosowanych z powtórzeniami. 
+  /// którzy wygrali pojedynki na wartość `fitness` w wylosowanych parach. 
   void clonal_offspring_by_duels(float selection_r,float mutation_r,boolean maximize)
   {
+    int N=(int)(selection_r*all.length); //Ile nowych potomków, czyli ile pojedynków.
+    for(int pair=0;pair<N;pair++)
+    {
+      GAgatek A=null,B=null;
+      int indexA=-1,indexB=-1;
+      
+      do{ //Losowanie par z uniknięciem walk samobójczych i z nowymi dziećmi.
+        indexA=(int)random(all.length);
+        indexB=(int)random(all.length);
+        A=all[indexA];
+        B=all[indexB];
+      }while(A.fitness==-Double.MAX_VALUE || B.fitness==-Double.MAX_VALUE || indexB==indexA);
+      
+      if(maximize) //Czy szukamy maksimum?
+      {
+        if(A.fitness>B.fitness) //Wygrywa A
+          B.reset_gene(randomized_clone(A.gene));
+        else //Wygrywa B, nawet jak ma równy fitness. Chodzi o to żeby jakaś "wymiana pokoleń" wciąż zachodziła.
+          A.reset_gene(randomized_clone(B.gene));
+      }
+      else //Alternatywnie szukamy minimum.
+      {
+        if(A.fitness<B.fitness) //Wygrywa A
+          B.reset_gene(randomized_clone(A.gene));
+        else //Wygrywa B, nawet jak ma równy fitness. Chodzi o to żeby jakaś "wymiana pokoleń" wciąż zachodziła.
+          A.reset_gene(randomized_clone(B.gene));
+      }
+    }
   }
   
   // MAPOWANIE ZAKRESU 0..maxVal na zakres integerów i z powrotem.

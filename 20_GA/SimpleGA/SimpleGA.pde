@@ -11,7 +11,7 @@ float   selection_rate=0.33;      ///< Jaką część populacji wymieniamy w kaz
 float   mutation_rate=0.001;      ///< Jaki jest poziom mutacji (może miec różne interpretacje!)
 boolean use_Gray_code=false;      ///< Czy liczby kodujemy w sposób, który wygładza przestrzeń rozwiązań?
 boolean maximize=false;           ///< Czy szukamy maksimum funkcji? Gdy false to szukamy minimum.
-boolean selection_by_duels=false; ///< Czy używamy selekcji przez pojedynki czy klasycznej - z sortowaniem.
+boolean selection_by_duels=true;  ///< Czy używamy selekcji przez pojedynki czy klasycznej - z sortowaniem.
 /// @}
 
 GAPopulation Pop;
