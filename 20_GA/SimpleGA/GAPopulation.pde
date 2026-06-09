@@ -49,14 +49,17 @@ class GAPopulation
     for(int i=0;i<population_size;i++)
     {
       double r=Math.random()*range;
-      float f=(float)r;
       int as_NKB=map_(r,range);
       int as_gray=toGray(as_NKB);
+      
+      float f=(float)r; ///< Żeby można było podejrzec w debugerze różnicę z `r`.
+      int as_float=reinterpret(f);
       
       //Test kodowania
       println('*',minx+r,'\t',r,'\t',
               toBin(as_NKB,32),'\t',minx+unmap_(as_NKB,range),'\t',
-              toBin(as_gray,32),'\t',minx+unmap_(fromGray(as_gray),range)
+              toBin(as_gray,32),'\t',minx+unmap_(fromGray(as_gray),range),'\t',
+              toBin(as_float,32),'\t',minx+reinterpret(as_float,0f,(float)range) 
               );
       if(gray_coded)
         all[i]=new GAgatek(as_gray);
@@ -90,10 +93,10 @@ class GAPopulation
   {                                     assert(index<all.length);
     return all[index].fitness;
   }
-  
+ //<>//
   // GŁÓWNE OPERACJE GENETYCZNE:
   //============================
-   //<>//
+
   /// @brief Sortowanie wg. fitness. @note Wartości dostosowania muszą być już znane dla wszystkich gagatków!
   /// @param maximize - czy szukamy/promujemy maksimum wartości `fitness` czy przeciwnie - minimum (co ma sens przy funkcjach).
   void sort_by_fitness(boolean maximize)
