@@ -61,7 +61,8 @@ class GAPopulation
               toBin(as_gray,32),'\t',minx+unmap_(fromGray(as_gray),range),'\t',
               toBin(as_float,32),'\t',minx+reinterpret(as_float,0f,(float)range) 
               );
-      if(gray_coded)
+              
+      if(gray_coded) //TODO Zmienić na enum okreslający sposób kodowania.
         all[i]=new GAgatek(as_gray);
       else
         all[i]=new GAgatek(as_NKB);
@@ -92,8 +93,8 @@ class GAPopulation
   double get_fitness(int index)
   {                                     assert(index<all.length);
     return all[index].fitness;
-  }
- //<>//
+  } //<>//
+
   // GŁÓWNE OPERACJE GENETYCZNE:
   //============================
 
@@ -118,15 +119,15 @@ class GAPopulation
       });
 
     // ZBYT NOWOCZEŚNIE - NAWET Processing 4 tego nie rozumie: 
-    //Arrays.sort(all,Comparator.comparingDouble(GAgatek::get_fitness()));
+    //Arrays.sort(all,Comparator.comparingDouble(GAgatek::get_fitness));
     
     // TO DZIAŁA W Processing WERSJI 4.
     //// Sortowanie rosnąco w starszym stylu z dwuparametrową funkcją "lambda":
     //// Trochę to "magiczne" bo funkcje Lambda pochodzą z "arsenału" bardzo profesjonalnego.
     //if(maximize)
-    //  Arrays.sort(all, (obiektA, obiektB) -> Double.compare(obiektA.fitness, obiektB.fitness));
+    //  Arrays.sort(all, (obiektA, obiektB) -> Double.compare(obiektA.fitness, obiektB.fitness)  );
     //else
-    //  Arrays.sort(all, (obiektA, obiektB) -> Double.compare(obiektB.fitness, obiektA.fitness));
+    //  Arrays.sort(all, (obiektA, obiektB) -> Double.compare(obiektB.fitness, obiektA.fitness)  );
   }
   
   /// @brief Klonowanie genu. Nowa wartość może być identyczna lub różnić się jednym bitem.
