@@ -1,6 +1,6 @@
 /// Narzędzia bitowe dla algorytmów ewolucyjnych.
 //-//////////////////////////////////////////////
-/// @date 2026-06-08 (modified)
+/// @date 2026-06-09 (modified)
 // Skomentowane w standardzie Doxygen.
 
 /// Tworzy string z reprezentacją hexadecymalną liczby typu integer (32-bitowy).
@@ -142,6 +142,55 @@ public static long fromGrayU32(int g) {
     return g & 0xFFFFFFFFL;
 }
 /// @}
+
+/// @name Reinterpretacje bitów int i long na float i double i odwrotnie.
+///       ===============================================================
+/// @details Mutowanie bitów reprezentacji zmiennoprzecinkowej obciążone jest
+///          wieloma możliwościami uzyskania letalnych kombinacji, 
+///          przede wszystkim wychodzących poza sensowny dla zadania zakres.
+///          Pozwala jednak dojść algorytmowi znacznie bliżej rozwiązania niż
+///          mapowanie zakresu na liczbę typu `int` czy nawet `long`.
+/// @{
+    
+    ///@returns wartość z zakresu. Jeśli ciąg bitowy nie daje wartości z zakresu 
+    ///         lub jest którąś z nie-liczb to zwracane jest Float.NaN, co można
+    ///         sprawdzić warunkiem `if(Float.isNaN(...)) ...`.
+    float   reinterpret(int src,float min,float max)
+    {
+      float val=Float.intBitsToFloat(src);
+      if(min<=val && val<=max)
+        return val;
+      else
+        return Float.NaN;
+    }
+    
+    ///@returns wartość z zakresu. Jeśli ciąg bitowy nie daje wartości z zakresu 
+    ///         lub jest którąś z nie-liczb to zwracane jest Float.NaN, co można
+    ///         sprawdzić warunkiem `if(Float.isNaN(...)) ...`.
+    double reinterpret(long src,double min,double max)
+    {
+      double val=Double.longBitsToDouble(src);
+      if(min<=val && val<=max)
+        return val;
+      else
+        return Double.NaN;
+    }
+    
+    ///@returns liczbę typu `int` o takiej samej reprezentacji bitowej jak `src`.
+    ///@note jak "reinterpret_cast" w C++.
+    int reinterpret(float src)
+    {
+      return Float.floatToIntBits(src);
+    }
+    
+    ///@returns liczbę typu `long` o takiej samej reprezentacji bitowej jak `src`.
+    ///@note jak "reinterpret_cast" w C++.
+    long reinterpret(double src)
+    {
+      return Double.doubleToLongBits(src);
+    }
+  
+/// @}  
 
 /// @name Funkcje kodujące mniejsze geny o dlugosci do 31 bitów w ciagu 64 bitów.
 /// @details
