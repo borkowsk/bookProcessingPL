@@ -11,7 +11,7 @@ int     population_size=500;      ///< Rozmiar populacji rozwiązań.
 float   selection_rate=0.33;      ///< Jaką część populacji wymieniamy w kazdej generacji (kroku algorytmu).
 float   mutation_rate=0.005;      ///< Jaki jest poziom mutacji (może miec różne interpretacje!)
 boolean use_Gray_code=true;      ///< Czy liczby kodujemy w sposób, który wygładza przestrzeń rozwiązań?
-boolean maximize=true;           ///< Czy szukamy maksimum funkcji? Gdy false to szukamy minimum.
+boolean maximize=false;           ///< Czy szukamy maksimum funkcji? Gdy false to szukamy minimum.
 boolean selection_by_duels=false;  ///< Czy używamy selekcji przez pojedynki czy klasycznej - z sortowaniem.
 /// @}
 
