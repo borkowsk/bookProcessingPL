@@ -130,11 +130,11 @@ class GAPopulation
   }
   
   /// @brief Klonowanie genu. Nowa wartość może być identyczna lub różnić się jednym bitem.
-  double current_mutation_rate=0;
+  //double current_mutation_rate=0;
+  int max_mutation_index=0;//(int)(1./current_mutation_rate);
   int randomized_clone(int parent_gene)
   {
-    int max_ind=(int)(1./current_mutation_rate);
-    int index=(int)random(max_ind);
+    int index=(int)random(max_mutation_index);
     if(index<32)
       return switch_bit(parent_gene,index,32); //z mutacją
     else  
@@ -150,7 +150,7 @@ class GAPopulation
   /// wylosowanych z `population_size*(1-selection_r)` gagatków z "górnej" części tablicy `all`.
   void clonal_offspring(float selection_r,float mutation_r)
   {
-    current_mutation_rate=mutation_r;
+    this.max_mutation_index=(int)(1./mutation_r);
     int border=(int)(all.length*(1-selection_r)); ///< Granica od której zaczyna się nowy obszar.
     for(int i=border;i<all.length;i++)
     {
@@ -170,7 +170,7 @@ class GAPopulation
   /// którzy wygrali pojedynki na wartość `fitness` w wylosowanych parach. 
   void clonal_offspring_by_duels(float selection_r,float mutation_r,boolean maximize)
   {
-    current_mutation_rate=mutation_r;
+    this.max_mutation_index=(int)(1./mutation_r);
     int N=(int)(selection_r*all.length); //Ile nowych potomków, czyli ile pojedynków.
     for(int pair=0;pair<N;pair++)
     {
