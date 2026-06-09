@@ -1,15 +1,15 @@
 /// Bardzo prosty algorytm genetyczny z samymi mutacjami.
 //-///////////////////////////////////////////////////////////
-/// @date 2026-06-08 (modified)
+/// @date 2026-06-09 (modified)
 
 import java.lang.Math;
 
 /// @name Parametry algorytmu genetycznego
 /// @{
-int     population_size=100;
-float   selection_rate=0.33;
-float   mutation_rate=0.001;
-boolean use_Gray_code=false;
+int     population_size=200;      ///< Rozmiar populacji rozwiązań.
+float   selection_rate=0.33;      ///< Jaką część populacji wymieniamy w kazdej generacji (kroku algorytmu).
+float   mutation_rate=0.001;      ///< Jaki jest poziom mutacji (może miec różne interpretacje!)
+boolean use_Gray_code=false;      ///< Czy liczby kodujemy w sposób, który wygładza przestrzeń rozwiązań?
 boolean maximize=false;           ///< Czy szukamy maksimum funkcji? Gdy false to szukamy minimum.
 boolean selection_by_duels=false; ///< Czy używamy selekcji przez pojedynki czy klasycznej - z sortowaniem.
 /// @}
@@ -73,12 +73,12 @@ void draw_function()
 
 void draw_population(GAPopulation pop)
 {
-  stroke(255,0,0);
+  stroke(255,0,0);noFill();
   for(int i=0;i<pop.all.length;i++)
   {
     float cx=(float)pop.get_val(i)*100+512;
     float cfit=zero-(float)pop.get_fitness(i)*10;
-    circle(cx,cfit,3);
+    circle(cx,cfit,4);
     point(cx,cfit);
   }
 }
@@ -89,6 +89,7 @@ void setup()
   size(1024,450);
   zero=height-5;
   Pop=new GAPopulation(population_size,-5.12,5.12,use_Gray_code);
+  frameRate(1);
 }
 
 void draw()

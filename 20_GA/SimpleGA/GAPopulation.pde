@@ -1,6 +1,6 @@
 /// Populacja agentów genetycznych do rozwiązywania jednowymiarowych problemów.
 //-////////////////////////////////////////////////////////////////////////////
-/// @date 2026-06-08 (last modification)
+/// @date 2026-06-09 (last modification)
 import java.lang.Math;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -10,14 +10,24 @@ import java.util.Comparator;
 /// Gagatek to potoczne określenie oznaczające figlarza, łobuziaka lub osobę lekkomyślną, 
 /// zdolną do nieodpowiedzialnych wybryków i drobnych wykroczeń.  
 /// Synonimami są tu m.in. urwis, ancymonek, ziółko czy spryciarz.
-class GAgatek
+class GAgatek implements Comparable
 {
   int       gene; ///< Geny są inicjowane w konstruktorze.
   double fitness; ///< Fitness to dopiero określi środowisko.
   
   GAgatek(int i_gene){ gene=i_gene;fitness=-Double.MAX_VALUE; }
+  
   void reset_gene(int i_gene) { gene=i_gene;fitness=-Double.MAX_VALUE; }
+  
   //double get_fitness() { return fitness; }
+  
+  int compareTo(Object o)
+  {
+    GAgatek other=(GAgatek)o;
+    if (this.fitness < other.fitness) return 1;
+    if (this.fitness > other.fitness) return -1;
+    return 0;
+  }
 };
 
 class GAPopulation
@@ -78,21 +88,40 @@ class GAPopulation
   // GŁÓWNE OPERACJE GENETYCZNE:
   //============================
   
-  /// @brief Sortowanie wg. fitness. @note Musi być już znane dla wszystkich gagatków!
+  /// @brief Sortowanie wg. fitness. @note Wartości dostosowania muszą być już znane dla wszystkich gagatków!
   /// @param maximize - czy szukamy/promujemy maksimum wartości `fitness` czy przeciwnie - minimum (co ma sens przy funkcjach).
   void sort_by_fitness(boolean maximize)
   {
-    // ZBYT NOWOCZEŚNIE - NAWET Processing 4 tego nie rozumie: Arrays.sort(all,Comparator.comparingDouble(GAgatek::get_fitness()));
-    
-    // Sortowanie rosnąco w starszym stylu z dwuparametrową funkcją "lambda":
-    // Trochę to "magiczne" bo funkcje Lambda pochodzą z "arsenału" profesjonalnego.
     if(maximize)
-      Arrays.sort(all, (obiektA, obiektB) -> Double.compare(obiektA.fitness, obiektB.fitness));
+      Arrays.sort(all); //<>//
     else
-      Arrays.sort(all, (obiektA, obiektB) -> Double.compare(obiektB.fitness, obiektA.fitness));
+      // Kod sortowania odwrotnego (malejąco po fitness):
+      Arrays.sort(all, new Comparator() {
+        public int compare(Object o1, Object o2) {
+          GAgatek g1 = (GAgatek) o1;
+          GAgatek g2 = (GAgatek) o2;
+          
+          // Odwrotne sortowanie: g2 porównujemy z g1
+          if (g2.fitness > g1.fitness) return -1;
+          if (g2.fitness < g1.fitness) return 1;
+          return 0;
+        }
+      });
+
+    // ZBYT NOWOCZEŚNIE - NAWET Processing 4 tego nie rozumie: 
+    //Arrays.sort(all,Comparator.comparingDouble(GAgatek::get_fitness()));
+    
+    // TO DZIAŁA W Processing WERSJI 4.
+    //// Sortowanie rosnąco w starszym stylu z dwuparametrową funkcją "lambda":
+    //// Trochę to "magiczne" bo funkcje Lambda pochodzą z "arsenału" profesjonalnego.
+    //if(maximize)
+    //  Arrays.sort(all, (obiektA, obiektB) -> Double.compare(obiektA.fitness, obiektB.fitness));
+    //else
+    //  Arrays.sort(all, (obiektA, obiektB) -> Double.compare(obiektB.fitness, obiektA.fitness));
   }
   
   /// @brief Klonowanie genu. Nowa wartość może być identyczna lub różnić się jednym bitem.
+  double current_mutation_rate=0;
   int randomized_clone(int parent_gene)
   {
     //...mutations...
@@ -100,7 +129,7 @@ class GAPopulation
     return parent_gene; 
   }
   
-  /// @brief Produkcja potomstwa najlepiej przystosowanych. 
+  /// @brief Produkcja potomstwa najlepiej przystosowanych (tzw. "odcięcie").
   /// @note Zakładamy, że wcześniej policzono fitness i wykonano sortowanie!
   /// @param selection_r - współczynnik selekcji czyli jaka część populacji zostanie bezpowrotnie zastąpiona.
   /// @param mutation_r - jak często zachodzi flip bitu w powstającym klonie gagatka.
@@ -109,6 +138,14 @@ class GAPopulation
   /// wylosowanych z `population_size*(1-selection_r)` gagatków z "górnej" części tablicy `all`.
   void clonal_offspring(float selection_r,float mutation_r)
   {
+    current_mutation_rate=mutation_r;
+    int border=(int)(all.length*(1-selection_r)); ///< Granica od której zaczyna się nowy obszar.
+    for(int i=border;i<all.length;i++)
+    {
+      int parent_index=(int)random(0,border-1);                             assert(parent_index<border);
+      int new_gene=randomized_clone(all[parent_index].gene);
+      all[i].reset_gene(new_gene); //Przy okazji czyści stary fitness żeby mógł zostać policzony od nowa.
+    }
   }
   
   /// @brief Produkcja potomstwa zwycięzców pojedynków losowych par. 
