@@ -6,12 +6,13 @@ import java.lang.Math;
 
 /// @name Parametry algorytmu genetycznego
 /// @{
-int     population_size=200;      ///< Rozmiar populacji rozwiązań.
+int     TEMPO=10;                  ///< Ile kroków algorytmu na sekundę?
+int     population_size=500;      ///< Rozmiar populacji rozwiązań.
 float   selection_rate=0.33;      ///< Jaką część populacji wymieniamy w kazdej generacji (kroku algorytmu).
-float   mutation_rate=0.001;      ///< Jaki jest poziom mutacji (może miec różne interpretacje!)
-boolean use_Gray_code=false;      ///< Czy liczby kodujemy w sposób, który wygładza przestrzeń rozwiązań?
-boolean maximize=false;           ///< Czy szukamy maksimum funkcji? Gdy false to szukamy minimum.
-boolean selection_by_duels=true;  ///< Czy używamy selekcji przez pojedynki czy klasycznej - z sortowaniem.
+float   mutation_rate=0.005;      ///< Jaki jest poziom mutacji (może miec różne interpretacje!)
+boolean use_Gray_code=true;      ///< Czy liczby kodujemy w sposób, który wygładza przestrzeń rozwiązań?
+boolean maximize=true;           ///< Czy szukamy maksimum funkcji? Gdy false to szukamy minimum.
+boolean selection_by_duels=false;  ///< Czy używamy selekcji przez pojedynki czy klasycznej - z sortowaniem.
 /// @}
 
 GAPopulation Pop;
@@ -71,8 +72,43 @@ void draw_function()
   }
 }
 
-void draw_population(GAPopulation pop)
+/// @name Para wartości aktualnie najlepszego rozwiązania
+/// @{
+double best_fit=-Double.MAX_VALUE;
+double x_best=-Double.MAX_VALUE;
+/// @}
+
+void find_the_best(GAPopulation pop)
 {
+  if(maximize)
+  { best_fit=x_best=-Double.MAX_VALUE; }
+  else
+  { best_fit=x_best=Double.MAX_VALUE; }
+  
+  for(int i=0;i<pop.all.length;i++)
+  if(maximize)
+  {
+    double fit=pop.all[i].fitness;
+    if(fit>best_fit)
+    {
+      best_fit=fit;
+      x_best=pop.get_val(i);
+    }
+  }
+  else
+  {
+    double fit=pop.all[i].fitness;
+    if(fit<best_fit)
+    {
+      best_fit=fit;
+      x_best=pop.get_val(i);
+    }
+  }
+}
+
+// Rysuje populacje.
+void draw_population(GAPopulation pop)
+{ 
   stroke(255,0,0);noFill();
   for(int i=0;i<pop.all.length;i++)
   {
@@ -89,15 +125,25 @@ void setup()
   size(1024,450);
   zero=height-5;
   Pop=new GAPopulation(population_size,-5.12,5.12,use_Gray_code);
-  frameRate(1);
+  frameRate(TEMPO);
 }
 
 void draw()
 {
   background(255);
+  // Stan aktualny:
   draw_function();
   calculate_fitnesses(Pop);
   draw_population(Pop);
+  
+  find_the_best(Pop);
+  fill(0,255,0);
+  textSize(24);
+  text("X="+x_best,width/2,24);
+  text("Y="+best_fit,width/2,48);
+  println(frameCount,"\tX:\t",x_best,"\tY:\t",best_fit);
+  
+  // Zmiana stanu:
   if(selection_by_duels)
   {
     Pop.clonal_offspring_by_duels(selection_rate,mutation_rate,maximize);
