@@ -48,16 +48,22 @@ class GAPopulation
     
     for(int i=0;i<population_size;i++)
     {
-      double r=Math.random()*range; 
+      double r=Math.random()*range;
+      float f=(float)r;
       int as_NKB=map_(r,range);
       int as_gray=toGray(as_NKB);
-      println(minx+r,'\t',r,'\t',toBin(as_NKB,32),'\t',minx+unmap_(as_NKB,range),'\t',toBin(as_gray,32),'\t',minx+unmap_(fromGray(as_gray),range)); //Test kodowania
+      
+      //Test kodowania
+      println('*',minx+r,'\t',r,'\t',
+              toBin(as_NKB,32),'\t',minx+unmap_(as_NKB,range),'\t',
+              toBin(as_gray,32),'\t',minx+unmap_(fromGray(as_gray),range)
+              );
       if(gray_coded)
         all[i]=new GAgatek(as_gray);
       else
         all[i]=new GAgatek(as_NKB);
     }
-  }
+  } //<>//
   
   // Akcesory:
   //==========
@@ -87,13 +93,13 @@ class GAPopulation
   
   // GŁÓWNE OPERACJE GENETYCZNE:
   //============================
-  
+   //<>//
   /// @brief Sortowanie wg. fitness. @note Wartości dostosowania muszą być już znane dla wszystkich gagatków!
   /// @param maximize - czy szukamy/promujemy maksimum wartości `fitness` czy przeciwnie - minimum (co ma sens przy funkcjach).
   void sort_by_fitness(boolean maximize)
   {
     if(maximize)
-      Arrays.sort(all); //<>// //<>//
+      Arrays.sort(all);
     else
       // Kod sortowania odwrotnego (malejąco po fitness):
       Arrays.sort(all, new Comparator() {
@@ -113,7 +119,7 @@ class GAPopulation
     
     // TO DZIAŁA W Processing WERSJI 4.
     //// Sortowanie rosnąco w starszym stylu z dwuparametrową funkcją "lambda":
-    //// Trochę to "magiczne" bo funkcje Lambda pochodzą z "arsenału" profesjonalnego.
+    //// Trochę to "magiczne" bo funkcje Lambda pochodzą z "arsenału" bardzo profesjonalnego.
     //if(maximize)
     //  Arrays.sort(all, (obiektA, obiektB) -> Double.compare(obiektA.fitness, obiektB.fitness));
     //else
@@ -124,9 +130,12 @@ class GAPopulation
   double current_mutation_rate=0;
   int randomized_clone(int parent_gene)
   {
-    //...mutations...
-
-    return parent_gene; 
+    int max_ind=(int)(1./current_mutation_rate);
+    int index=(int)random(max_ind);
+    if(index<32)
+      return switch_bit(parent_gene,index,32); //z mutacją
+    else  
+      return parent_gene; //Bez mutacji bo trafił poza
   }
   
   /// @brief Produkcja potomstwa najlepiej przystosowanych (tzw. "odcięcie").
