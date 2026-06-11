@@ -1,4 +1,4 @@
-/// Narzędzia bitowe dla algorytmów ewolucyjnych.
+/// Narzędzia bitowe dla algorytmów ewolucyjnych.  
 //-//////////////////////////////////////////////
 /// @date 2026-06-11 (modified)
 // Skomentowane w standardzie Doxygen.
@@ -253,7 +253,7 @@ public  int switch_bit(int sou,int pos,int USE_BITS)
   }//else Pozycja jest poprawna.
   
   int bit=0x1<<pos; // Ustawianie pozycji na masce.
-  return sou^bit; //Przełącznie bitu wg. maski. (xor should do the job).
+  return sou^bit;   // Przełącznie bitu wg. maski. (xor should do the job).
 }
 
 
@@ -267,7 +267,7 @@ public  long switch_bit(long sou,int pos,int USE_BITS)
   }//else Pozycja jest poprawna.
   
   long bit=0x1<<pos; // Ustawianie pozycji na masce.
-  return sou^bit; //Przełącznie bitu wg. maski. (xor should do the job).
+  return sou^bit;    // Przełącznie bitu wg. maski. (xor should do the job).
 }
 /// @}
 
@@ -363,3 +363,8 @@ void tests()
   
   println("\n\nEND of TESTS!");
 }
+
+//-////////////////////////////////////////////////////////////////////////////////////////////////////////
+//  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - https://github.com/borkowsk/bookProcessingPL
+//-////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_EOC

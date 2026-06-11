@@ -28,8 +28,11 @@ class GAgatek implements Comparable
     if (this.fitness > other.fitness) return -1;
     return 0;
   }
-};
+  
+}//_EndOfClass
 
+/// Populacja "gagatków" zajmuje się implementacją podstawowych operacji genetycznych.
+/// @details Nie implementujemy crossing-over bo w problemach jednowymiarowych nie ma potrzeby jego używania.
 class GAPopulation
 {
   GAgatek[] all;
@@ -237,4 +240,9 @@ class GAPopulation
       return unmapped;
   }
   
-};
+}//_EndOfClass
+
+//-////////////////////////////////////////////////////////////////////////////////////////////////////////
+//  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - https://github.com/borkowsk/bookProcessingPL
+//-////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_EOC
