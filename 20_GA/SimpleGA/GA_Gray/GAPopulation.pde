@@ -1,6 +1,6 @@
 /// Populacja agentów genetycznych do rozwiązywania jednowymiarowych problemów.
 //-////////////////////////////////////////////////////////////////////////////
-/// @date 2026-06-09 (last modification)
+/// @date 2026-06-11 (last modification)
 import java.lang.Math;
 import java.util.Arrays;
 import java.util.Comparator;

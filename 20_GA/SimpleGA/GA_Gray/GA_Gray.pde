@@ -1,6 +1,6 @@
 /// Bardzo prosty algorytm genetyczny z samymi mutacjami.
 //-///////////////////////////////////////////////////////////
-/// @date 2026-06-09 (modified)
+/// @date 2026-06-11 (modified)
 
 import java.lang.Math;
 
