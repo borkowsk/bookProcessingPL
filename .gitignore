@@ -20,5 +20,5 @@ ffmpeg.txt
 # compiler-generated binaries (safe to delete)
 *.exe
 
-
+._bak/
 
