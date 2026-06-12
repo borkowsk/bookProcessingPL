@@ -1,12 +1,12 @@
-//"Forest fire" - wersja Monte-Carlo 
+//"Monte-Carlo Forest fire" 
 //Model "pożaru lasu" - bardzo klasyczny, w wersji autorskiej Monte Carlo 
-//-/////////////////////////////////////////////////////////////////////////
+//-//////////////////////////////////////////////////////////////////////
 
 //Parametry modelu
-int N=50;        //Bok macierzy
-int FireTimeDiv=10; //Jak długo pali się drzewo (podział według wieku/rozmiaru)
+int N=50;               //Bok macierzy
+int FireTimeDiv=10;     //Jak długo pali się drzewo (podział według wieku/rozmiaru)
 float IgnitionP = 0.75; //Prawdopodobieństwo przeniesienia ognia
-float InitT=  0.750; //Ile drzew na początku (gęstość lasu)
+float InitT=  0.750;    //Ile drzew na początku (gęstość lasu)
 
 //2D "Świat" drzew
 int World[][] = new int[N][N];
@@ -64,18 +64,25 @@ void doVisualisation()
   } 
 }
 
-void keyPressed() //Podświetlenie
+void keyPressed() //Zapłon w losowym miejscu!
 {
     int i=(int)random(N);
     int j=(int)random(N);
     World[i][j]=-World[i][j]/FireTimeDiv - 1; //At least one step
 }
 
+void mouseClicked()
+{
+  int i=mouseX/S;
+  int j=mouseY/S;
+  World[i][j]=-World[i][j]/FireTimeDiv - 1; //At least one step
+}
+
 void doMonteCarloStep()
 {
   Step++;
   int M=N*N;
-  for(int m=0;m<M;m++) //Processing rozróżnia WIELKOŚĆ LITER w nazwach. Jednak korzystanie z tej mozliwości nie jest dobrą praktyką.
+  for(int m=0;m<M;m++) //Processing rozróżnia WIELKOŚĆ LITER w nazwach. Jednak korzystanie z tej możliwości nie jest dobrą praktyką.
   {
     int i=(int)random(N);
     int j=(int)random(N);
