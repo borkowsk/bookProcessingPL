@@ -1,45 +1,45 @@
 //Wzrost losowo z punktu środkowego z mutacjami kolorów
-//////////////////////////////////////////////////////////////////////////////////
-//uzywamy KLASY zdefiniowanej przez użytkownika o nazwie RGB
+//-////////////////////////////////////////////////////////////////////////////////
+//używamy KLASY zdefiniowanej przez użytkownika o nazwie RGB
 
-import com.hamoid.*;//Oraz importujemy niezbędną biblioteką zawierającą klasę VideoExport
+import com.hamoid.*; //Oraz importujemy niezbędną biblioteką zawierającą klasę VideoExport
 
 //Parametry modelu  
-int JUMP=3;//skok pozycji "zarodnika". Nieparzysty!
-int CJUMP=9;//skok koloru. Też lepiej nieparzysty.
-int STARTG=128;//W jakiej szarości pierwsza komórka
+int JUMP=3; //skok pozycji "zarodnika". Nieparzysty!
+int CJUMP=9; //skok koloru. Też lepiej nieparzysty.
+int STARTG=128; //W jakiej szarości pierwsza komórka
 
 //Ważne globalne zmienne, ale inicjowane w setup()
-int Side;//Bok macieży
+int Side; //Bok macierzy
 int W; //Mnożnik dla kwadracika
-RGB World[][];//TABLICA ŚWIATA
+RGB World[][]; //TABLICA ŚWIATA
 
-PrintWriter output;//A tu używamy KLASY zdefiniowanej w bibliotece
+PrintWriter output; //A tu używamy KLASY zdefiniowanej w bibliotece
 
-VideoExport videoExport;//KLASA z biblioteki VideoExport Abe Pazosa - trzeba zainstalować
+VideoExport videoExport; //KLASA z biblioteki VideoExport Abe Pazosa - trzeba zainstalować
                         //http://funprogramming.org/VideoExport-for-Processing/examples/basic/basic.pde
                         //Oraz zainstalować program ffmpeg żeby działało
 
-void setup() //Window and model initialization
+void setup() //Inicjalizacja okna i modelu
 {
   size(900,900);
   W=2;
   Side=900/2;
 
-  World = new RGB[Side][Side]; //<>//
+  World = new RGB[Side][Side]; 
   World[Side/2][Side/2]= new RGB();
 
-  World[Side/2][Side/2].Set(STARTG,STARTG,STARTG);//Inicjalize 
+  World[Side/2][Side/2].Set(STARTG,STARTG,STARTG); //Inicjalizacja 
   World[Side/2][Side/2].Visualise(Side/2,Side/2);
   
-  output = createWriter("Statistics.log"); // Create a new file in the sketch directory  
+  output = createWriter("Statistics.log"); // Utwórz nowy plik w katalogu szkiców!  
   output.println("Step\tCounter");
   
-  videoExport = new VideoExport(this); //Klasa VideoExport musi mieć dostep do obiektu aplikacji Processingu
+  videoExport = new VideoExport(this); //Klasa VideoExport musi mieć dostęp do obiektu aplikacji Processingu
   videoExport.startMovie();
   
-  noSmooth(); //Fast visualization
-  frameRate(30); //maximize speed
+  noSmooth(); //Szybsza wizualizacja
+  frameRate(30); //więcej klatek na sekundę
 }
 
 int Step=0;
@@ -52,22 +52,22 @@ void exit()
   output.close();
   if(!Stop) //Jeśli kończymy przed czasem
   {
-      videoExport.saveFrame();//Video frame - LAST
-      videoExport.endMovie();//Koniec filma
+      videoExport.saveFrame(); //Ostatnia klatka video
+      videoExport.endMovie(); //"Koniec filma"
   }
-  super.exit();//Exit klasy bazowej dla aplikacji Processingu
+  super.exit(); //Exit klasy bazowej dla aplikacji Processingu
 }
 
 void draw()
 //Monte Carlo Step
 {
   //Zapis tego co jest
-  output.println(Step+"\t"+RGB_Counter); // Write the statistics to the file
+  output.println(Step+"\t"+RGB_Counter); //Zapisywanie statystyki do pliku
     
   //Nowy stan
   if(!Stop)
   {
-    videoExport.saveFrame();//Video frame
+    videoExport.saveFrame(); //Video frame
     int M=Side*Side;
     for(int i=0;i<M;i++)
     {
@@ -94,11 +94,11 @@ void draw()
             World[Yt][Xt].Set(nR,nG,nB);
             World[Yt][Xt].Visualise(Xt,Yt);
             
-            if(Xt==0 || Yt==0)//Doszło do brzegu z jednej z dwu stron - a rośnie w +-symetrycznie
+            if(Xt==0 || Yt==0) //Doszło do brzegu z jednej z dwu stron - a rośnie w +-symetrycznie
             {
                Stop=true; 
-               videoExport.saveFrame();//Video frame - LAST
-               videoExport.endMovie();//Koniec filma
+               videoExport.saveFrame(); //Video frame - LAST
+               videoExport.endMovie(); //"Koniec filma"
             }
           }  
       }

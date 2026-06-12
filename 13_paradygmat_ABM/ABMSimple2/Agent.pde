@@ -1,8 +1,8 @@
-/// The agent: its atributes, random initialisation and methods
-/// @date 2025-01-13 (modification)
+/// Agent: jego atrybuty, losowa inicjalizacja i metody
+/// @date 2026-06-12 (modyfikacja)
 //*/////////////////////////////////////////////////////////////////////////////
 
-enum Dirs { UNKNOWN, N, NE, E, SE, S, SW, W, NW }; ///< all directions of the world.
+enum Dirs { UNKNOWN, N, NE, E, SE, S, SW, W, NW }; ///< wszystkie kierunki świata.
 
 Dirs[] allDirs={ Dirs.UNKNOWN,Dirs.N,Dirs.NE,Dirs.E,Dirs.SE,Dirs.S,Dirs.SW,Dirs.W,Dirs.NW };
 
@@ -24,7 +24,7 @@ color dirs2color(Dirs direction)
 
 class Agent
 {
-  Dirs direction=Dirs.UNKNOWN;  //!< It needs to know his walking direction.
+  Dirs direction=Dirs.UNKNOWN;  //!< Musi znać kierunek, w którym się przemieszcza.
   
   color getColor()
   {
@@ -33,7 +33,7 @@ class Agent
   
   void update()
   {
-    if( direction==Dirs.UNKNOWN && random(1.0)<0.01 ) // Within approximately 100 steps, everyone will choose a direction.
+    if( direction==Dirs.UNKNOWN && random(1.0)<0.01 ) //Każdy wybierze kierunek, po wykonaniu około 100 kroków.
       direction=allDirs[int(random(1,allDirs.length))];
   }
 } 

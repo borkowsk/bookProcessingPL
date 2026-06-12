@@ -1,5 +1,5 @@
 // Synchronizacja w parze dwu iteracji równania logistycznego 
-/////////////////////////////////////////////////////////////////////
+//-///////////////////////////////////////////////////////////////////
 static float  DefaultAlfa=0.20000000000; // Siła symetrycznego związku
 static long   MyRSeed=0; // Inicjalizacja liczb losowych - jak 0 to z czasu.
 static int    backgrey=128; // Kolor tła
@@ -106,7 +106,7 @@ void draw()
   {
     backgrey=(int)random(144);
     background(backgrey);
-    //DefaultAlfa=random(0.5)*random(0.5); //Wersja bez 5_ w nazwie miała dwa randomy tutaj
+    //DefaultAlfa=random(0.5)*random(0.5); //Wersja bez 5_ w nazwie miała dwa wywołania `random`.
     DefaultAlfa=random(0.5);
     First.alfa=DefaultAlfa;
     Second.alfa=DefaultAlfa;
@@ -151,7 +151,7 @@ void draw()
    xFo=First.getX1();  // Stany przed-poprzednie ...
    xSo=Second.getX1(); // ... do wizualizacji ciągłej
    
-   next4couple(First,Second); // TYLKO CO "VISUAL" RAMEK JEST SYMULACJA
+   next4couple(First,Second); // TYLKO CO "VISUAL" RAMEK JEST ZMIANA STANU SYMULACJI
    
    // println("x:"+xFo+" "+First.getX1()+" "+First.getX2());
    stroke(30+stecounter,30+stecounter/2,stecounter/4);
@@ -161,10 +161,10 @@ void draw()
    stecounter++;
    println("Fr/s:",frameRate);
    
-   if(!All) NextVideoFrame();//Video frame
+   if(!All) NextVideoFrame(); //Video frame
   }
   
-  if(All) NextVideoFrame();//Video frame
+  if(All) NextVideoFrame(); //Video frame
 }
 
 //  Event handlers:

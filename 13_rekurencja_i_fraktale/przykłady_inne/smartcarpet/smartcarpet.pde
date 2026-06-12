@@ -1,11 +1,11 @@
-/// This sketch display the fractal known as the "Sierpinski carpet" with 6 iterations
+/// Ten "szkic" przedstawia fraktal znany jako „dywan Sierpińskiego” w 6 iteracjach
 /// https://www.openprocessing.org/sketch/141019/
 //-///////////////////////////////////////////////////////////////////////////////////
 
-float s=729;  // length of the first iteration square's side (it should be a power 
-              // of 3 to get pixel accuracy)
-int cpt=0;    // used to display in the console the number of calls to the recursive 
-              // function that draws the fractal
+float s=729;  // długość boku kwadratu pierwszej iteracji
+              // (aby uzyskać dokładność pikselową, powinna to być potęga liczby 3)
+int cpt=0;    // służy do wyświetlania w konsoli liczby wywołań funkcji rekurencyjnej,
+              //  która rysuje fraktal
 
 void setup()
 {
@@ -19,64 +19,64 @@ void setup()
 
 void draw()
 {
-  translate(365, 365);  //move the origin of next drawing to the center of the window
+  translate(365, 365);  //przesuń początek następnego rysunku do środka okna
   fill(0);
-  square(s);  //call to the recursive function
+  square(s);  //wywołanie funkcji rekurencyjnej
   println(cpt);
-  //save("Sierpinski_carpet.png");  //uncomment it if you want to save the picture to your computer
+  //save("Sierpinski_carpet.png");  //odkomentuj, jeśli chcesz zapisać zdjęcie na swoim komputerze
 }
 
 void square(float side)
 {
-  side=side/3;  //at each iteration the squares are 3 times smaller
+  side=side/3;  //przy każdej iteracji kwadraty są 3 razy mniejsze
 
-  if (side>=1)  //the function is called until the squares size is equal to 1 pixel, because it would be pointless to draw things that are smaller to 1 pixel!
+  if (side>=1)  //Funkcja będzie wywoływana dopóki rozmiar kwadratu nie będzie równy 1 pikselowi, ponieważ nie ma sensu rysować obiektów mniejszych od 1 piksela!
   {
-    cpt++;  //increment the "call counter"
+    cpt++;  //zwiększyć „licznik wywołań”
 
-    pushMatrix();  //draws the top left square
+    pushMatrix();  //Zabezpiecz parametry geometrii i narysuj lewy górny kwadrat
     rect(0, 0, side, side);
     translate(-side, -side);
     square(side);
     popMatrix();
 
-    pushMatrix();  //draws the top middle square
+    pushMatrix();  //Zabezpiecz parametry geometrii i narysuj górny środkowy kwadrat
     rect(0, 0, side, side);
     translate(0, -side);
     square(side);
     popMatrix();
 
-    pushMatrix();  //draws the top right square
+    pushMatrix();  //Zabezpiecz parametry geometrii i narysuj prawy górny kwadrat
     rect(0, 0, side, side);
     translate(side, -side);
     square(side);
     popMatrix();
 
-    pushMatrix();  //draws the middle right square
+    pushMatrix();  //Zabezpiecz parametry geometrii i narysuj środkowy prawy kwadrat
     rect(0, 0, side, side);
     translate(side, 0);
     square(side);
     popMatrix();
 
-    pushMatrix();  //draws the bottom right square
+    pushMatrix();  //Zabezpiecz parametry geometrii i narysuj prawy dolny kwadrat
     rect(0, 0, side, side);
     translate(side, side);
     square(side);
     popMatrix();
 
-    pushMatrix();  //draws the bottom middle square
+    pushMatrix();  //Zabezpiecz parametry geometrii i narysuj dolny środkowy kwadrat
     rect(0, 0, side, side);
     translate(0, side);
     square(side);
     popMatrix();
 
-    pushMatrix();  //draws the bottom left square
+    pushMatrix();  //Zabezpiecz parametry geometrii i narysuj lewy dolny kwadrat
     rect(0, 0, side, side);
     translate(-side, side);
     square(side);
     popMatrix();
 
-    pushMatrix();  //draws the middle left square
+    pushMatrix();  //Zabezpiecz parametry geometrii i narysuj środkowy lewy kwadrat
     rect(0, 0, side, side);
     translate(-side, 0);
     square(side);

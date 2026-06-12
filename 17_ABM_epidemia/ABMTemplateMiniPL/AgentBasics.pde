@@ -1,6 +1,6 @@
-// Agent is a one of two central class of each ABM model
-// Agent need to be initialised & they need logic of change 
-///////////////////////////////////////////////////////////////
+// Agent jest jedną z dwóch centralnych klas każdego modelu ABM
+// Agent musi zostać zainicjowany i musi mieć logikę zmian
+//-/////////////////////////////////////////////////////////////
 
 void initializeAgents(Agent[][] agents)
 {
@@ -25,18 +25,18 @@ void initializeAgents(Agent[] agents)
   }
 }
 
-void  dummyChangeAgents(Agent[] agents)//do zmiany na agentsChange()
+void  dummyChangeAgents(Agent[] agents) //do zmiany na agentsChange()
 {
   int MC=agents.length;
   for(int i=0;i<MC;i++)
   {
     int a=(int)random(0,agents.length);
     if(agents[a]!= null )
-      agents[a].dummy+=random(-0.1,0.1);//PRZYKŁADOWA ZMIANA
+      agents[a].dummy+=random(-0.1,0.1); //PRZYKŁADOWA ZMIANA
   }  
 }
 //OR
-void  dummyChangeAgents(Agent[][] agents)//do zmiany na agentsChange()
+void  dummyChangeAgents(Agent[][] agents) //do zmiany na agentsChange()
 {
   int MC=agents.length*agents[0].length;
   for(int i=0;i<MC;i++)
@@ -44,10 +44,10 @@ void  dummyChangeAgents(Agent[][] agents)//do zmiany na agentsChange()
     int a=(int)random(0,agents.length);
     int b=(int)random(0,agents[a].length);
     if(agents[a][b]!= null )
-      agents[a][b].dummy+=random(-0.1,0.1);//PRZYKŁADOWA ZMIANA
+      agents[a][b].dummy+=random(-0.1,0.1); //PRZYKŁADOWA ZMIANA
   }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//-//////////////////////////////////////////////////////////////////////////////////////////////////////////
 //  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM: BASIC INITIALISATION & EVERY STEP CHANGE
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//-//////////////////////////////////////////////////////////////////////////////////////////////////////////

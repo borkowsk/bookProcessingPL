@@ -1,5 +1,5 @@
 //Trójwymiarowy, DETERMINISTYCZNY automat komórkowy - reguła "ZSUMUJ Z SĄSIADAMI I WEŹ MODULO". SYNCHRONICZNY.
-//Siatka prostokatna, sąsiedztwo von Neumana.
+//Siatka prostokątna, sąsiedztwo von Neumana.
 //============================================================================================================
 //
 int SIDE=21;
@@ -26,7 +26,7 @@ void initWorld()
     for (int b=0; b<SIDE; b++)
       for (int c=0; c<SIDE; c++)
       {
-        int state=0;//(int)random(MAXSTATE+0.9999);
+        int state=0; //(int)random(MAXSTATE+0.9999);
         theWorld[a][b][c]=state;
       }
   theWorld[SIDE/2][SIDE/2][SIDE/2]=1;   
@@ -84,8 +84,8 @@ void visualiseWorld()
       for (int c=0; c<SIDE; c++)
       {
         int state=theWorld[a][b][c];
-        switch(state) { //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w konmórce
-        case 0:continue;//fill(0, 0, 0, 32);
+        switch(state) { //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w komórce
+        case 0:continue; //fill(0, 0, 0, 32);
         //  break; //Odpowiednio dobrany zestaw kolorów pozwala uzyskać ciekawe efekty
         case 1:fill(255, 255, 0, TRANS);
           break;
@@ -99,7 +99,7 @@ void visualiseWorld()
           break;
         case 6:fill(0, 255, 0, TRANS);
           break;
-        default:fill(255, 255, 255); //To się pojawiac nie powinno
+        default:fill(255, 255, 255); //To się pojawiać nie powinno
           break;
         }
 
@@ -125,7 +125,7 @@ void setCameraZ()
   float cameraZ = (height/2.0) / tan(fov/2.0);
   perspective(fov, float(width)/float(height),
     cameraZ/2.0,
-    cameraZ*20.0 //How deep object is still randered.
+    cameraZ*20.0 //Jak głęboko obiekt jest nadal wizualizowany.
     );
 }
 

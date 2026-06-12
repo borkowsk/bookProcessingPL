@@ -1,6 +1,6 @@
 //Dwuwymiarowy, DETERMINISTYCZNY automat komórkowy - reguła "ZSUMUJ Z SĄSIADAMI I WEŹ MODULO". SYNCHRONICZNY.
-// NA SIATCE Hexagonalnej - Wyswietlanie optymalizowane tablicą zmian (Changed)
-//=============================================================================
+// NA siatce heksagonalnej - Wyświetlanie optymalizowane tablicą zmian (Changed)
+//===========================================================================================================
 //
 int WorldSize=202; //Ile chcemy elementów w linii?
 int[][] WorldOld=new int[WorldSize][WorldSize]; //Tworzenie tablic - w Processingu zawsze za pomocą alokacji!
@@ -13,7 +13,7 @@ int   Div=6; //Jaki dzielnik w regule automatu
 float CellSize=3; //Wysokość komórki
 int   FRAME_RATE_REQ=9; //Ile klatek na sekundę byśmy chcieli
 
-void settings() // SPECJALNA FUNCJA POZWALAJĄCA UŻYĆ WYRAŻENIA OKREŚLAJĄCEGO ROZMIARY OKNA ORAZ INNYCH USTAWIEŃ OKNA
+void settings() // SPECJALNA FUNKCJA POZWALAJĄCA UŻYĆ WYRAŻENIA OKREŚLAJĄCEGO ROZMIARY OKNA ORAZ INNYCH USTAWIEŃ OKNA
 {
    noSmooth(); //Jeśli istnieje funkcja `settings()` to ta komenda musi być w niej i przed `size()`
    //Proporcje okna 3:2
@@ -82,7 +82,7 @@ void visualize() /// Wizualizacja świata
   for(int i=0;i<WorldOld.length;i++)
   for(int j=0;j<WorldOld.length;j++) 
   {
-    switch(WorldOld[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w konmórce
+    switch(WorldOld[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w komórce
       case 0:fill(0,0,0);break; //Odpowiednio dobrany zestaw kolorów pozwala uzyskać ciekawe efekty
       case 1:fill(0,255,0);break;
       case 2:fill(64,128,64);break;
@@ -90,25 +90,25 @@ void visualize() /// Wizualizacja świata
       case 4:fill(255,0,200);break;
       case 5:fill(64,0,255);break;
       case 6:fill(0,0,255);break;
-      default: fill(255,255,255);//To się pojawiac nie powinno
+      default: fill(255,255,255); //To się pojawiać nie powinno
       break;
     }
     
     //Użyjemy możliwości podawania współrzędnych ekranu jako `float`
-    float offsetY=CellSize*0.50; //Połowa wysokości elipsy/hexagonu
-    float offsetX=CellSize*0.75; //Połowa szerokości elipsy/hexagonu
-    float lineIsEven=(j%2==0?offsetX:0); //Co drugi wiersz będzie bardziej przesuniety!
+    float offsetY=CellSize*0.50; //Połowa wysokości elipsy/heksagonu
+    float offsetX=CellSize*0.75; //Połowa szerokości elipsy/heksagonu
+    float lineIsEven=(j%2==0?offsetX:0); //Co drugi wiersz będzie bardziej przesunięty!
     float X=offsetX+i*1.5*CellSize+lineIsEven;
     float Y=offsetY+j*CellSize;
     hexagon(X,Y,CellSize*1.5,CellSize); //sześciokąty reprezentujące komórki
     //ellipse(X,Y,S*1.5,S); //zwykłe elipsy reprezentują komórki
-    //stroke(255,255,0);point(X,Y);noStroke(); //Środki elips/hexagonów
+    //stroke(255,255,0);point(X,Y);noStroke(); //Środki elips/heksagonów
   }
 }
 
 void change() //zmiana świata - tu synchroniczna
 {
-  for(int i=0;i<WorldOld.length;i++)//Zmiana stanu automatu
+  for(int i=0;i<WorldOld.length;i++) //Zmiana stanu automatu
   {
        //Reguła - "ZSUMUJ Z SĄSIADAMI I WEŹ MODULO"
        //Zamiast ignorować brzegi można zrobić liczenie indeksów sąsiadów z zawijaniem dzięki reszcie z dzielenia
@@ -131,8 +131,8 @@ void change() //zmiana świata - tu synchroniczna
                  +WorldOld[add][dw] // dodatkowy dolny
                  ; //suma siedmiu brana potem modulo div
       
-         WorldNew[i][j]=ile % Div;//Nowy stan zapisujemy na drugą tablicę
-         Changed[i][j]=(WorldNew[i][j] !=0 || WorldOld[i][j]!=0);//Czy trzeba odrysować? point() jest kosztowne wbrew pozorom
+         WorldNew[i][j]=ile % Div; //Nowy stan zapisujemy na drugą tablicę
+         Changed[i][j]=(WorldNew[i][j] !=0 || WorldOld[i][j]!=0); //Czy trzeba odrysować? point() jest kosztowne wbrew pozorom
        }
    }
    
@@ -142,8 +142,8 @@ void change() //zmiana świata - tu synchroniczna
    WorldNew=WorldTmp;
 }
 
-//////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////
 // Autor: Wojciech T. Borkowski
 // Materiały do podręcznika "Processing w edukacji i symulacji
 // https://github.com/borkowsk/sym4processing/tree/master/ProcessingWEdukacji
-//////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////

@@ -1,23 +1,23 @@
-//LIFE CONWAYA i KUZYNI z zapisem do logu
+//LIFE Conway'a i KUZYNI z zapisem do logu
 //======================================================================
 //Dwuwymiarowy, DETERMINISTYCZNY automat komórkowy - reguła Life ożywanie-śmierc
 //Kroki synchroniczne i SĄSIEDZTWO MOORE'a !!!
 //Zasiewanie tablicy na początku z zadaną gęstością lub pojedynczą komórką
 //Przyśpieszony poprzez śledzenie zmian
-/////////////////////////////////////////////////////////////////////////////////////////
-int WorldSize=1*3*171;//Ile chcemy elementów w linii? (dobrze jak wielokrotność 3)
-int[][] WorldOld=new int[WorldSize][WorldSize];//Tworzenie tablic "świata"
+//-///////////////////////////////////////////////////////////////////////////////////////
+int WorldSize=1*3*171; //Ile chcemy elementów w linii? (dobrze jak wielokrotność 3)
+int[][] WorldOld=new int[WorldSize][WorldSize]; //Tworzenie tablic "świata"
 int[][] WorldNew=new int[WorldSize][WorldSize];
 
-float IDens=0.5;//Początkowa gęstość w tablicy - sprawdź też inne. 
+float IDens=0.5; //Początkowa gęstość w tablicy - sprawdź też inne. 
                  //Poszukaj kiedy aktywność trwa najdłużej, ale oczywiście ignorując trwałe oscylatory.
 
-int     birth=3;//Ile potrzeba do zrodzenia nowej komórki
-int     minim=2;//Najmniej liczne sąsiedzwtwo pozwalające na przeżycie
-int     maxim=3;//Najbardziej liczne sąsiedztwo pozwalające na przeżycie
+int     birth=3; //Ile potrzeba do zrodzenia nowej komórki
+int     minim=2; //Najmniej liczne sąsiedztwo pozwalające na przeżycie
+int     maxim=3; //Najbardziej liczne sąsiedztwo pozwalające na przeżycie
 
-String SEPARATOR="\t";//Tabulator daje format TAB-DELIMITED, a "," lub ";" format CSV (+-)
-PrintWriter output;//Strumień podłączony do pliku logu
+String SEPARATOR="\t"; //Tabulator daje format TAB-DELIMITED, a "," lub ";" format CSV (+-)
+PrintWriter output; //Strumień podłączony do pliku logu
 
 void setup()
 {
@@ -27,14 +27,14 @@ void setup()
   println(WorldSize," in ",width,"x",height," window");
   
   output = createWriter("log.txt"); //Nazwa na razie toporna, ale ale pomyślcie na tym
-  output.println("time"+SEPARATOR+"zera"+SEPARATOR+"jedynki");//Tu zapisujemy NAGŁÓWEK do logu.
+  output.println("time"+SEPARATOR+"zera"+SEPARATOR+"jedynki"); //Tu zapisujemy NAGŁÓWEK do logu.
   
   if(IDens>0)
   {
    for(int i=0;i<WorldOld.length;i++) //Zasiewanie tablicy
     for(int j=0;j<WorldOld.length;j++) 
     {
-      WorldNew[i][j]=-1;//Info że jeszcze nie używane więc nie rysowane
+      WorldNew[i][j]=-1; //Info że jeszcze nie używane więc nie rysowane
       if(random(1.0)<IDens)
         WorldOld[i][j]=1; //Albo 1 albo nic
       else
@@ -45,9 +45,9 @@ void setup()
   {
     for(int i=0;i<WorldOld.length;i++) //Zasiewanie tablicy
      for(int j=0;j<WorldOld.length;j++) 
-      WorldNew[i][j]=-1;//Info że jeszcze nie używane więc nie rysowane
+      WorldNew[i][j]=-1; //Info że jeszcze nie używane więc nie rysowane
       
-    WorldOld[WorldSize/2][WorldSize/2]=1;//Tylko jeden w środku
+    WorldOld[WorldSize/2][WorldSize/2]=1; //Tylko jeden w środku
   }
 }
 
@@ -56,22 +56,22 @@ void visualisationAndStatistics()
   //Do zbierania statystyk
   int jedynki=0,zera=0;
   
-  for(int i=0;i<WorldOld.length;i++)//Wizualizacja czyli "rysowanie na ekranie" 
+  for(int i=0;i<WorldOld.length;i++) //Wizualizacja czyli "rysowanie na ekranie" 
     for(int j=0;j<WorldOld.length;j++) 
     {
       switch(WorldOld[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w komórce     
-      case 1:stroke(255,255,0);jedynki++;break;//Normalnie tylko to
-      case 0:stroke(0,0,0);zera++;break;//Lub to
-      default: stroke(255,0,0);//To się pojawiac nie powinno - jest po to żeby wychwywytywac błędy w implementacji
-      break;//case N:stroke( , , );break; /*w Life Conwaya potrzebne tylko dwa kolory, ale schemat może przydać się poźniej*/
+      case 1:stroke(255,255,0);jedynki++;break; //Normalnie tylko to
+      case 0:stroke(0,0,0);zera++;break; //Lub to
+      default: stroke(255,0,0); //To się pojawiać nie powinno - jest po to żeby wychwytywać błędy w implementacji
+      break; //case N:stroke( , , );break; /*w Life Conway'a potrzebne tylko dwa kolory, ale schemat może przydać się później*/
       }
       if( (WorldOld[i][j] != WorldNew[i][j]) ) //na WorldNew jest stara zawartość 
-        point(i,j);//Rysujemy tylko nową (Usprawnienie 2.)
+        point(i,j); //Rysujemy tylko nową (Usprawnienie 2.)
     }
   
-  output.println(t+SEPARATOR+zera+SEPARATOR+jedynki);//Tu zapisujemy do logu. Musi być jeden łańcuch tekstowy
+  output.println(t+SEPARATOR+zera+SEPARATOR+jedynki); //Tu zapisujemy do logu. Musi być jeden łańcuch tekstowy
   if(t%100==0) // co sto kroków
-     output.flush();//Zrzucamy bufor pliku do systemu
+     output.flush(); //Zrzucamy bufor pliku do systemu
 }
 
 int t=0;
@@ -79,7 +79,7 @@ void draw()
 {  
   visualisationAndStatistics();
   
-  for(int i=0;i<WorldOld.length;i++)//Zmiana stanu automatu
+  for(int i=0;i<WorldOld.length;i++) //Zmiana stanu automatu
   {
        //Reguła - "LIFE"
        //Zamiast ignorować brzegi można zrobić liczenie indeksów sąsiadów z zawijaniem dzięki reszcie z dzielenia
@@ -95,44 +95,44 @@ void draw()
                  +WorldOld[right][j]     //w prawo
                  +WorldOld[i][up]        //w górę
                  +WorldOld[i][dw]        //w dół    
-                 //rogi czyli uzupełnienie do sąsiedzwta Moora
+                 //rogi czyli uzupełnienie do sąsiedztwa Moora
                  +WorldOld[right][dw]
                  +WorldOld[left][dw]
                  +WorldOld[right][up]
                  +WorldOld[left][up]
-                 ;//suma z dziewięciu komórek brana potem modulo Div
+                 ; //suma z dziewięciu komórek brana potem modulo Div
       
-        if(WorldOld[i][j]==0)//Nowourodzenie
+        if(WorldOld[i][j]==0) //Nowo-urodzenie
         {
           if(ile==birth)
           {  //TODO - dodaj do logu zliczanie narodzin
-             WorldNew[i][j]=1;//Nowy stan zapisujemy na drugą tablicę
+             WorldNew[i][j]=1; //Nowy stan zapisujemy na drugą tablicę
           }
           else
-             WorldNew[i][j]=0;//Stary stan zapisujemy na drugą tablicę
+             WorldNew[i][j]=0; //Stary stan zapisujemy na drugą tablicę
         }
         else
         if(minim<=ile && ile<=maxim) //Przeżycie
-            WorldNew[i][j]=1;//Stary stan zapisujemy na drugą tablicę
+            WorldNew[i][j]=1; //Stary stan zapisujemy na drugą tablicę
           else
           {
-             WorldNew[i][j]=0;//Nowy stan zapisujemy na drugą tablicę
+             WorldNew[i][j]=0; //Nowy stan zapisujemy na drugą tablicę
              //TODO - dodaj do logu zliczanie śmierci
           }
        }
    }
    
-   int[][] WorldTmp=WorldOld;//Zamiana tablic
+   int[][] WorldTmp=WorldOld; //Zamiana tablic
    WorldOld=WorldNew;
    WorldNew=WorldTmp;
    
-   t++;//Kolejne pokolenie/krok/rok
-   fill(128);rect(0,WorldSize,width,height-WorldSize);//Czyszczący prostokąt
+   t++; //Kolejne pokolenie/krok/rok
+   fill(128);rect(0,WorldSize,width,height-WorldSize); //Czyszczący prostokąt
    fill(255);text("ST: "+t+" Fr: "+frameRate,10,height);
 }
 
-//////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////
 // Autor: Wojciech T. Borkowski
 // Materiały do podręcznika "Processing w edukacji i symulacji
 // https://github.com/borkowsk/sym4processing/tree/master/ProcessingWEdukacji
-//////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////

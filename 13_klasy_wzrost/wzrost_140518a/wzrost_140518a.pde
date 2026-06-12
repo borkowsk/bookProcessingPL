@@ -1,10 +1,10 @@
 //Wzrost losowo z punktu środkowego z mutacjami kolorów
-//////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////
 
-int Side=500;//Bok macierzy
+int Side=500; //Bok macierzy
 //RGB to klasa zdefiniowana przez "użytkownika" - dalej w kodzie...
 RGB World[][]= new RGB[Side][Side]; //Tablica to też klasa
-PrintWriter output;//i PrinterWriter też...
+PrintWriter output; //i PrinterWriter też...
 
 //Klasa do reprezentowania koloru RBG
 class RGB
@@ -42,7 +42,7 @@ int W=1; //Mnożnik dla kwadracika
 
 
 
-void setup() //Window and model initialization
+void setup() //Inicjalizacja okna i modelu
 {
   size(1000,1000);
   W=1000/Side;
@@ -54,12 +54,12 @@ void setup() //Window and model initialization
   World[Side/2][Side/2].Set(255,255,255);
   World[Side/2][Side/2].Visualise(Side/2,Side/2);
   
-  output = createWriter("Statistics.log");//Create a new file
-                                          //in the sketch directory  
-  output.println("Step\tCounter");//Write header (Should be 2 columns 
-                                  //separeted by tabs)
-  noSmooth(); //Fast visualization
-  frameRate(50); //maximize speed
+  output = createWriter("Statistics.log"); //Utwórz nowy plik
+                                          //w katalogu wykonania "szkicu" (sketch)
+  output.println("Step\tCounter"); //Zapisz nagłówek (Powinny być 2 kolumny 
+                                  //rozdzielone znakiem tabulacji)
+  noSmooth(); //Szybsza wizualizacja
+  frameRate(50); //więcej klatek na sekundę
 }
 
 int Step=0;
@@ -68,7 +68,7 @@ void draw()
 //Monte Carlo Step
 {
   //Zapis tego co jest
-  output.println(Step+"\t"+RGB_Counter); // Write the statistics to the file
+  output.println(Step+"\t"+RGB_Counter); //Zapisywanie statystyki do pliku
   
   //Nowy stan
   if(!Stop)
@@ -85,7 +85,7 @@ void draw()
        if(0<=Xt && Xt<Side && 0<=Yt && Yt<Side
           &&  World[Yt][Xt]==null)
         {
-          World[Yt][Xt]=new RGB();          //println(Xt,Yt);//DEBUG
+          World[Yt][Xt]=new RGB();          //println(Xt,Yt); //DEBUG
           
           int nR=World[Y][X].R+int(random(7))-3;
           if(nR<0) nR=0; else if(nR>255) nR=255;
@@ -94,10 +94,10 @@ void draw()
           int nB=World[Y][X].B+int(random(7))-3;
           if(nB<0) nB=0; else if(nB>255) nB=255;
           
-          World[Yt][Xt].Set(nR,nG,nB);     //println(nR,nG,nB);//DEBUG
+          World[Yt][Xt].Set(nR,nG,nB);     //println(nR,nG,nB); //DEBUG
           World[Yt][Xt].Visualise(Xt,Yt);
           
-          //rośnie w zasadzie symetrycznie wiec starczy sprawdzać jeden
+          //rośnie w zasadzie symetrycznie więc starczy sprawdzać jeden
           //if(Xt==0 || Yt==0) Stop=true; //Doszło do brzegu z jednej z dwu stron 
           if(Xt==0 && Yt==0) Stop=true; //DOSZŁO DO ROGU
         }  

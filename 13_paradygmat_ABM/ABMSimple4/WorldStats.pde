@@ -1,33 +1,33 @@
-/// The world statistics.
-/// @date 2025-01-13 (begin)
+/// Statystyki świata symulacji.
+/// @date 2026-06-12 (begin)
 //*/////////////////////////////////////////////////////////////////////////////
 
-int[] allCounts=null; ///< pedestrian/walkers direction counters.
+int[] allCounts=null; ///< liczniki kierunków ruchu pieszych/spacerowiczów.
 
 void census(World currWorld)
 {
-  // Preparation...
+  // Przygotowanie...
   if(allCounts==null)
   {
-    allCounts=new int[allDirs.length]; // We need new one.
+    allCounts=new int[allDirs.length]; // Potrzebujemy nowego.
   }
   else
   {
-    for(int i=0;i<allCounts.length;i++) // we just reset the counters.
+    for(int i=0;i<allCounts.length;i++) // po prostu resetujemy liczniki.
       allCounts[i]=0;
   }
     
-  // Real counting:
+  // Rzeczywiste zliczanie:
   for(int row=0;row<WSide;row++)
     for(int col=0;col<WSide;col++)
       if(currWorld.plane[row][col]!=null)
       {
          Dirs tmp=currWorld.plane[row][col].direction;
-         int  ind=tmp.ordinal(); // which one direction in order
+         int  ind=tmp.ordinal(); // w którym kierunku
          allCounts[ind]++;
       }
       
-  // Simplest presentation:    
+  // Najprostsza prezentacja:    
   for(int i=0;i<allCounts.length;i++)
     print("\t",allCounts[i]);
    

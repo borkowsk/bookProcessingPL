@@ -1,13 +1,13 @@
-//Dwuwymiarowy, DETERMINISTYCZNY automat komórkowy - reguła "ZSUMUJ Z SĄSIADAMI I WEŹ MODULO". SYNCHRONUCZNY!
+//Dwuwymiarowy, DETERMINISTYCZNY automat komórkowy - reguła "ZSUMUJ Z SĄSIADAMI I WEŹ MODULO". SYNCHRONICZNY!
 //Zasiewanie tablicy na początku z zadaną gęstością lub pojedynczą komórką
 //Alternatywny sposób przyśpieszania - z dodatkową tablicą
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-int WorldSize=252;//Ile chcemy elementów w linii?
-int[][] WorldOld=new int[WorldSize][WorldSize];//Tworzenie tablic - w Processingu zawsze za pomocą alokacji
+//-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+int WorldSize=252; //Ile chcemy elementów w linii?
+int[][] WorldOld=new int[WorldSize][WorldSize]; //Tworzenie tablic - w Processingu zawsze za pomocą alokacji
 int[][] WorldNew=new int[WorldSize][WorldSize];
-boolean[][] Changed=new boolean[WorldSize][WorldSize];//Flagi zmiany do rysowania
+boolean[][] Changed=new boolean[WorldSize][WorldSize]; //Flagi zmiany do rysowania
 
-float IDens=0.0;//Początkowa gęstość w tablicy
+float IDens=0.0; //Początkowa gęstość w tablicy
 int Div=5; //Jaki dzielnik w regule automatu
 
 void setup()
@@ -21,7 +21,7 @@ void setup()
     {
       Changed[i][j]=true;
       if(random(1.0)<IDens)
-        WorldOld[i][j]=(int)(random(Div));//trzeba zmienić typ, bo tablica przechowuje int a nie float
+        WorldOld[i][j]=(int)(random(Div)); //trzeba zmienić typ, bo tablica przechowuje int a nie float
       else
         WorldOld[i][j]=0;
     }
@@ -35,7 +35,7 @@ void setup()
       WorldOld[i][j]=0;
      }
       
-    WorldOld[WorldSize/2][WorldSize/2]=1;//Tylko jeden w środku
+    WorldOld[WorldSize/2][WorldSize/2]=1; //Tylko jeden w środku
   }
   
   frameRate(120);
@@ -45,25 +45,25 @@ void setup()
 int t=0;
 void draw()
 {  
-  for(int i=0;i<WorldOld.length;i++)//Wizualizacja czyli "rysowanie na ekranie" 
+  for(int i=0;i<WorldOld.length;i++) //Wizualizacja czyli "rysowanie na ekranie" 
     for(int j=0;j<WorldOld.length;j++) 
     {
       switch(WorldOld[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w komórce
-      //case N:stroke( , , );break; //Mozna dodac kolejne kolory
+      //case N:stroke( , , );break; //Można dodać kolejne kolory
       case 5:stroke(128,128,255);break;
       case 4:stroke(0,128,0);break;
       case 3:stroke(128,128,0);break;
       case 2:stroke(255,0,0);break;
       case 1:stroke(0,0,255);break;
       case 0:stroke(0,0,0);break;
-      default: stroke(0,255,0);//To się pojawiac nie powinno
+      default: stroke(0,255,0); //To się pojawiać nie powinno
       break;
       }
       if(Changed[i][j]) //Czy na WorldNew jest stara zawartość - czyli ta co na ekranie
-        point(i,j);// czy nowa? Tylko jak nowa to rysujemy
+        point(i,j); // czy nowa? Tylko jak nowa to rysujemy
     }
   
-  for(int i=0;i<WorldOld.length;i++)//Zmiana stanu automatu
+  for(int i=0;i<WorldOld.length;i++) //Zmiana stanu automatu
   {
        //Reguła - "ZSUMUJ Z SĄSIADAMI I WEŹ MODULO"
        //Zamiast ignorować brzegi można zrobić liczenie indeksów sąsiadów z zawijaniem dzięki reszcie z dzielenia
@@ -80,10 +80,10 @@ void draw()
                  +WorldOld[right][j]
                  +WorldOld[i][up]
                  +WorldOld[i][dw]              
-                 ;//suma z pięciu komórek brana potem modulo 3
+                 ; //suma z pięciu komórek brana potem modulo 3
       
-         WorldNew[i][j]=ile % Div;//Nowy stan zapisujemy na drugą tablicę
-         Changed[i][j]=(WorldNew[i][j] !=0 || WorldOld[i][j]!=0);//Czy trzeba odrysować? point() jest kosztowne wbrew pozorom
+         WorldNew[i][j]=ile % Div; //Nowy stan zapisujemy na drugą tablicę
+         Changed[i][j]=(WorldNew[i][j] !=0 || WorldOld[i][j]!=0); //Czy trzeba odrysować? point() jest kosztowne wbrew pozorom
        }
    }
    
@@ -92,15 +92,15 @@ void draw()
    WorldOld=WorldNew;
    WorldNew=WorldTmp;
    
-   t++;//Kolejne pokolenie/krok/rok
+   t++; //Kolejne pokolenie/krok/rok
    fill(128);
-   rect(0,WorldSize,width,height-WorldSize);//Czyszczący prostokąt
+   rect(0,WorldSize,width,height-WorldSize); //Czyszczący prostokąt
    fill(255);
    text("ST: "+t+" Fr: "+frameRate,10,height);
 }
 
-//////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////
 // Autor: Wojciech T. Borkowski
 // Materiały do podręcznika "Processing w edukacji i symulacji
 // https://github.com/borkowsk/sym4processing/tree/master/ProcessingWEdukacji
-//////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////

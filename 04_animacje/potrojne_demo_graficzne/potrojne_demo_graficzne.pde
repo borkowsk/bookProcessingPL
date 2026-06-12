@@ -1,6 +1,6 @@
 //Processing ma swoją specyficzną strukturę aplikacji, która nieco utrudnia tworzenie
 //programów sekwencyjnych, jakimi zazwyczaj są dema graficzne. Ale można to obejść...
-////////////////////////////////////////////////////////////////////////////////////////
+//-//////////////////////////////////////////////////////////////////////////////////////
 
 //Inicjalizacja programu
 int W;
@@ -17,7 +17,7 @@ int radius(int D) //Funkcja losująca ułamek rozmiaru okna
 
 void draw1() // demo nr 1
 {
-  fill(random(255),random(255),random(255),random(255)); //Czwarty parmetr oznacza przezroczystość
+  fill(random(255),random(255),random(255),random(255)); //Czwarty parametr oznacza przezroczystość
   float r=radius(10);
   ellipse(random(W),random(W),r,r);
 }
@@ -35,7 +35,7 @@ void draw3() // demo nr 3
 {
   if(R==0) //Tylko pierwszy raz
       R=10+radius(2);
-  fill(0,i%256,0,128);//rGb
+  fill(0,i%256,0,128); //rGb
   arc(W/2,W/2, R, R, radians(i-10),radians(i));
   i+=10;
 }

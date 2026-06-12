@@ -1,7 +1,7 @@
 // "environment" czyli mapa środowiska życia agentów
-///////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////
 
-//Environment "tiles" - niestety enum w Processingu jest obiektem co jest bez sensu!
+//Environment "tiles" - niestety enum w Processingu jest obiektem co jest czasem bez sensu!
 //Dlatego używamy po prostu "stałych" 
 final int Env_FLAT=0;
 final int Env_WORK=100;
@@ -19,8 +19,8 @@ void initializeEnv(int[][] env)
   limit=10;
   sierpinskiCarpetRect(env,Env_WORK,0,0,env[0].length,env.length);
   limit=1;
-  street(env,0,env.length);//Ulice są poziome
-  avenue(env,0,env[0].length);//Aleje są pionowe
+  street(env,0,env.length); //Ulice są poziome
+  avenue(env,0,env[0].length); //Aleje są pionowe
   //println(streetcount,avenuecount); DEBUG
 }
 
@@ -33,14 +33,14 @@ void fillblock(int[][] env,int val,int x1,int y1,int x2,int y2)
 
 void avenue(int[][] env,float start,float end)
 {
-  float len=end-start;//Szerokość pasa zabudowy
-  float weight=len*fcars;//Szerokość alei
-  if(weight<limit) return;//Czy nie za wąska dla samochodu?
-  avenuecount++;//Zliczenie
+  float len=end-start; //Szerokość pasa zabudowy
+  float weight=len*fcars; //Szerokość alei
+  if(weight<limit) return; //Czy nie za wąska dla samochodu?
+  avenuecount++; //Zliczenie
   
   float center=(start+end)/2;
   
-  fillblock(env,Env_ROAD,round(center-weight/2),0,round(center+weight/2),env.length);//Aleje są pionowe
+  fillblock(env,Env_ROAD,round(center-weight/2),0,round(center+weight/2),env.length); //Aleje są pionowe
   
   avenue(env,start,center-weight/2);
   avenue(env,center+weight/2,end);
@@ -48,14 +48,14 @@ void avenue(int[][] env,float start,float end)
 
 void street(int[][] env,float start,float end)
 {
-  float len=end-start;//Szerokość pasa zabudowy
-  float weight=len*fcars;//Szerokość ulicy
-  if(weight<limit) return;//Czy nie za wąska dla samochodu?
-  streetcount++;//Zliczenie
+  float len=end-start; //Szerokość pasa zabudowy
+  float weight=len*fcars; //Szerokość ulicy
+  if(weight<limit) return; //Czy nie za wąska dla samochodu?
+  streetcount++; //Zliczenie
   
   float center=(start+end)/2;
   
-  fillblock(env,Env_ROAD,0,round(center-weight/2),env[0].length,round(center+weight/2));//Ulice są poziome
+  fillblock(env,Env_ROAD,0,round(center-weight/2),env[0].length,round(center+weight/2)); //Ulice są poziome
   
   street(env,start,center-weight/2);
   street(env,center+weight/2,end);
@@ -69,7 +69,7 @@ void sierpinskiCarpetRect(int[][] env,int val,int x, int y, int sizex, int sizey
    sizex = sizex / 3; 
    sizey = sizey / 3; 
    
-   fillblock(env,val,x+sizex, y+sizey, x+2*sizex, y+2*sizey);//Wycięcie
+   fillblock(env,val,x+sizex, y+sizey, x+2*sizex, y+2*sizey); //Wycięcie
 
    //Wywołania rekurencyjne dla 8 kwadratowych sąsiedztw
    //Po rogach

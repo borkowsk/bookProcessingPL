@@ -6,12 +6,12 @@ final int WEST_EAST=1000;  ///< maksymalna odległość z zachodu na wschód
 final int MAX_CEIL=100;    ///< maksymalny pułap lotu
 final int HM_BIRDS=20;     ///< ile ptaków
 
-ArrayList<Bird> birds;     ///< wszystkie nasze ptaki w kontenerze z jezyka JAVA
+ArrayList<Bird> birds;     ///< wszystkie nasze ptaki w kontenerze z języka JAVA
 
 void initBirds()
 {
   birds=new ArrayList(HM_BIRDS); // Tworzy pustą listę o określonej pojemności początkowej...
-  for (int i=0; i<HM_BIRDS; i++) // ... i wypelnia.
+  for (int i=0; i<HM_BIRDS; i++) // ... i wypełnia.
     birds.add(new Bird(NORD_SOUTH,WEST_EAST,MAX_CEIL));
 }
 
@@ -53,4 +53,4 @@ void draw()
 }
 
 
-/// @date 2025-11-25 (modified)
+/// @date 2026-06-12 (zmodyfikowany)

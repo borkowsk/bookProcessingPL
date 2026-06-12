@@ -1,5 +1,5 @@
-// World full of agents need method of visualisation on screen/window
-////////////////////////////////////////////////////////////////////////////
+// Świat pełen agentów wymaga metody wizualizacji na ekranie/oknie
+//-//////////////////////////////////////////////////////////////////////////
 
 void visualizeAgents(Agent[][] agents)
 {
@@ -8,10 +8,10 @@ void visualizeAgents(Agent[][] agents)
    for(int b=0;b<agents[a].length;b++)
    {
       //Background
-      noStroke();fill(200);//Lepiej dopasowa tło
-      rect(b*cwidth,a*cwidth,cwidth,cwidth);//a is vertical!
+      noStroke();fill(200); //Lepiej dopasowane tło
+      rect(b*cwidth,a*cwidth,cwidth,cwidth); //a is vertical!
       
-      //Colorisation of agent
+      //Kolorowanie agenta
       if( (curra=agents[a][b]) != null )
       {
         if(curra.stress>0)
@@ -31,7 +31,7 @@ void visualizeAgents(Agent[] agents)
    Agent curra;
    for(int a=0;a<agents.length;a++)
    {
-    //Colorisation    
+    //Kolorowanie    
     if( (curra=agents[a]) != null )
     {
         if(curra.stress>0)
@@ -48,13 +48,13 @@ void visualizeAgents(Agent[] agents)
       fill(128);
     }
     
-    int t=(int(TheWorld.getTimeStep())/STEPSperVIS)%side;//Uwzględniamy różne częstości wizualizacji
+    int t=(int(TheWorld.getTimeStep())/STEPSperVIS)%side; //Uwzględniamy różne częstości wizualizacji
     rect(a*cwidth,t*cwidth,cwidth,cwidth);
     stroke(255);
     line(0,(t+1)*cwidth+1,width,(t+1)*cwidth+1);
    }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-//  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM: BASIC VISUALISATION
-////////////////////////////////////////////////////////////////////////////////////////////////////////
+//-//////////////////////////////////////////////////////////////////////////////////////////////////////
+//  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM: Wizualizacja
+//-//////////////////////////////////////////////////////////////////////////////////////////////////////

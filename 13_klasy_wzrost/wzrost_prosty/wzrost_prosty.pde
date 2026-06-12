@@ -1,23 +1,23 @@
 //Wzrost losowo z punktu środkowego z mutacjami kolorów
-//////////////////////////////////////////////////////////////////////////////////
-//uzywamy KLASY zdefiniowanej przez użytkownika o nazwie RGB
+//-////////////////////////////////////////////////////////////////////////////////
+//używamy KLASY zdefiniowanej przez użytkownika o nazwie RGB
 
 //Parametry modelu  
-int JUMP=3;//skok pozycji "zarodnika". Nieparzysty!
-int CJUMP=15;//skok koloru. Tez lepiej nieparzysty.
-int STARTG=128;//W jakiej szarości pierwsza komórka
+int JUMP=3; //skok pozycji "zarodnika". Nieparzysty!
+int CJUMP=15; //skok koloru. Tez lepiej nieparzysty.
+int STARTG=128; //W jakiej szarości pierwsza komórka
 
 //Ważne globalne zmienne, ale inicjowane w setup()
-int Side;//Bok macieży
-int WCel;//Mnożnik dla kwadracika
+int Side; //Bok macierzy
+int WCel; //Mnożnik dla kwadracika
 
-RGB World[][];//TABLICA
+RGB World[][]; //TABLICA
 
-void setup() //Window and model initialization
+void setup() //Inicjalizacja okna i modelu
 {
   size(900,900);
-  noSmooth(); //Fast visualization
-  frameRate(30); //maximize speed
+  noSmooth(); //Szybsza wizualizacja
+  frameRate(30); //więcej klatek na sekundę
   
   WCel=2;
   Side=900/WCel;
@@ -25,14 +25,14 @@ void setup() //Window and model initialization
   World = new RGB[Side][Side];
   World[Side/2][Side/2]= new RGB();
 
-  World[Side/2][Side/2].Set(STARTG,STARTG,STARTG);//Inicjalizacja 
+  World[Side/2][Side/2].Set(STARTG,STARTG,STARTG); //Inicjalizacja 
   World[Side/2][Side/2].Visualise(Side/2,Side/2,WCel);
 }
 
 int StepCounter=0;
 boolean Stop=false;
 
-void draw()//Monte Carlo Step
+void draw() //Monte Carlo Step
 {  
   if(!Stop)
   { //Nowy stan
@@ -65,7 +65,7 @@ void draw()//Monte Carlo Step
             World[Yt][Xt].Set(nR,nG,nB);
             World[Yt][Xt].Visualise(Xt,Yt,WCel);
             
-            if(Xt==0 || Yt==0)//Doszło do brzegu z jednej z dwu stron - a rośnie w zasadzie symetrycznie
+            if(Xt==0 || Yt==0) //Doszło do brzegu z jednej z dwu stron - a rośnie w zasadzie symetrycznie
             {
                Stop=true;
                println(StepCounter,frameRate);   

@@ -12,7 +12,7 @@ void setup() //Jest wykonywane raz - po uruchomieniu
   size(500,500);
   h=height/2;
   x=width/2;
-  //noSmooth(); //Bez wygładzania lini? Po prostu odkomentować 
+  //noSmooth(); //Bez wygładzania linii? Po prostu odkomentować 
   background(0,0,200); //rgB
   frameRate(FR);
 }
@@ -23,12 +23,12 @@ void draw() //Jest wykonywane w niewidocznej pętli
   
   //Wizualizacja
   fill(random(250),random(250),0,50);
-  noStroke();//albo stroke(random(250),random(250),0,25);
+  noStroke(); //albo stroke(random(250),random(250),0,25);
   ellipse(x,height-h,25,25);
   
   //Właściwy model 
-  h+=random(-maxD,maxD); //Zmien wysokość o wylosowaną drogę 
-  x+=random(-maxD,maxD); //Zmien położenie poziome o wylosowany odcinek
+  h+=random(-maxD,maxD); //Zmień wysokość o wylosowaną drogę 
+  x+=random(-maxD,maxD); //Zmień położenie poziome o wylosowany odcinek
 
   //Odbijamy od ścianek okna! Upraszczamy mechanizm odbicia
   if(h<0) 

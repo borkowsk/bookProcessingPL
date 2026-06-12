@@ -7,13 +7,13 @@ int FR=100; //Na ile kroków dzielimy sekundę?
 void setup() //Jest wykonywane raz - po uruchomieniu
 {
   size(500,500);
-  //noSmooth(); //Bez wygładzania lini? Po prostu odkomentować 
+  //noSmooth(); //Bez wygładzania linii? Po prostu odkomentować 
   fill(250,250,0);
   frameRate(FR);
 }
 
 float h=0;
-float v=200; //prędkość w pikselach/SEKUNDE (!)
+float v=200; //prędkość w pikselach/SEKUNDĘ (!)
 float a=-25; //Przyśpieszenie/hamowanie
 
 void draw() //Jest wykonywane w niewidocznej pętli

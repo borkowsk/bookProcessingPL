@@ -1,23 +1,23 @@
-// World is a one of two central class of each ABM model
-///////////////////////////////////////////////////////////////
+// Świat jest jedną z dwóch centralnych klas każdego modelu ABM
+//-/////////////////////////////////////////////////////////////
 
 
 class World implements simulation_world
 {
   int _counter=0;
   
-  //Agent agents[];//One dimensional array of agents
+  //Agent agents[]; //Jednowymiarowa tablica agentów
   //OR
-  Agent agents[][];//Two dimensional array of agents
+  Agent agents[][]; //Dwuwymiarowa tablica agentów
   
-  World(int side)//Constructor of the World
+  World(int side) //Konstruktor obiektu "Świata"
   {
     //agents=new Agent[side];
     //OR
     agents=new Agent[side][side];
   }
    
-  float  getTimeStep() //"Getter" for simulation step
+  float  getTimeStep() //„Getter” dla kroku symulacji
   {
     return _counter;
   }
@@ -25,14 +25,14 @@ class World implements simulation_world
   void initializeModel()
   {
     initializeAgents(this.agents);
-    //other initialisations
+    //inne inicjalizacje
     //...
   }
   
   void changeState()
   {
     changeAgents(this.agents);
-    //other changes
+    //inne zmiany
     //...
   }
   
@@ -43,10 +43,10 @@ class World implements simulation_world
   
   void modelFullStep()
   {
-     this.changeState(); //'this' is redundant here. For examples only.
+     this.changeState(); //„this” jest tutaj zbędne. Tylko przykładowo.
      this.makeStatistics();
      
-     //Other changes...
+     //inne zmiany...
      //...
      
      _counter++;
@@ -54,15 +54,15 @@ class World implements simulation_world
   
 }
 
-//More alaborated functionalities are defined as stand-alone functions,
-//not as methods because of not enought flexible syntax of Processing
-///////////////////////////////////////////////////////////////////////////
+// Bardziej rozbudowane funkcjonalności są definiowane jako funkcje samodzielne,
+// nie jako metody z powodu niewystarczająco elastycznej składni w Processingu.
+//-/////////////////////////////////////////////////////////////////////////////
 
 void visualizeModel(World world)
 {
   visualizeAgents(world.agents);
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////////
 //  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM: WORLD OF SAKODA
-///////////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////////

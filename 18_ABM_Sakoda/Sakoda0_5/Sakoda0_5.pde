@@ -1,43 +1,43 @@
-// Sakoda inspired asynchronous AGENT BASE MODEL utilized 1D or 2D dicrete geometry
-/////////////////////////////////////////////////////////////////////////////////////////
+// Zainspirowany Sakodą asynchroniczny MODEL OPARTY NA AGENTACH używający dyskretnej geometrii 1D lub 2D
+//-/////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//Model parameters
-int side=100;//side of main table
+//Parametry modelu
+int side=100; //długość boku głównej macierzy
 String modelName="Sakoda0.5ABM";
 float density=0.45;
 
-//Parameters of visualisation etc...
-int cwidth=8;//size of cell
+//Parametry wizualizacji etc...
+int cwidth=8; //długość boku komórki w wizualizacji
 int STATUSHEIGH=40;
 int STEPSperVIS=1;
 int FRAMEFREQ=20;
 
-World TheWorld=new World(side);//... but also will be initialised inside setup()
+World TheWorld=new World(side); //... ale również zostanie zainicjowany wewnątrz setup()
 
 void setup()
 {
-  //Graphics
-  size(800,840);//Nie można użyć tu zmiennych :-(
+  //Grafika
+  size(800,840); //Nie można użyć tu zmiennych :-(
   frameRate(FRAMEFREQ);
   background(255,255,200);
   strokeWeight(2);
   
-  //Window 
+  //Okno 
   println("REQUIRED SIZE OF PAINTING AREA IS "+(cwidth*side)+"x"+(cwidth*side+STATUSHEIGH));
   println("CURRENT SIZE OF PAINTING AREA IS "+width+"x"+height);
   cwidth=(height-STATUSHEIGH)/side;
   
   //Model
-  TheWorld.initializeModel();//Initialisation of the World
-  visualizeModel(TheWorld);//First time visualisation
+  TheWorld.initializeModel(); //Inicjalizacja of the World
+  visualizeModel(TheWorld); //Pierwszy raz wizualizacja
 }
 
 void draw()
 {
-  modelStep(TheWorld);//OBA ROZWIĄZANIA SĄ ZDEFINIOWANE
+  modelStep(TheWorld); //OBA ROZWIĄZANIA SĄ ZDEFINIOWANE
   //TheWorld.modelFullStep();
     
-  if(TheWorld.getTimeStep() % STEPSperVIS == 0 ) //But when model is running, visualisation shoud be done from time to time
+  if(TheWorld.getTimeStep() % STEPSperVIS == 0 ) //Ale gdy model jest uruchomiony, wizualizacja powinna być wykonywana od czasu do czasu
     visualizeModel(TheWorld);
 
   statusLine();
@@ -57,9 +57,9 @@ interface simulation_world
   void   changeState();
   void   makeStatistics();
   void   modelFullStep();
-  float  getTimeStep(); //"Getter" for simulation step
+  float  getTimeStep(); //„Getter” dla kroku symulacji
 };
 
-///////////////////////////////////////////////////////////////////////////////////////////
-//  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM SAKODA0 MAIN 
-///////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////
+//  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM SAKODA MAIN 
+//-/////////////////////////////////////////////////////////////////////////////////////////

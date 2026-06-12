@@ -1,6 +1,6 @@
 /// Bardzo prosty algorytm genetyczny z samymi mutacjami.
 //-///////////////////////////////////////////////////////////
-/// @date 2026-06-11 (modified)
+/// @date 2026-06-12 (zmodyfikowany)
 
 import java.lang.Math;
 
@@ -29,11 +29,11 @@ GAPopulation Pop;
 /// * Minimum globalne (Dno): Wynosi dokładnie 0.0 dla punktu `x = 0`.
 /// * Maksimum globalne (Szczyt): Wynosi około 40.35 dla punktów \(x \approx \pm 4.523\).
 /// * por.: https://www.wikiwand.com/en/Rastrigin_function . Są tam tez odnośniki do 
-///   innych funkcji ciekawych jako banchmarki dla algorytmów optymalizacyjnych.
+///   innych funkcji ciekawych jako benchmarki dla algorytmów optymalizacyjnych.
 double Rastrigin(double x)
 {
   if(Double.isNaN(x))
-      println("NaN parameter!"); //<>//
+      println("NaN parameter!"); 
   double result=10+x*x-10*Math.cos(2*x*Math.PI);
   return result;
 }

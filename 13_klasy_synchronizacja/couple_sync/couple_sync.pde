@@ -1,18 +1,18 @@
 // Przykład użycia klasy
-////////////////////////////////////
-static float DefaultAlpha=0.1;//.25;
+//-//////////////////////////////////
+static float DefaultAlpha=0.1; //.25;
 static float DefaultR=3.5;
 static int   FR=255;
 
 singiel First=new singiel(random(1.0),DefaultR+random(0.5),DefaultAlpha);
 singiel Second=new singiel(random(1.0),DefaultR+random(0.5),DefaultAlpha);
 
-int ule=200;//unit of length
+int ule=200; //unit of length
 int radius=ule/2;
 
 void setup()
 {
-  size(800,300);//4ule x 1.5ule
+  size(800,300); //4ule x 1.5ule
   frameRate(FR);
   
   println("F: x:",First.x1,"R:",First.r+" Alpha:"+First.alpha());
@@ -41,5 +41,5 @@ void draw()
   else
   {  First.next();Second.next(); }
     
-  //if(frameCount%FR==0) println(frameCount+"*"+ frameRate );//Postęp procesu
+  //if(frameCount%FR==0) println(frameCount+"*"+ frameRate ); //Postęp procesu
 }

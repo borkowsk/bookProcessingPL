@@ -7,7 +7,7 @@ int Size=100; //Ile cząstek
 float[] h=new float[Size]; //Położenie pionowe
 float[] x=new float[Size]; //Położenie poziome
 
-void setup() //Jest wykonywane raz - po uruchomieniu. Nie musi być na poczatku kodu ale jest
+void setup() //Jest wykonywane raz - po uruchomieniu. Nie musi być na początku kodu ale jest
 {
   size(500,500);
   noSmooth();

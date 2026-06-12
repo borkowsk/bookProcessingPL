@@ -57,7 +57,7 @@ void draw()
   for(int i=0;i<World.length;i++) //Wizualizacja czyli "rysowanie na ekranie" 
     for(int j=0;j<World.length;j++) 
     {
-      switch(World[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w konmórce
+      switch(World[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w komórce
       case 3:stroke(0,255,0);break;
       case 2:stroke(255,0,0);break;
       case 1:stroke(0,0,255);break;
@@ -77,7 +77,7 @@ void draw()
        int i=(int)random(World.length);
        int j=(int)random(World.length);
        
-       //Jesli pusty lub zdrowy zdrowy to nic nie robi
+       //Jeśli pusty lub zdrowy zdrowy to nic nie robi
        if(World[i][j]!=Infected) continue;
        
        //Wyliczenie lokalizacji sąsiadów
@@ -100,16 +100,16 @@ void draw()
        if(World[i][dw]==Susceptible && random(1) < PTransfer) 
         {World[i][dw]=Infected; kranken++;}
 
-       float prob=random(1);//Los na dany dzień
+       float prob=random(1); //Los na dany dzień
        
        if(prob<PDeath) //Albo tego dnia umiera
         {World[i][j]=Empty;starben++;}
-       else if(prob<PRecovery+PDeath)//Albo jest wyleczony
+       else if(prob<PRecovery+PDeath) //Albo jest wyleczony
              {World[i][j]=Recovered;geheilt++;}
             //else //NADAL CIERPI!
-   } //Koniec petli po wylosowanych agentach
+   } //Koniec pętli po wylosowanych agentach
       
-   t++ ;//Kolejne pokolenie/krok/rok
+   t++ ; //Kolejne pokolenie/krok/rok
    text("ST:"+t+" Zachorowali:"+kranken+" Wyzdrowieli:"+geheilt+" Umarli:"+starben,0,10);
    println("ST:"+t+"\tZ\t"+kranken+"\tW\t"+geheilt+"\tU\t"+starben);
 }

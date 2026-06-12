@@ -1,20 +1,20 @@
-/// The world & its dynamics.
-/// @date 2025-01-13 (begin)
+/// Świat i jego dynamika (zmiana stanu).
+/// @date 2026-06-12 (begin)
 //*/////////////////////////////////////////////////////////////////////////////
 
 class World
 {
-  Agent[][]  plane=new Agent[WSide][WSide]; //!< the surface of the world where agents "live".
+  Agent[][]  plane=new Agent[WSide][WSide]; //!< powierzchnia świata, na której „żyją” agenci.
   
-  void initialise() //!< pre-filling the world.
+  void initialise() //!< wstępne wypełnianie świata.
   {
-    plane[WSide/2][WSide/2]=new Agent(); //!< Almost as simple as possible
+    plane[WSide/2][WSide/2]=new Agent(); //!< Prawie tak proste, jak to tylko możliwe
   }
   
-  void update() //!< Updating the state of the world, i.e. the simulation step.
+  void update() //!< Aktualizacja stanu świata, czyli krok symulacji.
   {
-    // We will fill this in later.
+    // Wypełnimy to później.
   }
 }
 
-World theWorld=null; ///< A single variable representing the world is initialized during setup.
+World theWorld=null; ///< Podczas konfiguracji inicjowana jest ta pojedyncza zmienna reprezentująca świat.

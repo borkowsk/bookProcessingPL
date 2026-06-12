@@ -1,4 +1,4 @@
-/// Dwuwymiarowy, probalilistyczny (kroki MC) automat komórkowy - reguła SIR
+/// Dwuwymiarowy, probabilistyczny (kroki MC) automat komórkowy - reguła SIR
 /// Zasiewanie tablicy na początku z zadaną gęstością zdrowych oraz pojedynczą komórką zarażona
 /// LICZBA INTERAKCJI 4, ale prawdopodobieństwo zarażenia nie równe 1 tylko PTransfer 
 /// CHOROBA trwa u zarażonego w zależności od PRecovery lub PDeath
@@ -24,9 +24,9 @@ final float PDeath=0.03;      //Średnie prawdopodobieństwo śmierci w danym dn
                               //PDeath + PRecovery < 1  !!!
 
 //STATYSTYKI LICZONE W TRAKCIE SYMULACJI
-int kranken=0;//Zachorowanie
-int geheilt=0;//Wyzdrowienia
-int starben=0;//Ci co umarli
+int kranken=0; //Zachorowanie
+int geheilt=0; //Wyzdrowienia
+int starben=0; //Ci co umarli
 
 void setup()
 {
@@ -57,12 +57,12 @@ void draw()
   for(int i=0;i<World.length;i++) //Wizualizacja czyli "rysowanie na ekranie" 
     for(int j=0;j<World.length;j++) 
     {
-      switch(World[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w konmórce
+      switch(World[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w komórce
       case 3:stroke(0,255,0);break;
       case 2:stroke(255,0,0);break;
       case 1:stroke(0,0,255);break;
       case 0:stroke(0,0,0);break;
-      default: stroke(255); //To się pojawiac nie powinno
+      default: stroke(255); //To się pojawiać nie powinno
       break;
       } 
       point(i,j);
@@ -77,7 +77,7 @@ void draw()
        int i=(int)random(World.length);
        int j=(int)random(World.length);
        
-       //Jesli pusty lub zdrowy zdrowy to nic nie robi
+       //Jeśli pusty lub zdrowy zdrowy to nic nie robi
        if(World[i][j]!=Infected) continue;
        
        //Wyliczenie lokalizacji sąsiadów
@@ -100,7 +100,7 @@ void draw()
        if(World[i][dw]==Susceptible && random(1) < PTransfer) 
         {World[i][dw]=Infected; kranken++;}
 
-       float prob=random(1);//Los na dany dzień
+       float prob=random(1); //Los na dany dzień
        
        if(prob<PDeath) //Albo tego dnia umiera
         {World[i][j]=Empty;starben++;}

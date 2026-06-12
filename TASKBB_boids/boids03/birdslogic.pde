@@ -40,4 +40,4 @@ void thinkAndDo1(Bird me)
   }
 }
 
-/// @date 2025-11-25 (modified)
+/// @date 2026-06-12 (zmodyfikowany)

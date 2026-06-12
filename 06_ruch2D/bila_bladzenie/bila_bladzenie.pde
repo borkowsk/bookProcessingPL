@@ -5,10 +5,10 @@
 int FR=20; //Na ile kroków dzielimy sekundę?
 float h=height/2;
 float x=width/2;
-float vh=0; //prędkość pionowa w pikselach/SEKUNDE (!)
+float vh=0; //prędkość pionowa w pikselach/SEKUNDĘ (!)
 float vx=0; //prędkość pozioma
 float maxV=100;
-float B=0.90; //Wydajność odbicia sprężystego 1-B = ile energi kinetycznej się rozprasza nie wraca do prędkości po odbiciu
+float B=0.90; //Wydajność odbicia sprężystego 1-B = ile energii kinetycznej się rozprasza nie wraca do prędkości po odbiciu
 
 
 void setup() //Jest wykonywane raz - po uruchomieniu
@@ -16,7 +16,7 @@ void setup() //Jest wykonywane raz - po uruchomieniu
   size(500,500);
   h=height/2;
   x=width/2;
-  //noSmooth(); //Bez wygładzania lini? Po prostu odkomentować 
+  //noSmooth(); //Bez wygładzania linii? Po prostu odkomentować 
   background(0,0,200); //rgB
   frameRate(FR);
 }

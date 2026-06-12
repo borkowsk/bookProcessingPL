@@ -1,5 +1,5 @@
-/// The world visualisation.
-/// @date 2025-01-13 (begin)
+/// Wizualizacja świata..
+/// @date 2026-06-12 (begin)
 //*/////////////////////////////////////////////////////////////////////////////
 
 void visualise(World currWorld)

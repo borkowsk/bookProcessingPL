@@ -7,18 +7,18 @@ int FR=50; //Na ile kroków dzielimy sekundę?
 void setup()
 { //Jest wykonywane raz - po uruchomieniu
   size(500,500);
-  //noSmooth();//Bez wygładzania lini? Po prostu odkomentować 
+  //noSmooth(); //Bez wygładzania linii? Po prostu odkomentować 
   fill(250,250,0);
   frameRate(FR);
 }
 
 float h=0;
-float v=100;//prędkość w pikselach/SEKUNDE (!)
+float v=100; //prędkość w pikselach/SEKUNDĘ (!)
 
 void draw(){ //Jest wykonywane w niewidocznej pętli
-  background(0,0,200);//rgB
+  background(0,0,200); //rgB
   ellipse(width/2,height-h,25,25);
-  h+=v*1/FR; //Powieksz wysokość o drogę w jednostce czasu
+  h+=v*1/FR; //Powiększ wysokość o drogę w jednostce czasu
   h=h % height;
 }
 

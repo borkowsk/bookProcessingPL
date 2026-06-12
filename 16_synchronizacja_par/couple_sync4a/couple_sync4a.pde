@@ -1,6 +1,6 @@
 // Synchronizacja w parze dwu iteracji równania logistycznego 
-/////////////////////////////////////////////////////////////////////
-static float DefaultAlfa=0.20000000000;//Siła symetrycznego związku
+//-///////////////////////////////////////////////////////////////////
+static float DefaultAlfa=0.20000000000; //Siła symetrycznego związku
 
 //Parametry wizualizacji
 static boolean Clean=true; //Czy czyścić poprzedni stan
@@ -41,7 +41,7 @@ int pos=radius;
 int viscounter=0;
 int stecounter=0;
 int vert=300;
-float xfo,xso;//Przed poprzednie stany - do wizualizacji "continous"
+float xfo,xso; //Przed poprzednie stany - do wizualizacji "continous"
 
 void setup()
 {
@@ -103,8 +103,8 @@ void draw()
   
   if(++viscounter==VISUAL)
   { 
-   xfo=First.getX1();//Stany przed-poprzednie
-   xso=Second.getX1();//Do wizualizacji ciągłej
+   xfo=First.getX1(); //Stany przed-poprzednie
+   xso=Second.getX1(); //Do wizualizacji ciągłej
    next4couple(First,Second);
    //println("x:"+xfo+" "+First.getX1()+" "+First.getX2());
    stroke(30+stecounter,30+stecounter/2,stecounter/4);

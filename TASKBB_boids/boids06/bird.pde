@@ -2,7 +2,7 @@
 class Bird
 {
   float x, y, z;     //!< pozycja
-  float vx, vy, vz;  //!< wektor szybkosci
+  float vx, vy, vz;  //!< wektor prędkości
   float tx, ty, tz;  //!< pozycja aktualnego celu
   color co; //!< potrzebujemy koloru, żeby odróżnić ptaki
   
@@ -50,4 +50,4 @@ class Bird
   
 } //end_of_class
 
-/// @date 2026-01-15 (modified)
+/// @date 2026-06-12 (zmodyfikowany)

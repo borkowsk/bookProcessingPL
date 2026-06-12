@@ -1,10 +1,10 @@
 //Najprostszy (prawie) układ chaotyczny
-double R=3.001;//Parametr kontroli
-double X=0.99;//Zmienna stanu, stan układu
+double R=3.001; //Parametr kontroli
+double X=0.99; //Zmienna stanu, stan układu
 
-double uklad(double x)// Xn --> Xn+1
+double uklad(double x) // Xn --> Xn+1
 {
-  return R*x*(1-x);//implementacja układu
+  return R*x*(1-x); //implementacja układu
 }
 
 void setup()

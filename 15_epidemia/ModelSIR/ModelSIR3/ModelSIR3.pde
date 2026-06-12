@@ -1,4 +1,4 @@
-/// Dwuwymiarowy, probalilistyczny (kroki MC) automat komórkowy - reguła SIR
+/// Dwuwymiarowy, probabilistyczny (kroki MC) automat komórkowy - reguła SIR
 /// Zasiewanie tablicy na początku z zadaną gęstością zdrowych oraz pojedynczą komórką zarażona
 /// LICZBA INTERAKCJI 4, ale prawdopodobieństwo zarażenia nie równe 1 tylko PTransfer 
 /// CHOROBA trwa u zarażonego w zależności od PRecovery lub PDeath
@@ -38,7 +38,7 @@ void setup()
       if(random(1.0)<IDens)
         World[i][j]=Susceptible;
       else
-        World[i][j]=Empty; //Dla pewności, gdyby Empty nie było zero.
+        World[i][j]=Empty; //Dla pewności, gdyby "Empty" nie było zero.
   }
  
  World[WorldSize/2][WorldSize/2]=Infected;
@@ -72,7 +72,7 @@ void draw()
        int i=(int)random(World.length);
        int j=(int)random(World.length);
        
-       //Jesli pusty lub zdrowy zdrowy to nic nie robi
+       //Jeśli pusty lub zdrowy zdrowy to nic nie robi
        if(World[i][j]!=Infected) continue;
        
        //Wyliczenie lokalizacji sąsiadów

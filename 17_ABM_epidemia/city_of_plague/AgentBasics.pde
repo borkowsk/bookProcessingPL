@@ -1,20 +1,20 @@
-// Agent is a one of two central class of each ABM model
-// Agent need to be initialised & they need logic of change 
-///////////////////////////////////////////////////////////////
+// Agent jest jedną z dwóch centralnych klas każdego modelu ABM
+// Agent musi zostać zainicjowany i musi mieć logikę zmian
+//-/////////////////////////////////////////////////////////////
 
 void initializeAgents(Agent[][] agents,int[][] env)
 {
-   //Umieszczamy agentow w domach i szukamy im pracy
-   for(int a=0;a<agents.length;a++)//po Y
-    for(int b=0;b<agents[a].length;b++)//po X
-      if(env[a][b]==Env_FLAT && random(1)<density)//Tylko w obszarach mieszkalnych
+   //Umieszczamy agentów w domach i szukamy im pracy
+   for(int a=0;a<agents.length;a++) //po Y
+    for(int b=0;b<agents[a].length;b++) //po X
+      if(env[a][b]==Env_FLAT && random(1)<density) //Tylko w obszarach mieszkalnych
       {
         Agent curr=new Agent(b,a);  
         liveCount++; 
-        env[a][b]|=1;//Zaznaczamy mieszkanie jako zajęte
+        env[a][b]|=1; //Zaznaczamy mieszkanie jako zajęte
                      //Zajęte mają na końcu jedynkę. Taka sztuczka   
                      
-        //Każdemu agentowi dajemy N szans znalezienia miejsca pracy
+        //Każdemu agentówi dajemy N szans znalezienia miejsca pracy
         for(int i=0;i<Nprob;i++)
         {
           curr.workX=int(random(agents[0].length));
@@ -23,8 +23,8 @@ void initializeAgents(Agent[][] agents,int[][] env)
           && (env[curr.workY][curr.workX] & 1) !=1 //wartości od 100 do 190 co 10
           )
           {                        assert (env[curr.workY][curr.workX] & 1) == 0;
-             env[curr.workY][curr.workX] |= 1;//Zaklepuje sobie to miejsce pracy
-             break;//Mam już miejsce pracy
+             env[curr.workY][curr.workX] |= 1; //Zaklepuje sobie to miejsce pracy
+             break; //Mam już miejsce pracy
           }
           else //Nadal pracuje w domu
           {
@@ -38,10 +38,10 @@ void initializeAgents(Agent[][] agents,int[][] env)
       
    //Inicjowanie infekcji z pozycji losowej
    int a=int(random(agents.length/3));    //Tylko fragment miasta
-   int b=int(random(agents[0].length/3)); //Żeby łatwiej btło znaleźć
-   if(agents[a][b]==null)//Gdyby go nie było
+   int b=int(random(agents[0].length/3)); //Żeby łatwiej było znaleźć
+   if(agents[a][b]==null) //Gdyby go nie było
    {
-      agents[a][b]=new Agent(b,a);//Konstruktor wymaga podania x,y położenia
+      agents[a][b]=new Agent(b,a); //Konstruktor wymaga podania x,y położenia
       liveCount++;
    }
    println("Pacjent 0 at ",b,a);
@@ -51,7 +51,7 @@ void initializeAgents(Agent[][] agents,int[][] env)
 void sheduleAgents(Agent[][] agents,int[][] env,int step)
 //Proste przemieszczanie agentów sterowane upływem czasu symulacji
 {
-   Agent curra; //println("Parzysty: ",step%2==0);//Co innego w krokach parzystych!
+   Agent curra; //println("Parzysty: ",step%2==0); //Co innego w krokach parzystych!
    for(int a=0;a<agents.length;a++)
     for(int b=0;b<agents[a].length;b++)
     {
@@ -60,7 +60,7 @@ void sheduleAgents(Agent[][] agents,int[][] env,int step)
      && curra.workX!=curra.flatX && curra.workY!=curra.flatY//nie pracuje w domu!
      )
      {
-       if(step % 2 == 0 )//Jak 0 czyli krok parzysty to z domu do pracy
+       if(step % 2 == 0 ) //Jak 0 czyli krok parzysty to z domu do pracy
        {
          float workProbability=(Infected < curra.state && curra.state < Recovered) 
                                ? Dutifulness * (1-PSLeav): Dutifulness;
@@ -68,15 +68,15 @@ void sheduleAgents(Agent[][] agents,int[][] env,int step)
          && random(1)< workProbability //i zdecydował się iść
          )
          {
-           agents[a][b]=null;//A z domu znika
-           agents[curra.workY][curra.workX]=curra;//Teleportuje się do pracy
+           agents[a][b]=null; //A z domu znika
+           agents[curra.workY][curra.workX]=curra; //Teleportuje się do pracy
          }
        }
        else// jak krok nieparzysty to z pracy do domu
-         if(env[a][b]==Env_WORK+1)//Tylko jak nadal jest w pracy to z niej wraca
+         if(env[a][b]==Env_WORK+1) //Tylko jak nadal jest w pracy to z niej wraca
          {
-           agents[a][b]=null;//A z pracy znika
-           agents[curra.flatY][curra.flatX]=curra;//Teleportuje się do domu
+           agents[a][b]=null; //A z pracy znika
+           agents[curra.flatY][curra.flatX]=curra; //Teleportuje się do domu
          }
      }
    } 
@@ -92,11 +92,11 @@ void  agentsChange(Agent[][] agents)
   int MC=agents.length*agents[0].length;
   for(int i=0;i<MC;i++)
   {
-    int a=(int)random(0,agents.length);//agents[a].lenght na wypadek gdyby nam przyszło do głowy zrobić prostokąt
-    int b=(int)random(0,agents[a].length);//print(a,b,' ');
+    int a=(int)random(0,agents.length); //agents[a].length na wypadek gdyby nam przyszło do głowy zrobić prostokąt
+    int b=(int)random(0,agents[a].length); //print(a,b,' ');
     if(agents[a][b]!= null )
     {
-       //Jesli pusty lub zdrowy to nic nie robimy
+       //Jeśli pusty lub zdrowy to nic nie robimy
        if(agents[a][b].state<Infected || Recovered<=agents[a][b].state) continue;
        
        //Wyliczenie lokalizacji sąsiadów
@@ -121,13 +121,13 @@ void  agentsChange(Agent[][] agents)
        && agents[dw][b].state==Susceptible && random(1) < 1-agents[dw][b].immunity ) 
          {agents[dw][b].state=Infected; sumInfected++;}
 
-       float prob=random(1);//Los na dany dzień
+       float prob=random(1); //Los na dany dzień
        
        if(prob<PDeath) //Albo tego dnia umiera
         { 
           sumDeath++;liveCount--;
-          //agents[a][b]=null;//Można by dawać mu stan "dead", ale...
-          agents[a][b].state=Death;//Ale to trzeba uwzglednić przy statystyce!
+          //agents[a][b]=null; //Można by dawać mu stan "dead", ale...
+          agents[a][b].state=Death; //Ale to trzeba uwzględnić przy statystyce!
         }
         else
         {
@@ -135,18 +135,18 @@ void  agentsChange(Agent[][] agents)
           if(++(agents[a][b].state)==Recovered)
           {
               sumRecovered++;
-              //agents[a][b].immunity=1;//Dla sprawdzenia, ale demoluje ;-) wykres
+              //agents[a][b].immunity=1; //Dla sprawdzenia, ale demoluje ;-) wykres
           }
           //else //NADAL CIERPI!
         }
     }
   }
-  //Zapamiętujemy zmiane w podstawowych statystykach jaka się dokonała w kroku symulacji
+  //Zapamiętujemy zmianę w podstawowych statystykach jaka się dokonała w kroku symulacji
   deaths.append(sumDeath-befDeath);
   newcas.append(sumInfected-befInfected);
   cured.append(sumRecovered-befRecovered);
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//-//////////////////////////////////////////////////////////////////////////////////////////////////////////
 //  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM: BASIC INITIALISATION & EVERY STEP CHANGE
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//-//////////////////////////////////////////////////////////////////////////////////////////////////////////

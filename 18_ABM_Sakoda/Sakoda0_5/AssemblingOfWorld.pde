@@ -1,30 +1,30 @@
-// World is a one of two central class of each ABM model
-///////////////////////////////////////////////////////////////
+// Świat jest jedną z dwóch centralnych klas każdego modelu ABM
+//-/////////////////////////////////////////////////////////////
 
 class World implements simulation_world
 {
-  int _counter=0;//znak '_' jest konwencjonalnym oznaczeniem nazw "wewnętrznych"
+  int _counter=0; //znak '_' jest konwencjonalnym oznaczeniem nazw "wewnętrznych"
   
-  //Agent agents[];//One dimensional array of agents OR ...
-  Agent agents[][];//Two dimensional array of agents
+  //Agent agents[]; //Jednowymiarowa tablica agentów OR ...
+  Agent agents[][]; //Dwuwymiarowa tablica agentów
   
-  World(int side)//Constructor of the World
+  World(int side) //Konstruktor obiektu "Świata"
   {
     //agents=new Agent[side]; //OR
     agents=new Agent[side][side];
   }
   
-  float  getTimeStep() //"Getter" for simulation step
+  float  getTimeStep() //„Getter” dla kroku symulacji
   {
     return _counter;
   }
   
-  void initializeModel()//Method 1
+  void initializeModel() //Metoda 1.
   {
     initializeAgents(this.agents);
   }
   
-  void changeState()//Method 2
+  void changeState() //Metoda 2.
   {
     changeAgents(this.agents);
   }
@@ -36,23 +36,23 @@ class World implements simulation_world
   
   void modelFullStep()
   {
-     this.changeState(); //'this' is redundant here. For examples only.
+     this.changeState();
      this.makeStatistics();
      
-     //Other changes...
+     //Inne zmiany...
      //...
      
      _counter++;
   }
 };
 
-//For statistics
+//Dla statystyki
 float meanStress=0;
 int   liveCount=0;
 
-//More alaborated functionalities may be defined as stand-alone functions,
-//not as methods because of not enought flexible syntax of Processing
-///////////////////////////////////////////////////////////////////////////
+// Bardziej rozbudowane funkcjonalności można zdefiniować jako funkcje samodzielne,
+// nie jako metody ze względu na niewystarczająco elastyczną składnię Processingu (i jęz. JAVA)
+//-/////////////////////////////////////////////////////////////////////////
 
 void visualizeModel(World world)
 {
@@ -63,9 +63,9 @@ void modelStep(World world)
 {
    world.changeState();   
    world.makeStatistics();
-   world._counter++;//Using of internal field!!! Processing allow it, but it is "bad practice".
+   world._counter++; //Wykorzystanie pola wewnętrznego!!! Processing na to pozwala, ale to "zła praktyka".
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////////
 //  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM: WORLD OF SAKODA
-///////////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////////

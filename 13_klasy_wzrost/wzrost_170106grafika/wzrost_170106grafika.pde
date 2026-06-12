@@ -1,38 +1,38 @@
 //Wzrost losowo z punktu środkowego z mutacjami kolorów
-//////////////////////////////////////////////////////////////////////////////////
-//uzywamy KLASY zdefiniowanej przez użytkownika o nazwie RGB
+//-////////////////////////////////////////////////////////////////////////////////
+//używamy KLASY zdefiniowanej przez użytkownika o nazwie RGB
 
 //Parametry modelu  
-int JUMP=3;//skok pozycji "zarodnika". Nieparzysty!
-int CJUMP=9;//skok koloru. Tez lepiej nieparzysty.
-int STARTG=128;//W jakiej szarości pierwsza komórka
+int JUMP=3; //skok pozycji "zarodnika". Nieparzysty!
+int CJUMP=9; //skok koloru. Tez lepiej nieparzysty.
+int STARTG=128; //W jakiej szarości pierwsza komórka
 boolean ScreenDumps=true; //Zrzucanie obrazków co krok wcale
 int VIS_FRQ=100; //co ile kroków zrzut ekranu
 
 //Ważne globalne zmienne, ale inicjowane w setup()
-int Side;//Bok macieży
+int Side; //Bok macierzy
 int W; //Mnożnik dla kwadracika
-RGB World[][];//TABLICA
+RGB World[][]; //TABLICA
 
-PrintWriter output;//A tu używamy KLASY zdefiniowanej w bibliotece
+PrintWriter output; //A tu używamy KLASY zdefiniowanej w bibliotece
 
-void setup() //Window and model initialization
+void setup()  //Inicjalizacja okna i modelu
 {
   size(900,900);
   W=2;
   Side=900/2;
 
-  World = new RGB[Side][Side]; //<>//
+  World = new RGB[Side][Side]; 
   World[Side/2][Side/2]= new RGB();
 
-  World[Side/2][Side/2].Set(STARTG,STARTG,STARTG);//Inicjalize 
+  World[Side/2][Side/2].Set(STARTG,STARTG,STARTG); //Inicjalizacja 
   World[Side/2][Side/2].Visualise(Side/2,Side/2);
   
-  output = createWriter("Statistics.log"); // Create a new file in the sketch directory  
+  output = createWriter("Statistics.log"); // Utwórz nowy plik w katalogu szkiców!  
   output.println("Step\tCounter");
   
-  noSmooth(); //Fast visualization
-  frameRate(30); //maximize speed
+  noSmooth(); //Szybsza wizualizacja
+  frameRate(30); //więcej klatek na sekundę
 }
 
 int Step=0;
@@ -41,8 +41,8 @@ void draw()
 //Monte Carlo Step
 {
   //Zapis tego co jest
-  output.println(Step+"\t"+RGB_Counter); // Write the statistics to the file
-  output.flush();//Upewnij się że bufor "poszedł na dysk"
+  output.println(Step+"\t"+RGB_Counter); //Zapisywanie statystyki do pliku
+  output.flush(); //Upewnij się że bufor "poszedł na dysk"
   
   //Nowy stan
   if(!Stop)
@@ -74,19 +74,19 @@ void draw()
             World[Yt][Xt].Set(nR,nG,nB);
             World[Yt][Xt].Visualise(Xt,Yt);
             
-            if(Xt==0 || Yt==0)//Doszło do brzegu z jednej z dwu stron - a rośnie w zasadzie symetrycznie
+            if(Xt==0 || Yt==0) //Doszło do brzegu z jednej z dwu stron - a rośnie w zasadzie symetrycznie
                   Stop=true; 
           }  
       }
     }
       
-    if(ScreenDumps && Step % VIS_FRQ == 0)//Zrzucanie obrazków co VIS_FRQ krok lub wcale
+    if(ScreenDumps && Step % VIS_FRQ == 0) //Zrzucanie obrazków co VIS_FRQ krok lub wcale
     //if(ScreenDumps) //Zrzucanie obrazków co krok lub wcale
     {
-       //saveFrame("wzrost_step"+Step+".png");//Wersja z niewygodną numeracją
-       //saveFrame("wzrost_"+"f########.png");//Wersja z numeracją ramek - będzie też zrzucać kolejne ramki jak właściwa symulacja stanie
-       String sc = nf(Step, 8);//Jawne użycie KLASY String oraz funkcji formatującej numery (nUMBER fORMAT)
-       saveFrame("wzrost_step"+sc+".png");//Wersja z wygodną numeracją
+       //saveFrame("wzrost_step"+Step+".png"); //Wersja z niewygodną numeracją
+       //saveFrame("wzrost_"+"f########.png"); //Wersja z numeracją ramek - będzie też zrzucać kolejne ramki jak właściwa symulacja stanie
+       String sc = nf(Step, 8); //Jawne użycie KLASY `String` oraz funkcji formatującej numery (n-UMBER f-ORMAT)
+       saveFrame("wzrost_step"+sc+".png"); //Wersja z wygodną numeracją
     }
     
     Step++;

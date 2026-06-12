@@ -1,5 +1,5 @@
 // Przykład na okno o zmiennych rozmiarach. 
-// Reaguje na ciagnięcie rogu i walenie w klawiaturę.
+// Reaguje na ciągniecie rogu okna i walenie w klawiaturę.
 
 void setup() 
 {

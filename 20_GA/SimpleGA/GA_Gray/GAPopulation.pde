@@ -1,6 +1,6 @@
 /// Populacja agentów genetycznych do rozwiązywania jednowymiarowych problemów.
 //-////////////////////////////////////////////////////////////////////////////
-/// @date 2026-06-11 (last modification)
+/// @date 2026-06-12 (last modyfikacja)
 import java.lang.Math;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -55,7 +55,7 @@ class GAPopulation
       int as_NKB=map_(r,range);
       int as_gray=toGray(as_NKB);
       
-      float f=(float)r; ///< Żeby można było podejrzec w debugerze różnicę z `r`.
+      float f=(float)r; ///< Żeby można było podejrzeć w debugerze różnicę z `r`.
       int as_float=reinterpret(f);
       
       //Test kodowania
@@ -65,12 +65,12 @@ class GAPopulation
               toBin(as_float,32),'\t',minx+reinterpret(as_float,0f,(float)range) 
               );
               
-      if(gray_coded) //TODO Zmienić na enum okreslający sposób kodowania.
+      if(gray_coded) //TODO Zmienić na enum określający sposób kodowania.
         all[i]=new GAgatek(as_gray);
       else
         all[i]=new GAgatek(as_NKB);
     }
-  } //<>//
+  } 
   
   // Akcesory:
   //==========
@@ -96,7 +96,7 @@ class GAPopulation
   double get_fitness(int index)
   {                                     assert(index<all.length);
     return all[index].fitness;
-  } //<>//
+  } 
 
   // GŁÓWNE OPERACJE GENETYCZNE:
   //============================
@@ -135,7 +135,7 @@ class GAPopulation
   
   /// @brief Klonowanie genu. Nowa wartość może być identyczna lub różnić się jednym bitem.
   //double current_mutation_rate=0;
-  int max_mutation_index=0;//(int)(1./current_mutation_rate);
+  int max_mutation_index=0; //(int)(1./current_mutation_rate);
   int randomized_clone(int parent_gene)
   {
     int index=(int)random(max_mutation_index);
@@ -150,7 +150,7 @@ class GAPopulation
   /// @param selection_r - współczynnik selekcji czyli jaka część populacji zostanie bezpowrotnie zastąpiona.
   /// @param mutation_r - jak często zachodzi flip bitu w powstającym klonie gagatka.
   /// @details
-  /// Powstaje `population_size*selection_r` nowych agentów będacych (niekiedy zmutowanymi) klonami rodziców 
+  /// Powstaje `population_size*selection_r` nowych agentów będących (niekiedy zmutowanymi) klonami rodziców 
   /// wylosowanych z `population_size*(1-selection_r)` gagatków z "górnej" części tablicy `all`.
   void clonal_offspring(float selection_r,float mutation_r)
   {
@@ -170,7 +170,7 @@ class GAPopulation
   /// @param mutation_r - jak często zachodzi flip bitu w powstającym klonie gagatka.
   /// @param maximize - czy szukamy/promujemy maksimum wartości `fitness` czy przeciwnie - minimum (co ma sens przy funkcjach).
   /// @details
-  /// Powstaje `population_size*selection_r` nowych agentów będacych (niekiedy zmutowanymi) klonami rodziców,
+  /// Powstaje `population_size*selection_r` nowych agentów będących (niekiedy zmutowanymi) klonami rodziców,
   /// którzy wygrali pojedynki na wartość `fitness` w wylosowanych parach. 
   void clonal_offspring_by_duels(float selection_r,float mutation_r,boolean maximize)
   {

@@ -4,13 +4,13 @@
 int FR=20;        //Na ile kroków dzielimy sekundę?
 float h=height/2; //Położenie pionowe
 float x=width/2;  //Położenie poziome
-float vh=0;       //aktualna prędkość pionowa w pikselach/SEKUNDE (!)
+float vh=0;       //aktualna prędkość pionowa w pikselach/SEKUNDĘ (!)
 float vx=0;       //aktualna prędkość pozioma
 float maxV=100;   //Maksymalna prędkość poziomo lub pionowa do wylosowania
 float B=0.90;     //Wydajność odbicia sprężystego 
-                  //1-B = ile energi kinetycznej się rozprasza nie wraca do prędkości po odbiciu
+                  //1-B = ile energii kinetycznej się rozprasza nie wraca do prędkości po odbiciu
 
-void setup() //Jest wykonywane raz - po uruchomieniu. Nie musi być na poczatku kodu ale jest
+void setup() //Jest wykonywane raz - po uruchomieniu. Nie musi być na początku kodu ale jest
 {
   size(500,500);
   h=height/2; x=width/2;
@@ -34,7 +34,7 @@ void draw()  //Jest wykonywane w niewidocznej pętli
     vx=random(-maxV,maxV); 
   }
   
-  h+=vh*1/FR; //Powieksz wysokość o drogę czyli prędkość pomnożąną przez jednostkę czasu
+  h+=vh*1/FR; //Powiększ wysokość o drogę czyli prędkość pomnożoną  przez jednostkę czasu
   x+=vx*1/FR; //Analogicznie powiększ położenie poziome
 
   //Odbijamy od ścianek okna! Upraszczamy mechanizm odbicia

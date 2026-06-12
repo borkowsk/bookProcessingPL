@@ -1,34 +1,34 @@
-//"Forest fire" - my private Monte-Carlo version 
+//"Forest fire" - wersja Monte-Carlo 
 //Model "pożaru lasu" - bardzo klasyczny, w wersji autorskiej Monte Carlo 
-///////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////
 
-//Model parameters
-int N=50;        //array side
-int FireTimeDiv=10;//How long the tree is burning (divider for age/size)
-float IgnitionP = 0.75;//Probability of fire transfer
-float InitT=  0.750; //How many trees at start
+//Parametry modelu
+int N=50;        //Bok macierzy
+int FireTimeDiv=10; //Jak długo pali się drzewo (podział według wieku/rozmiaru)
+float IgnitionP = 0.75; //Prawdopodobieństwo przeniesienia ognia
+float InitT=  0.750; //Ile drzew na początku (gęstość lasu)
 
-//2D "World" of trees
+//2D "Świat" drzew
 int World[][] = new int[N][N];
 
-//For visualisation
-int S=20;       //cell width & height
+//Dla wizualizacji
+int S=20;       //szerokość i wysokość komórki
 
-//For statistics
+//Do celów statystycznych
 int Step=0;
 
-//Initialisation
+//Inicjalizacja
 void setup()
 {
   size(900,930);
-  S=width/N; //Agent side size
+  S=width/N; //Długość boku komórki (w wizualizacji)
  
   for(int i=0;i<N;i++)
    for(int j=0;j<N;j++)
     if(random(0,1)<InitT)
      //World[i][j]=100;
-     //World[i][j]=(int)random(100);//FLAT DISTRIBUTION? RATHER NOT REALISTIC!
-     World[i][j]=(int)(20*(random(1)+random(1)+random(1)+random(1)+random(1)));//MAYBE GAUSSIAN DISTRIBUTION? 
+     //World[i][j]=(int)random(100); //ROZKŁAD PŁASKI? RACZEJ NIEREALISTYCZNY!
+     World[i][j]=(int)(20*(random(1)+random(1)+random(1)+random(1)+random(1))); //MOŻE JEDNAK ROZKŁAD GAUSSA?
     else
      World[i][j]=0;
 }
@@ -41,21 +41,21 @@ void draw()
 
 void doVisualisation()
 {
- for(int i=0;i<N;i++)//visualisation
+ for(int i=0;i<N;i++) //Wizualizacja
   for(int j=0;j<N;j++)
   {
-    if(World[i][j]==0)//Free or burned cell
+    if(World[i][j]==0) //Wolna lub spalona komórka
     {
       fill(0,0,0);
     }
     else
-    if(World[i][j]>0) //TREE
+    if(World[i][j]>0) //Jakieś drzewo
     {
       int col=30+(int)World[i][j];
       if(col>255) col=255;
       fill(0,col,0);
     }
-    else //Burning!
+    else //Pali się!
     {
       fill(random(255),random(255),0);
     }
@@ -64,37 +64,37 @@ void doVisualisation()
   } 
 }
 
-void keyPressed() //Lighting
+void keyPressed() //Podświetlenie
 {
     int i=(int)random(N);
     int j=(int)random(N);
-    World[i][j]=-World[i][j]/FireTimeDiv - 1;//At least one step
+    World[i][j]=-World[i][j]/FireTimeDiv - 1; //At least one step
 }
 
 void doMonteCarloStep()
 {
   Step++;
   int M=N*N;
-  for(int m=0;m<M;m++)//Processing is CASE SENSITIVE. But utilising this, is not a good praktise. 
+  for(int m=0;m<M;m++) //Processing rozróżnia WIELKOŚĆ LITER w nazwach. Jednak korzystanie z tej mozliwości nie jest dobrą praktyką.
   {
     int i=(int)random(N);
     int j=(int)random(N);
     
-    if(World[i][j]<0)//Negative means still burning!
+    if(World[i][j]<0) //Ujemna wartość oznacza, że ​​nadal płonie!
     {
-       //Ignite neighbor!
+       //Podpal sąsiada!
        int a=(N+i+(int)random(-1.99,1.99))%N;
        int b=(N+j+(int)random(-1.99,1.99))%N;
        
        if(World[a][b]>0
        && random(0,1)<IgnitionP)
        {
-         World[a][b]=-World[a][b]/FireTimeDiv - 1;//At least one step
+         World[a][b]=-World[a][b]/FireTimeDiv - 1; //At least one step
          //print("!");
        }
        
-       //Burn more
-       World[i][j]++;//Until 0
+       //Płoń dalej!
+       World[i][j]++; //Aż do 0
        if(World[i][j]>0) print("?");
     }
   }

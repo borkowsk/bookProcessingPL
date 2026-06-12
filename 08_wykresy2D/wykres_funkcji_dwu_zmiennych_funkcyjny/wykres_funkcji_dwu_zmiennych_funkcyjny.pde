@@ -39,7 +39,7 @@ void draw() //Rysuje wykres kolumna po kolumnie
   {
       uklad();
   }
-  k++; //Tu musimy sami zadbac o powiększanie licznika
+  k++; //Tu musimy sami zadbać o powiększanie licznika
 }
 
 void uklad()  //rysunek układu współrzędnych

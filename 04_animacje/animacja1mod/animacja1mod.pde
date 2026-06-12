@@ -1,11 +1,11 @@
 //Program Processingu w trybie 2 - z widocznymi funkcjami
-//////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////
 
 void setup() //Jest wykonywane raz - po uruchomieniu
 {
   size(500,500);
   background(0,0,200); //rgB
-  noSmooth(); //Bez wygładzania lini 
+  noSmooth(); //Bez antyaliasingu
   ellipse(250, 250, 200, 200);
 }
 

@@ -1,5 +1,5 @@
 //TAKA KLASA
-////////////////////////
+//-//////////////////////
 class RGB
 {
   int R,G,B;
@@ -10,7 +10,7 @@ class RGB
     RGB_Counter++;
   }
   
-  void Set(int iR,int iG,int iB) //Setter
+  void Set(int iR,int iG,int iB) //"Setter"
   {
     R=iR;G=iG;B=iB;
   }
@@ -20,9 +20,9 @@ class RGB
     return R<=0 && G<=0 && B<=0;
   }
   
-  void Visualise(int X,int Y) //Method
+  void Visualise(int X,int Y) //Metoda
   {
-    if(!isEmpty()) //<>//
+    if(!isEmpty()) 
     {
       stroke(R,G,B);
       if(W>1)
@@ -35,11 +35,11 @@ class RGB
     }
   }
   
-  void finalize() //Finalizer.  Wywoływany przez Javę gdy Garbage collector likwiduje objekt
+  void finalize() //"Finalizer". Wywoływany przez język JAVA gdy "garbage collector" likwiduje obiekt
   {               //Teoretycznie - bo trudno to sprawdzić. http://stackoverflow.com/questions/2506488/when-is-the-finalize-method-called-in-java
-    RGB_Counter--; //<>//
+    RGB_Counter--; 
     println("-");
-    //super.finalize();//Ale na to Processing robi blup...
+    //super.finalize(); //Ale na to Processing robi blup...
   }
 }
 

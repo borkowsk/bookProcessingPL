@@ -1,12 +1,12 @@
 // Dwuwymiarowy, asynchroniczny (kroki MC) automat komórkowy - reguła "ZSUMUJ Z SĄSIADAMI I WEŹ MODULO". 
 // Zasiewanie tablicy na początku z zadaną gęstością lub pojedynczą komórką
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int WorldSize=400;//Ile chcemy elementów w linii i ile linii (tablica kwadratowa)
+int WorldSize=400; //Ile chcemy elementów w linii i ile linii (tablica kwadratowa)
 
-int[][] World=new int[WorldSize][WorldSize];//Tworzenie tablicy świata - w Processingu zawsze za pomocą alokacji
+int[][] World=new int[WorldSize][WorldSize]; //Tworzenie tablicy świata - w Processingu zawsze za pomocą alokacji
 
-float IDens=0.0;//Początkowa gęstość w tablicy
+float IDens=0.0; //Początkowa gęstość w tablicy
 
 void setup()
 {
@@ -30,21 +30,21 @@ int t=0;
 
 void draw()
 {  
-  for(int i=0;i<World.length;i++)//Wizualizacja czyli "rysowanie na ekranie" 
+  for(int i=0;i<World.length;i++) //Wizualizacja czyli "rysowanie na ekranie" 
     for(int j=0;j<World.length;j++) 
     {
-      switch(World[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w konmórce
+      switch(World[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w komórce
       case 2:stroke(255,0,0);break;
       case 1:stroke(0,0,255);break;
       case 0:stroke(0,0,0);break;
-      default: stroke(0,255,0);//To się pojawiac nie powinno
+      default: stroke(0,255,0); //To się pojawiać nie powinno
       break;
       } 
       point(i,j);
     }
   
   //Zmiana stanu automatu - krok Monte Carlo
-  for(int a=0;a<World.length*World.length;a++)//Tyle losowań ile komórek
+  for(int a=0;a<World.length*World.length;a++) //Tyle losowań ile komórek
   {
        //Losowanie agenta 
        int i=(int)random(World.length);
@@ -61,17 +61,17 @@ void draw()
                  +World[right][j]
                  +World[i][up]
                  +World[i][dw]              
-                 ;//suma pięciu brana potem modulo 3
+                 ; //suma pięciu brana potem modulo 3
       
-        World[i][j]=ile % 3;//Nowy stan zapisujemy do tablicy
+        World[i][j]=ile % 3; //Nowy stan zapisujemy do tablicy
    }
       
-   t++;//Kolejne pokolenie/krok/rok
+   t++; //Kolejne pokolenie/krok/rok
    text("ST:"+t,0,10);
 }
 
-//////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////
 // Autor: Wojciech T. Borkowski
 // Materiały do podręcznika "Processing w edukacji i symulacji
 // https://github.com/borkowsk/sym4processing/tree/master/ProcessingWEdukacji
-//////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////

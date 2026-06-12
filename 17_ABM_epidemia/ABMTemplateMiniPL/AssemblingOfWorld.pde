@@ -1,14 +1,14 @@
-// World is a one of two central class of each ABM model
-///////////////////////////////////////////////////////////////
-int StepCounter=0;//GLOBALNY LICZNIK KROKÓW SYMULACJI
+// Świat jest jedną z dwóch centralnych klas każdego modelu ABM
+//-/////////////////////////////////////////////////////////////
+int StepCounter=0; //GLOBALNY LICZNIK KROKÓW SYMULACJI
 
 class World
 {
-  //Agent agents[];//JEDNOWYMIAROWA TABLICA AGENTÓW
+  //Agent agents[]; //JEDNOWYMIAROWA TABLICA AGENTÓW
   //OR
-  Agent agents[][];//DWUWYMIAROWA TABLICA AGENTÓW
+  Agent agents[][]; //DWUWYMIAROWA TABLICA AGENTÓW
   
-  World(int side)//KONSTRUKTOR ŚWIATA
+  World(int side) //KONSTRUKTOR ŚWIATA
   {
     //agents=new Agent[side];
     //OR
@@ -19,33 +19,33 @@ class World
 //BARDZIEJ ZŁOŻONE FUNKCJONALNOŚCI ZOSTAŁY ZDEFINIOWANE JAKO OSOBNE FUNKCJE
 //A NIE METODY KLASY World ZE WZGLĘDU NA OGRANICZENIA SKŁADNI PROCESSINGU
 //NIE POZWALAJĄCEJ SCHOWAĆ GDZIEŚ INDZIEJ MNIEJ ISTOTNYCH METOD KLASY
-///////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////
 
 void initializeModel(World world)
 {
-  initializeAgents(world.agents);//TU NASTĄPI WYBÓR FUNKCJI PRZECIĄŻONEJ!
+  initializeAgents(world.agents); //TU NASTĄPI WYBÓR FUNKCJI PRZECIĄŻONEJ!
 }
 
 void visualizeModel(World world)
 {
-  visualizeAgents(world.agents);//TU NASTĄPI WYBÓR FUNKCJI PRZECIĄŻONEJ!
+  visualizeAgents(world.agents); //TU NASTĄPI WYBÓR FUNKCJI PRZECIĄŻONEJ!
 }
 
-void dummyChange(World world) //FUKCJE MOŻNA USUNĄĆ GDY POJAWI SIĘ
+void dummyChange(World world) //FUNKCJE MOŻNA USUNĄĆ GDY POJAWI SIĘ
 {                             //REALNY KOD MODELU
-  dummyChangeAgents(world.agents);//TU NASTĄPI WYBÓR FUNKCJI PRZECIĄŻONEJ!
+  dummyChangeAgents(world.agents); //TU NASTĄPI WYBÓR FUNKCJI PRZECIĄŻONEJ!
 }
 
 void modelStep(World world)
 {
-   dummyChange(world);//TYMCZASOWE WYWOŁANIE TRYWIALNEJ DYNAMIKI
+   dummyChange(world); //TYMCZASOWE WYWOŁANIE TRYWIALNEJ DYNAMIKI
    //OR
    //... MIEJSCE NA TWÓJ REALNY KOD MODELU np. 
-   //agentsChange(world.agents);//TU NASTĄPI WYBÓR FUNKCJI PRZECIĄŻONEJ!
+   //agentsChange(world.agents); //TU NASTĄPI WYBÓR FUNKCJI PRZECIĄŻONEJ!
    
    StepCounter++;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////////
 //  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM: WORLD OF AGENTS FOR FILL UP
-///////////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////////

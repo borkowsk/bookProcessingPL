@@ -13,7 +13,7 @@ void moveBirds()
      if(current.z>=MAX_CEIL)
      {
        current.z=MAX_CEIL;
-       current.vz=-1; // Zawsze do dołu, bo nie wiadomo jakie vz ma boid!
+       current.vz=-1; // Zawsze do dołu, bo nie wiadomo jakie `vz` ma boid!
      }
      else 
      if(current.z<=0)
@@ -23,4 +23,4 @@ void moveBirds()
    }
 }
 
-/// @date 2026-01-15 (modified)
+/// @date 2026-06-12 (zmodyfikowany)

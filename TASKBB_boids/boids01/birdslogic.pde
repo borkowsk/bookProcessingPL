@@ -22,7 +22,7 @@ void thinkAndDo0(Bird me)
     me.vx=0;
     me.vy=0;
     me.vx=0;
-    me.tz=1000; // Wysokość docelowa jest teraz nieosiągalna //<>//
+    me.tz=1000; // Wysokość docelowa jest teraz nieosiągalna 
   }
   else // Cel zbliża się niczym w paradoksie "Zenona z Elei"   ;-)
   {
@@ -32,4 +32,4 @@ void thinkAndDo0(Bird me)
   }
 }
 
-/// @date 2025-11-25 (modified)
+/// @date 2026-06-12 (zmodyfikowany)

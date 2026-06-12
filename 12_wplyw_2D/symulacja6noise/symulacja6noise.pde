@@ -1,26 +1,26 @@
-// Majority vs. minority rule in Ising like model
-///////////////////////////////////////////////////////////
-//Control parameters
-int MajorityRule=1;//If 1 then MajorityRule but if -1 then MinorityRule
+// Reguła większości kontra mniejszości w modelu Isinga
+//-/////////////////////////////////////////////////////////
+//Parametry kontroli
+int MajorityRule=1; //Jeśli 1, to reguła większości, ale jeśli -1, to reguła mniejszości
 
-int N=50;          //Array side
-float Ones=0.50;   //How many "ones" in the array
-float Noise=0.01;  //How often change spontanously
+int N=50;          //Bok macierzy
+float Ones=0.50;   //Ile „jedynek” jest w tablicy
+float Noise=0.01;  //Jak często zmiany następują spontanicznie
 
-//2D "World" of individuals
+//Dwuwymiarowy „świat” jednostek (indywiduów)
 int A[][] = new int[N][N];
 
-//File "handler" for writing statistics into disk drive
+//Uchwyt pliku służący do zapisywania statystyk na dysku
 PrintWriter output;
 
-int S=0;       //cell width & height (for visualisation)
-void setup()   //Initialisation
+int S=0;       //szerokość i wysokość komórki (Dla wizualizacji)
+void setup()   //Inicjalizacja
 {
   size(600,600);
-  S=width/N;   //Initilise S depend of window size
-  frameRate(5);//Not to fast
+  S=width/N;   //Wartość początkowa "S" zależy od rozmiaru okna.
+  frameRate(5); //Nie za szybko
   
-  //Initialisation of the "World"
+  //Inicjalizacja of the "World"
   for(int i=0;i<N;i++)
    for(int j=0;j<N;j++)
    if( random(0,1) < Ones )
@@ -28,22 +28,22 @@ void setup()   //Initialisation
     else
     A[i][j]=-1;
   
-  output = createWriter("Statistics.log");//Create a new file in the sketch directory 
+  output = createWriter("Statistics.log"); //Utwórz nowy plik w katalogu szkiców! 
 }
 
-void exit() //it is called whenever a window is closed. 
+void exit() //Funkcja ta jest wywoływana zawsze po zamknięciu okna. 
 {
   noLoop();
-  output.flush();  // Writes the remaining data to the file
-  output.close();  // Finishes the file
+  output.flush();  // Zapisuje pozostałe dane do pliku
+  output.close();  // Kończy zapis i zamyka plik
   println("Thank You");
-  super.exit(); //What library superclass have to do at exit
+  super.exit(); //Co superklasa z biblioteki musi zrobić przy wyjściu.
 } 
 
-//Running - visualisation and dynamics
+//Running - Wizualizacja i Dynamika (zmiana stanu)
 void draw()
 {
- for(int i=0;i<N;i++)//visualisation
+ for(int i=0;i<N;i++) //Wizualizacja
   for(int j=0;j<N;j++)
   {
     if(A[i][j]==1)
@@ -53,12 +53,12 @@ void draw()
     rect(i*S,j*S,S,S);
   }  
   
-  Count();//Do statistics
+  Count(); //Przygotuj statystyki
   
-  println("Step "+Step+" Reds="+Reds+" White="+(N*N-Reds));//window
-  output.println("Step\t"+Step+"\tReds\t"+Reds+"\tWhite\t"+(N*N-Reds));//log
+  println("Step "+Step+" Reds="+Reds+" White="+(N*N-Reds)); //window
+  output.println("Step\t"+Step+"\tReds\t"+Reds+"\tWhite\t"+(N*N-Reds)); //log
   
-  DoMonteCarloStep();//Do model dynamics
+  DoMonteCarloStep(); //Do model Dynamika (zmiana stanu)
 }
 
 int Reds=0;
@@ -72,20 +72,20 @@ void Count()
 }
 
 int Step=0;
-void DoMonteCarloStep()//Implementation of dynamic
+void DoMonteCarloStep() //Implementacja dynamiki
 {
-   for(int a=0;a<N*N;a++) //as many times as number of cells (M C step)
+   for(int a=0;a<N*N;a++) //tyle razy, ile wynosi liczba komórek (M C step)
    {
      int i=int(random(N));
      int j=int(random(N));
          
-     if(random(1.0)<Noise)//NOISE IN USE
+     if(random(1.0)<Noise) //UŻYCIE SZUMU
      {
-       A[i][j]=-A[i][j];//spontanic swith
+       A[i][j]=-A[i][j]; //spontaniczna zmiana
      }
      else
      {
-       int impact=0; //Calculate summ of impacts
+       int impact=0; //Obliczona suma wpływów
        for(int m=i-1;m<=i+1;m++)
         for(int n=j-1;n<=j+1;n++)
         {
@@ -94,11 +94,11 @@ void DoMonteCarloStep()//Implementation of dynamic
           impact+=A[p][r];
         }
         
-       if(impact>=0) //Variable MajorityRule is equal 1 or -1,
-         A[i][j]=1*MajorityRule;// so it can change sign of output
+       if(impact>=0) //Zmienna MajorityRule jest równa 1 lub -1,
+         A[i][j]=1*MajorityRule; //więc może zmienić znak wyjścia 
          else
-         A[i][j]=-1*MajorityRule;// so it can change sign of output
+         A[i][j]=-1*MajorityRule; //więc może zmienić znak wyjścia
      }
     }
-   Step++;//Counting of steps
+   Step++; //Zliczanie kroków
 }

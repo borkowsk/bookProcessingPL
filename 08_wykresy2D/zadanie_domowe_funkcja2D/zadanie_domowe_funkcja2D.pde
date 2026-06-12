@@ -10,8 +10,8 @@ float krokX,krokY,mnozZ;
 void setup()
 {
   size(500,500); noSmooth();  background(255);
-  krokX=(PI*2)/width;//Jaki fragment X na jedną kolumnę okna o długości width
-  krokY=(PI*2)/height;//Jaki fragment Y na jeden wiersz okna o wysokości height
+  krokX=(PI*2)/width; //Jaki fragment X na jedną kolumnę okna o długości width
+  krokY=(PI*2)/height; //Jaki fragment Y na jeden wiersz okna o wysokości height
   mnozZ=255;
   uklad();
 }
@@ -33,7 +33,7 @@ void draw() //Rysuje wykres kolumna po kolumnie
   }
   else
       uklad();
-  k++; //Tu musimy zadbac po powiększanie
+  k++; //Tu musimy zadbać po powiększanie
 }
 
 void uklad()  //rysunek układu współrzędnych

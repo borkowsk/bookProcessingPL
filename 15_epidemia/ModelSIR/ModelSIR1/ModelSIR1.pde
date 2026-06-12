@@ -1,4 +1,4 @@
-/// Dwuwymiarowy, probalilistyczny (kroki MC) automat komórkowy - reguła SIR
+/// Dwuwymiarowy, probabilistyczny (kroki MC) automat komórkowy - reguła SIR
 /// Zasiewanie tablicy na początku z zadaną gęstością zdrowych oraz pojedynczą komórką zarażona
 /// W TEJ NAJPROSTRZEJ WERSJI MODELU CHOROBA JEST BARDZO KRÓTKA I BARDZO MAŁO ZARAŹLIWA
 //*//////////////////////////////////////////////////////////////////////////////////////////////
@@ -16,7 +16,7 @@ final int Infected=2;
 final int Recovered=3;
 
 void setup()
-{ //Empty=-1;      //ERROR: The final field cannot be assigned!
+{ //Empty=-1;      //"ERROR: The final field cannot be assigned!"
  size(400,400);    //Okno kwadratowe
  noSmooth();       //Znacząco przyśpiesza
  
@@ -27,7 +27,7 @@ void setup()
       if(random(1.0)<IDens)
         World[i][j]=Susceptible;
       else
-        World[i][j]=Empty; //Dla pewności, gdyby Empty nie było zero.
+        World[i][j]=Empty; //Dla pewności, gdyby "Empty" nie było zero.
   }
  
  World[WorldSize/2][WorldSize/2]=Infected;
@@ -47,7 +47,7 @@ void draw()
       case 2:stroke(255,0,0);break;
       case 1:stroke(0,0,255);break;
       case 0:stroke(0,0,0);break;
-      default: stroke(255); //To się pojawiac nie powinno
+      default: stroke(255); //To się pojawiać nie powinno
       break;
       } 
       point(i,j);

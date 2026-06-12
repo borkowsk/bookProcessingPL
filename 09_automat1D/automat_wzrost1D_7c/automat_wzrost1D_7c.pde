@@ -1,9 +1,9 @@
 //Jednowymiarowy, DETERMINISTYCZNY automat komórkowy - reguła "ZSUMUJ Z SĄSIADAMI I WEŹ MODULO". Kroki MC
 //Zasiewanie tablicy na początku z zadaną gęstością lub pojedynczą komórką
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-float IDens=0.0;//Początkowa gęstość w tablicy
-int WorldSize=500;//Ile chcemy elementów w linii?
-int[] WorldOld=new int[WorldSize];//Tworzenie tablic - w Processingu zawsze za pomocą alokacji
+//-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+float IDens=0.0; //Początkowa gęstość w tablicy
+int WorldSize=500; //Ile chcemy elementów w linii?
+int[] WorldOld=new int[WorldSize]; //Tworzenie tablic - w Processingu zawsze za pomocą alokacji
 int[] WorldNew=new int[WorldSize];
 
 void setup()
@@ -30,20 +30,20 @@ void draw()
 {
   if(t>994) return; //Nic już nie ma do narysowania 
   
-  for(int i=0;i<WorldOld.length;i++)//Wizualizacja czyli "rysowanie na ekranie" 
+  for(int i=0;i<WorldOld.length;i++) //Wizualizacja czyli "rysowanie na ekranie" 
   {
-    switch(WorldOld[i]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w konmórce
+    switch(WorldOld[i]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w komórce
     case 2:stroke(255,0,0);break;
     case 1:stroke(0,0,255);break;
     case 0:stroke(0,0,0);break;
-    default: stroke(255,255,0);//To się pojawiac nie powinno
+    default: stroke(255,255,0); //To się pojawiać nie powinno
     break;
     }
     point(i,t);
-    line(i,999,i,994);//Odbicie aktualnego stanu na dole
+    line(i,999,i,994); //Odbicie aktualnego stanu na dole
   }
   
-  for(int i=0;i<WorldOld.length;i++)//Zmiana stanu automatu
+  for(int i=0;i<WorldOld.length;i++) //Zmiana stanu automatu
   {
        //Reguła -  "nie lubię mieć za dużo sąsiadów"
        //Zamiast ignorować brzegi można zrobić liczenie indeksów sąsiadów z zawijaniem dzięki reszcie z dzielenia
@@ -51,7 +51,7 @@ void draw()
        int morer = (i+2) % WorldSize;     
        int left  = (WorldSize+i-1) % WorldSize;
        int morel = (WorldSize+i-2) % WorldSize;
-       int ileich= 0;//Ile żywych sąsiadów?
+       int ileich= 0; //Ile żywych sąsiadów?
        
        if(WorldOld[left]>0) //Nie jest zerem czyli jest "żywy"
          ileich++;
@@ -71,8 +71,8 @@ void draw()
         WorldNew[i]=ileich % 3;  //Reguła MODULO
       
       // POPRZEDNIA REGUŁA    
-      // if(ileich==1) WorldNew[i]=1;else WorldNew[i]=0;//Tylko posiadanie jednego sąsiada jest poprawne
-                                                        // więc umiera z samotności albo z tłoku
+      // if(ileich==1) WorldNew[i]=1;else WorldNew[i]=0; //Tylko posiadanie jednego sąsiada jest poprawne,
+                                                         //więc umiera z samotności albo z tłoku
    }
    
    //Zamiana tablic
@@ -80,5 +80,5 @@ void draw()
    WorldOld=WorldNew;
    WorldNew=WorldTmp;
    
-   t++;//Kolejne pokolenie/krok/rok
+   t++; //Kolejne pokolenie/krok/rok
 }

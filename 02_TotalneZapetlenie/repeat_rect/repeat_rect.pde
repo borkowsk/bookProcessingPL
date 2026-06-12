@@ -2,8 +2,8 @@
 
 size(500,500);
 
-smooth(); //Z wygładzaniem lini ("antyaliasingiem")
-rectMode(CORNERS);  // Set rectMode to CORNERS
+smooth(); //Z "antyaliasingiem"
+rectMode(CORNERS);  //Ustawiamy `rectMode` na `CORNERS` 
 
 for(int i=0;i<300;i+=10) //POWTARZAJ CO DZIESIĄTY!
   rect(i,i,0,500); //I rysuj "kartkę"

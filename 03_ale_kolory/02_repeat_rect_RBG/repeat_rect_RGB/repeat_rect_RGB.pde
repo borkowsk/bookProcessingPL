@@ -3,7 +3,7 @@
 size(500,500);
 background(0,0,200); //rgB - NIEBIESKIE TŁO
 
-smooth(); //Z wygładzaniem lini ("antyaliasingiem")
+smooth(); //Z wygładzaniem linii ("antyaliasingiem")
 rectMode(CORNERS);  // Ustaw rectMode na CORNERS
 
 for(int i=0;i<256;i+=10) //POWTARZAJ CO DZIESIĄTY!

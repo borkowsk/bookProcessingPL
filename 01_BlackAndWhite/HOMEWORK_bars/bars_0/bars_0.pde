@@ -1,4 +1,4 @@
-//4 bars example. SIMPLIFIED
+//"4 bars example". UPROSZCZONY
 //Przykład 4 słupków
 
 //DANE. Wartości mogą być (niemal) dowolnie zmieniane

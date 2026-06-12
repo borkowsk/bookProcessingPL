@@ -17,7 +17,7 @@ int funkcja_dostaje_int_i_zwraca_int(int x)
 
 float funkcja_dostaje_int_i_zwraca_float(int x)
 {
-  return sqrt(x);//Pierwiastek kwadratowy z liczby całkowitej
+  return sqrt(x); //Pierwiastek kwadratowy z liczby całkowitej
 }
 
 float funkcja_dostaje_float_i_zwraca_float(float x)

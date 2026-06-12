@@ -1,12 +1,12 @@
-//Jednowymiarowy, probabilistyczny automat komórkowy - szkielet i najprostrza symulacja w postaci "bez funkcyjnej" 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Jednowymiarowy, probabilistyczny automat komórkowy - szkielet i najprostsza symulacja w postaci "bez funkcyjnej" 
+//-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Przykład pokazuje też zastosowanie tablic w Processingu - niestety nie takie proste jak w Pascalu
 //bo tu tablice nie są prostymi typami jak int czy char czy float...
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-int WorldSize=500;//Ile chcemy elementów w linii?
+//-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+int WorldSize=500; //Ile chcemy elementów w linii?
 size(500,1000);    //Okno bardziej pionowe niż poziome 
 
-int[] World=new int[WorldSize];//Tworzenie tablicy - w Processingu zawsze za pomocą alokacji
+int[] World=new int[WorldSize]; //Tworzenie tablicy - w Processingu zawsze za pomocą alokacji
 
 //for(int i=0;i<World.length;i++) //Zerowanie tablicy - gdyby było potrzebne. Wydruk tablicy pokaże czy jest
 //    World[i]=0;
@@ -17,16 +17,16 @@ println("table:");
 for(int i=0;i<World.length;i++) //Wypisywanie tablicy na konsole
     print(World[i],' ');
     
-for(int t=0;t<1000;t++)//Ile pokoleń?
+for(int t=0;t<1000;t++) //Ile pokoleń?
 {
-  for(int i=0;i<World.length;i++)//Wizualizacja czyli "rysowanie na ekranie" 
+  for(int i=0;i<World.length;i++) //Wizualizacja czyli "rysowanie na ekranie" 
   {
     if(World[i]>0) stroke(255);
     else           stroke(0);
     point(i,t);
   }
   
-  for(int i=0;i<World.length;i++)//Zmiana stanu automatu
+  for(int i=0;i<World.length;i++) //Zmiana stanu automatu
   {
       if(World[i]>0 && random(1.0)<0.005)       //Jeśli komórka żywa to może umrzeć
         World[i]=0;

@@ -1,12 +1,12 @@
-/// The agent: its atributes, random initialisation and methods
-/// @date 2025-01-13 (modification)
+/// Agent: jego atrybuty, losowa inicjalizacja i metody
+/// @date 2026-06-12 (modyfikacja)
 //*/////////////////////////////////////////////////////////////////////////////
 
-enum Dirs { UNKNOWN, N, NE, E, SE, S, SW, W, NW }; ///< all directions of the world.
+enum Dirs { UNKNOWN, N, NE, E, SE, S, SW, W, NW }; ///< wszystkie kierunki świata.
 
 Dirs[] allDirs={ Dirs.UNKNOWN,Dirs.N,Dirs.NE,Dirs.E,Dirs.SE,Dirs.S,Dirs.SW,Dirs.W,Dirs.NW };
 
-color dirs2color(Dirs direction) //!< second version of colorisation
+color dirs2color(Dirs direction) //!< druga wersja koloryzacji
 {
   switch(direction){
   case N:       return color(  0,  0,255);
@@ -24,7 +24,7 @@ color dirs2color(Dirs direction) //!< second version of colorisation
 
 class Agent
 {
-  Dirs direction=Dirs.UNKNOWN;  //!< It needs to know his walking direction.
+  Dirs direction=Dirs.UNKNOWN;  //!< Musi znać kierunek, w którym się przemieszcza.
   
   color getColor()
   {
@@ -33,18 +33,18 @@ class Agent
   
   void update()
   {
-    if( direction==Dirs.UNKNOWN && random(1.0)<0.01 ) // Within approximately 100 steps, everyone will choose a direction
+    if( direction==Dirs.UNKNOWN && random(1.0)<0.01 ) // Każdy wybierze kierunek, po wykonaniu około 100 kroków.
       direction=allDirs[int(random(1,allDirs.length))];
   }
   
-  void interactionA(Agent other) //!< Asymmetric interaction.
+  void interactionA(Agent other) //!< Interakcja asymetryczna.
   {
     other.direction=this.direction;
   }
   
-  void interactionS(Agent other) //!< Symmetric interaction.
+  void interactionS(Agent other) //!< Interakcja całkiem symetryczna.
   {
-    Dirs newdirection=allDirs[int(random(1,allDirs.length))]; // Agents "establish" a new common direction.
+    Dirs newdirection=allDirs[int(random(1,allDirs.length))]; // Agenci „ustanawiają” nowy wspólny kierunek.
     this.direction=newdirection;
     other.direction=newdirection;
   }

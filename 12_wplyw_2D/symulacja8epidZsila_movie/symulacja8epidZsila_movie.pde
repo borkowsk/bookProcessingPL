@@ -1,33 +1,33 @@
 // Model dynamicznego wpływu społecznego Nowaka-Latane 
 // - wersja "komórkowa" ze zróżnicowaniem sił
-//////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////
 
 long   MyRSeed=0; // Inicjalizacja liczb losowych - jak 0 to z czasu.
 
-//Control parameters
-int N=200;        // array side
-float init=0.010; // How many starts in the array
+//Parametry kontroli
+int N=200;        // Bok macierzy
+float init=0.010; // Jaka część zostaje zainicjalizowana.
 float SeedsPerSt=0.005;
 
-//For visualisation
-int S=20;         // cell width & height
+//Dla wizualizacji
+int S=20;         // szerokość i wysokość komórki
 
-//2D "World" of individuals
+//Dwuwymiarowy „świat” jednostek (indywiduów)
 int A[][] = new int[N][N];
 int P[][] = new int[N][N];
 
-//Variables for initialisation
-int initcounter=0; // Ile juz wylosowano
+//Zmienne do inicjalizacji
+int initcounter=0; // Ile już wylosowano
 int initnakrok=0;  // Ile w jednym kroku
 
-//Initialisation
+//Inicjalizacja
 void setup()
 {
   long unixTime = System.currentTimeMillis() / 1000L;
   if(MyRSeed==0) MyRSeed=unixTime;
   if(MyRSeed!=0) randomSeed(MyRSeed);
   size(800,800);
-  S=width/N; //Agent side size
+  S=width/N; //Długość boku komórki (w wizualizacji)
  
   for(int i=0;i<N;i++)
    for(int j=0;j<N;j++)
@@ -36,24 +36,24 @@ void setup()
     P[i][j]=(int)random(256);
    }
   
-  initcounter=int(N*N*init);//Ile będzie w ogóle nasion?  
-  initnakrok=int(N*N*SeedsPerSt);//A ile nasion w jednym kroku
+  initcounter=int(N*N*init); //Ile będzie w ogóle nasion?  
+  initnakrok=int(N*N*SeedsPerSt); //A ile nasion w jednym kroku
   
-  frameRate(2);//Nie za szybko
+  frameRate(2); //Nie za szybko
   initVideoExport(this,"Nowak-Latane-sila_"+nf(MyRSeed>>32)+"-"+nf(MyRSeed & 0x00000000ffffffffL)+".mp4",2);
   FirstVideoFrame();
   NextVideoFrame(); //Video frame
 }
 
 int Step=0;
-void DoMonteCarloStep() //Implementation of dynamic
+void DoMonteCarloStep() //Implementacja dynamiki
 {
-   for(int a=0;a<N*N;a++) //as many times as number of cells 
+   for(int a=0;a<N*N;a++) //tyle razy, ile wynosi liczba komórek 
    {
      int i=int(random(N));
      int j=int(random(N));
      
-     int impact=0; //Calculate summ of impacts
+     int impact=0; //Obliczona suma wpływów
      for(int m=i-1;m<=i+1;m++)
       for(int n=j-1;n<=j+1;n++)
       {
@@ -62,15 +62,15 @@ void DoMonteCarloStep() //Implementation of dynamic
         impact+=A[p][r]*P[p][r];
       }
   
-     if(impact!=0)//Nothing to do when 0
+     if(impact!=0) //Nic nie trzeba robić, gdy jest "0".
      {
-      if(impact>=0)//Majority rule
+      if(impact>=0) //Majority rule - reguła większości.
        A[i][j]=1;
        else
        A[i][j]=-1;
      }
    }
-   Step++;//Counting of steps
+   Step++; //Zliczanie kroków
    
    NextVideoFrame(); //Video frame
 }
@@ -90,10 +90,10 @@ void Count()
        White++;
 }
 
-//Running - visualisation, stats and dynamics
+//Symulacja: wizualizacja, statystyka i dynamika
 void draw()
 {
- for(int i=0;i<N;i++)//visualisation
+ for(int i=0;i<N;i++) //Wizualizacja
   for(int j=0;j<N;j++)
   {
     int power=P[i][j];
@@ -113,9 +113,9 @@ void draw()
     rect(i*S,j*S,S,S);
   }  
   
-  Count();//Statistics
+  Count(); //Statystyka
   println("Step "+Step+" Reds="+Reds+" White="+White+" Black="+Black);
-  DoMonteCarloStep();//dynamics
+  DoMonteCarloStep(); //Dynamika (zmiana stanu)
   
   //Losowanie nasion
   for(int c=0;c<initnakrok;c++)

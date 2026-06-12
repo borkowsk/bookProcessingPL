@@ -1,5 +1,5 @@
-//Wykres funkcji sinus 2x proceduralnie/funkcyjnie
-//-////////////////////////////////////////////////
+//Wykres funkcji sinus 2x - proceduralnie i funkcyjnie
+//-///////////////////////////////////////////////////
 
 float mojaFunkcja(float x)
 {

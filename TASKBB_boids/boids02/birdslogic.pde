@@ -28,7 +28,7 @@ void thinkAndDo1(Bird me)
     println("Caught! Go up!");
     me.vx=0;
     me.vy=0;
-    me.vx=0; //<>//
+    me.vx=0; 
     me.tz=1000; // Wysokość docelowa jest teraz nieosiągalna
   }
   else //JESZCZE NIE! Podejdź bliżej! :-)
@@ -40,4 +40,4 @@ void thinkAndDo1(Bird me)
   }
 }
 
-/// @date 2025-11-25 (modified)
+/// @date 2026-06-12 (zmodyfikowany)

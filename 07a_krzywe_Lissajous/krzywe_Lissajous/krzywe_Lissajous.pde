@@ -1,7 +1,7 @@
 /// Ruch po okręgu lub po krzywych Lissajous
 /// http://pl.wikipedia.org/wiki/Uk%C5%82ad_wsp%C3%B3%C5%82rz%C4%99dnych_biegunowych
 /// http://pl.wikipedia.org/wiki/Krzywa_Lissajous
-/// @date 2025-01-13 (modification)
+/// @date 2026-06-12 (modyfikacja)
 //-/////////////////////////////////////////////////////////////////////////////////////
 
 int     FR=1000;   // Na ile klatek dzielimy sekundę? Raczej maksymalizujemy to
@@ -14,7 +14,7 @@ float   phi=0; //Aktualna pozycja na orbicie
 float   delta=PI*0.25; //Współczynnik kątowy dla krzywej Lissajous 
                        //spłaszcza ją (zobacz PI/4, albo PI/2 robiące linie) i rotuje (sprawdź 0.75 i 1.75)
 // PRZYKŁADY KRZYWYCH:
-//float a=1,b=1; //Najprostrza krzywa czyli koło
+//float a=1,b=1; //najprostsza krzywa czyli koło
 //float a=1,b=2; //Parabola lub ósemka zależnie od delta
 float a=9,b=7; //Współczynniki dla długiej krzywej Lissajous
 
@@ -24,7 +24,7 @@ void setup() //Jest wykonywane raz - po uruchomieniu
   size(500,500);
   ys=height/2;
   xs=width/2;
-  noSmooth(); //Bez wygładzania lini? Po prostu odkomentować 
+  noSmooth(); //Bez wygładzania linii? Po prostu odkomentować 
   background(0,0,200); //rgB
   frameRate(FR);
   fill(255,255,0); //Yellow

@@ -1,46 +1,46 @@
-//////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////
 // To musi być w setup() żeby było Video:
 //
-//  videoExport = new VideoExport(this); //Klasa VideoExport musi mieć dostep do obiektu aplikacji Processingu
+//  videoExport = new VideoExport(this); //Klasa VideoExport musi mieć dostęp do obiektu aplikacji Processingu
 //  videoExport.startMovie();
 //  
 //a to dla każdej klatki
-//  videoExport.saveFrame();//Video frame
+//  videoExport.saveFrame(); //Video frame
 //
-import com.hamoid.*;//Oraz importujemy niezbędną biblioteką zawierającą klasę VideoExport
+import com.hamoid.*; //Oraz importujemy niezbędną biblioteką zawierającą klasę VideoExport
 
-VideoExport videoExport;//KLASA z biblioteki VideoExport Abe Pazosa - trzeba zainstalować
+VideoExport videoExport; //KLASA z biblioteki VideoExport Abe Pazosa - trzeba zainstalować
                         //http://funprogramming.org/VideoExport-for-Processing/examples/basic/basic.pde
                         //Oraz zainstalować program ffmpeg żeby działało
                        
 void CloseVideo() //To wołamy gdy chcemy zamknąć
 {
-   videoExport.saveFrame();//Video frame - LAST
-   videoExport.endMovie();//Koniec filma
+   videoExport.saveFrame(); //Video frame - LAST
+   videoExport.endMovie(); //Koniec filma
 }
 
-//Control parameters
-float Ones=0.55; //How many "ones" in the array
-int N=150;       //array side
+//Parametry kontroli
+float Ones=0.55; //Ile „jedynek” jest początkowo w tablicy
+int N=150;       //Bok macierzy
 
-//For visualisation
-int S=20;       //cell width & height
+//Dla wizualizacji
+int S=20;       //szerokość i wysokość komórki
 
 
-//2D "World" of individuals
+//Dwuwymiarowy „świat” jednostek (indywiduów)
 int A[][] = new int[N][N];
 
-//For writing statistics into disk drive
+//Do zapisywania statystyk na dysku
 PrintWriter output;
 
-//Initialisation
+//Inicjalizacja
 void setup()
 {
   size(900,900);
   S=width/N;
-  frameRate(4);//Nie za szybko
+  frameRate(4); //Nie za szybko
   
-  // Create a new file in the sketch directory
+  // Utwórz nowy plik w katalogu szkiców!
   output = createWriter("Statistics.log"); 
   for(int i=0;i<N;i++)
    for(int j=0;j<N;j++)
@@ -50,28 +50,28 @@ void setup()
     A[i][j]=-1;
     
   //Start filmiku
-  videoExport = new VideoExport(this,"social_impact.mp4"); //Klasa VideoExport musi mieć dostep do obiektu aplikacji Processingu
-  videoExport.setFrameRate(4);//Nie za szybko
+  videoExport = new VideoExport(this,"social_impact.mp4"); //Klasa VideoExport musi mieć dostęp do obiektu aplikacji Processingu
+  videoExport.setFrameRate(4); //Nie za szybko
   println(videoExport.getFfmpegPath() );
   videoExport.startMovie();
 }
 
-void exit() //it is called whenever a window is closed. 
+void exit() //Funkcja ta jest wywoływana zawsze po zamknięciu okna. 
 {
   noLoop();delay(200);
-  output.flush();  // Writes the remaining data to the file
-  output.close();  // Finishes the file
+  output.flush();  // Zapisuje pozostałe dane do pliku
+  output.close();  // Kończy zapis i zamyka plik
    CloseVideo();
   println("Thank You");
-  super.exit(); //What library superclass have to do at exit
+  super.exit(); //Co superklasa z biblioteki musi zrobić przy wyjściu.
 } 
 
-//Running - visualisation and dynamics
+//Running - wizualizacja oraz dynamika (zmiana stanu)
 int frame=0;
 void draw()
 {
- //print((frame++)+" ");//Counting of frames
- for(int i=0;i<N;i++)//visualisation
+ //print((frame++)+" "); //Zliczanie ramek
+ for(int i=0;i<N;i++) //Wizualizacja
   for(int j=0;j<N;j++)
   {
     if(A[i][j]==1)
@@ -85,18 +85,18 @@ void draw()
     rect(i*S,j*S,S,S);
   }  
   
-  Count();//Statistics
+  Count(); //Statystyka
   println("Step "+Step+" Reds="+Reds+" White="+(N*N-Reds));
   output.println("Step\t"+Step+"\tReds\t"+Reds+"\tWhite\t"+(N*N-Reds));
   
-  videoExport.saveFrame();//Video frame
+  videoExport.saveFrame(); //Video frame
     
-  DoMonteCarloStep();//dynamics
+  DoMonteCarloStep(); //Dynamika (zmiana stanu)
  /*  
-  if(mousePressed==true)//if something on input
+  if(mousePressed==true) //jeśli coś na wejściu
   {
-      DoMonteCarloStep();//dynamics
-      mousePressed=false;//A jakby to wykomentować?
+      DoMonteCarloStep(); //Dynamika (zmiana stanu)
+      mousePressed=false; //A jakby to wykomentować?
   } */
 }
 
@@ -111,14 +111,14 @@ void Count()
 }
 
 int Step=0;
-void DoMonteCarloStep()//Implementation of dynamic
+void DoMonteCarloStep() //Implementacja dynamiki
 {
-   for(int a=0;a<N*N;a++) //as many times as number of cells 
+   for(int a=0;a<N*N;a++) //tyle razy, ile wynosi liczba komórek 
    {
      int i=int(random(N));
      int j=int(random(N));
      
-     int impact=0; //Calculate summ of impacts
+     int impact=0; //Obliczona suma wpływów
      for(int m=i-1;m<=i+1;m++)
       for(int n=j-1;n<=j+1;n++)
       {
@@ -127,10 +127,10 @@ void DoMonteCarloStep()//Implementation of dynamic
         impact+=A[p][r];
       }
   
-     if(impact>=0)//Majority rule
+     if(impact>=0) //Majority rule - reguła większości.
        A[i][j]=1;
        else
        A[i][j]=-1;    
    }
-   Step++;//Counting of steps
+   Step++; //Zliczanie kroków
 }

@@ -1,10 +1,10 @@
 //Dwuwymiarowy, DETERMINISTYCZNY automat komórkowy - reguła zsumuj z sąsiadami i zrób modulo
 //zasiewamy tablicę na początku z zadaną gęstością lub pojedynczą komórką
 //Do 16 różnych kolorów
-//////////////////////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////////////////////
 
 int WorldSize=513; //ile chcemy elementów w linii
-int[][] WorldOld=new int[WorldSize][WorldSize];//tworzenie tablic w Processingu zawsze
+int[][] WorldOld=new int[WorldSize][WorldSize]; //tworzenie tablic w Processingu zawsze
 int[][] WorldNew=new int[WorldSize][WorldSize];
 int Div=16; //jaki dzielnik w regule automatu (ilość kolorów)
 float IDens=0.0; //początkowa gęstość tablicy
@@ -73,7 +73,7 @@ void draw()
                 +WorldOld[right][j]
                 +WorldOld[i][up]
                 +WorldOld[i][dw]
-                ;//suma pięciu brana potem modulo 3
+                ; //suma pięciu brana potem modulo 3
         WorldNew[i][j]=ile % Div; //nowy stan zapisujemy na drugą tablicę
       }
   }
@@ -83,13 +83,13 @@ void draw()
   WorldOld=WorldNew;
   WorldNew=WorldTmp;
 
-  t++;//kolejne pokolenie/krok/krok
+  t++; //kolejne pokolenie/krok/krok
   fill(255);
   text("ST:"+t+" Fr:"+frameRate,10,30);
 }
 
-//////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////
 // Autor: Wojciech T. Borkowski
 // Materiały do podręcznika "Processing w edukacji i symulacji
 // https://github.com/borkowsk/sym4processing/tree/master/ProcessingWEdukacji
-//////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////

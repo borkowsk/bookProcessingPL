@@ -1,9 +1,9 @@
-//OPADAJĄCE PAJACZKI
-////////////////////////////////////////////////////////////////////////
+//OPADAJĄCE PAJĄCZKI
+//-//////////////////////////////////////////////////////////////////////
 int FR=10;  //Ile klatek na sekundę
 int Ilu=10; //Ile pajączków
 
-float minv=10; //Jaki najmniejszyszy ruch 
+float minv=10; //Jaki najmniejszy ruch 
 float maxv=30; //Jaki największy ruch 
 float y0=0;    //Linia startowa trochę poniżej górnego krańca okna
 

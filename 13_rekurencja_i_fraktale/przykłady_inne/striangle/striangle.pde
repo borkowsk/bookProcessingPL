@@ -1,4 +1,4 @@
-/// Sierpinskis Triangle
+/// WZORY REKURSYWNE - RECURSIVE PATTERNS: Sierpinski's Triangle
 /// https://stackoverflow.com/questions/42964699/having-trouble-drawing-sierpinskis-triangle-in-processing
 //-///////////////////////////////////////////////////////////////////////////////////////////////////////
 

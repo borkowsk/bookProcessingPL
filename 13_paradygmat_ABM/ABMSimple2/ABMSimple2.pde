@@ -1,5 +1,5 @@
-/// Simple example of Agent Base Model.
-/// @date 2025-01-13 (modification)
+/// Prosty przykład modelu agentowego.
+/// @date 2026-06-12 (modyfikacja)
 //*/////////////////////////////////////////////////////////////////////////////
 
 void setup()

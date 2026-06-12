@@ -1,7 +1,7 @@
 // Pętla for z operacją -- czyli "do tyłu"
 
 size(500,500);
-//noSmooth(); //Tak by było bez wygładzania lini ("antyaliasingu")
+//noSmooth(); //Tak by było bez wygładzania lini - "antyaliasingu".
              
 for(int i=255;i>=0;i--) //POWTARZAJ 256 razy (odliczając wstecz)
 {

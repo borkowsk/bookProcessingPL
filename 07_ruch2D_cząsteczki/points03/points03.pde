@@ -7,7 +7,7 @@ float maxd=1.5; //Jaki największy ruch (pozycje na float'ach!)
 float[] h=new float[Size]; //new float; //height/2; //Położenie pionowe
 float[] x=new float[Size]; //width/2;   //Położenie poziome
 
-void setup() //Jest wykonywane raz - po uruchomieniu. Nie musi być na poczatku kodu ale jest
+void setup() //Jest wykonywane raz - po uruchomieniu. Nie musi być na początku kodu ale jest
 {
   size(500,500);
   noSmooth();
@@ -60,7 +60,7 @@ void draw()  //Jest wykonywane w niewidocznej pętli
     point(x[i],height-h[i]);
     x[i]=newx;
     h[i]=newh;
-    stroke(255,255,i%255); //Każda czątka ma swój odcien
+    stroke(255,255,i%255); //Każda cząstka ma swój odcień
     point(x[i],height-h[i]);
   }  
 }

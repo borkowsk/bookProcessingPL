@@ -1,10 +1,10 @@
 //Jednowymiarowy, DETERMINISTYCZNY automat komórkowy - reguła "ZSUMUJ Z SĄSIADAMI I WEŹ MODULO". Kroki MC
 //Zasiewanie tablicy na początku z zadaną gęstością lub pojedynczą komórką
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-int WorldSize=500;//Ile chcemy elementów w linii?
-int[] WorldOld=new int[WorldSize];//Tworzenie tablic - w Processingu zawsze za pomocą alokacji
+//-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+int WorldSize=500; //Ile chcemy elementów w linii?
+int[] WorldOld=new int[WorldSize]; //Tworzenie tablic - w Processingu zawsze za pomocą alokacji
 int[] WorldNew=new int[WorldSize];
-float IDens=0.0;//Początkowa gęstość w tablicy
+float IDens=0.0; //Początkowa gęstość w tablicy
 int divider=5; //Przez ile dzielimy
 
 void setup()
@@ -25,13 +25,13 @@ void setup()
   frameRate(100);
 }
 
-boolean self=true;//Czy wliczamy stan środkowego
+boolean self=true; //Czy wliczamy stan środkowego
 int t=0;
 void draw()
 {
   if(t>994) return; //Nic już nie ma do narysowania 
   
-  for(int i=0;i<WorldOld.length;i++)//Wizualizacja czyli "rysowanie na ekranie" 
+  for(int i=0;i<WorldOld.length;i++) //Wizualizacja czyli "rysowanie na ekranie" 
   {
     switch(WorldOld[i]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor
     case 4:stroke(255,255,0);break;
@@ -39,15 +39,15 @@ void draw()
     case 2:stroke(255,0,0);break;
     case 1:stroke(0,0,255);break;
     case 0:stroke(0,0,0);break;
-    default: stroke(128,255,128);//To się pojawiac nie powinno
+    default: stroke(128,255,128); //To się pojawiać nie powinno
     break;
     }
     
     point(i,t);
-    line(i,999,i,994);//Odbicie aktualnego stanu na dole
+    line(i,999,i,994); //Odbicie aktualnego stanu na dole
   }
   
-  for(int i=0;i<WorldOld.length;i++)//Zmiana stanu automatu
+  for(int i=0;i<WorldOld.length;i++) //Zmiana stanu automatu
   {
        //Reguła - "ZSUMUJ Z SĄSIADAMI I WEŹ MODULO"
        //Liczenie indeksów sąsiadów z zawijaniem dzięki reszcie z dzielenia
@@ -61,9 +61,9 @@ void draw()
           +WorldOld[right]
           +WorldOld[morel]
           +WorldOld[morer]              
-               ;//suma czterech/pięciu brana potem modulo DIVIDER
+               ; //suma czterech/pięciu brana potem modulo `divider`.
     
-       WorldNew[i]=ile % divider;//Nowy stan zapisujemy na drugą tablicę
+       WorldNew[i]=ile % divider; //Nowy stan zapisujemy na drugą tablicę
    }
    
    //Zamiana tablic
@@ -71,5 +71,5 @@ void draw()
    WorldOld=WorldNew;
    WorldNew=WorldTmp;
    
-   t++;//Kolejne pokolenie/krok/rok
+   t++; //Kolejne pokolenie/krok/rok
 }

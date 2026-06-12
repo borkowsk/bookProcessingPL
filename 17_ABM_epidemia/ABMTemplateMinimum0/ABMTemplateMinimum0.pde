@@ -1,35 +1,35 @@
 //   ABM minimum template - using template for AGENT BASE MODEL in 2D discrete geometry
 //   >>>>   only necessary modules <<<<
-//   implemented by Wojciech Borkowski
-/////////////////////////////////////////////////////////////////////////////////////////
+//   @author Wojciech Borkowski
+//-///////////////////////////////////////////////////////////////////////////////////////
 
-//Model parameters
-int side=75;//side of main table
+//Parametry modelu
+int side=75; //długość boku głównej macierzy
 String modelName="ABMTemplateMin";
 float density=0.75;
 
-World TheWorld=new World(side);//... but will be fully initialised inside setup()
+World TheWorld=new World(side); //... ale zostanie w pełni zainicjowany wewnątrz setup()
 
-//Parameters of visualisation etc...
-int cwidth=15;//size of cell
+//Parametry wizualizacji etc...
+int cwidth=15; //długość boku komórki w wizualizacji
 int STATUSHEIGH=40;
 
-int STEPSperVIS=1;//How offten visualise
-int FRAMEFREQ=10; //Less or more frequent update
-//boolean WITH_VIDEO=false;//Make a movie from simulation?
-boolean simulationRun=true;//Start/stop flag
+int STEPSperVIS=1; //Jak często wizualizować
+int FRAMEFREQ=10; //Rzadsza lub częstsza aktualizacja
+//boolean WITH_VIDEO=false; //Czy zrobić film na podstawie symulacji?
+boolean simulationRun=true; //Flaga startu/stopu
 
 void setup()
 {
-  //Graphics
+  //Grafika
   size(750,790);
   frameRate(FRAMEFREQ);
   background(255,255,200);
   strokeWeight(2);
   
   //Model
-  initializeModel(TheWorld);// Complete initialisation
-  //initializeStats(); //For statistics
+  initializeModel(TheWorld); // Uzupełnienie inicjalizacji
+  //initializeStats(); //Do celów statystycznych
   //doStatistics(TheWorld);
   
   //Window size calculation
@@ -39,16 +39,16 @@ void setup()
   //FOR RTMVideo.pde UNIT
   //if(WITH_VIDEO) {initVideoExport(this,modelName+".mp4",FRAMEFREQ);FirstVideoFrame();}
   
-  //Finishing setup stage
-  println("CURRENT SIZE OF PAINTING AREA IS "+width+"x"+height);//-myMenu.bounds.height???
-  visualizeModel(TheWorld);//FOR RTMVideo.pde UNIT - First time visualisation
+  //Zakończenie etapu konfiguracji
+  println("CURRENT SIZE OF PAINTING AREA IS "+width+"x"+height); //-myMenu.bounds.height???
+  visualizeModel(TheWorld); //FOR RTMVideo.pde UNIT - Pierwszy raz wizualizacja
   
   //if(!simulationRun) //FOR RTMEvents.pde UNIT
   //  println("PRESS 'r' or 'ESC' to start simulation");
   //else
   //  println("PRESS 's' or 'ESC' to pause simulation");
   
-  //NextVideoFrame();//FOR RTMVideo.pde - It utilise inside variable to check if is enabled
+  //NextVideoFrame(); //FOR RTMVideo.pde - Wykorzystuje zmienną wewnętrzną do sprawdzenia, czy jest włączone
 }
 
 void draw()
@@ -61,11 +61,11 @@ void draw()
   
   writeStatusLine();
   
-  if(!simulationRun //When simulation was stopped only visualisation should work
-  || StepCounter % STEPSperVIS == 0 ) //But when model is running, visualisation should be done from time to time
+  if(!simulationRun //Po wstrzymaniu symulacji powinna działać tylko wizualizacja
+  || StepCounter % STEPSperVIS == 0 ) //Ale gdy model jest uruchomiony, wizualizacja powinna być przeprowadzana od czasu do czasu
   {
     visualizeModel(TheWorld);
-    //NextVideoFrame();//FOR RTMVideo.pde UNIT - It utilise inside variable to check if is enabled
+    //NextVideoFrame(); //FOR RTMVideo.pde UNIT - Wykorzystuje zmienną wewnętrzną do sprawdzenia, czy jest włączone
   }
 
 }
@@ -75,11 +75,11 @@ void writeStatusLine()
   fill(255);rect(0,side*cwidth,width,STATUSHEIGH);
   fill(0);noStroke();
   //textAlign(LEFT, TOP);
-  //text(meanDummy+"  "+liveCount,0,side*cwidth);//MOST IMPORTANT STATISTICS
+  //text(meanDummy+"  "+liveCount,0,side*cwidth); //MOST IMPORTANT STATISTICS
   textAlign(LEFT, BOTTOM);
   text(StepCounter+")  Fps:"+ frameRate,0,side*cwidth+STATUSHEIGH-2);
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////
 //  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM MAIN TEMPLATE
-///////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////

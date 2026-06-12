@@ -1,13 +1,13 @@
-// World is a one of two central class of each ABM model
-///////////////////////////////////////////////////////////////
-int StepCounter=0;//GLOBALNY LICZNIK KROKÓW SYMULACJI
+// Świat jest jedną z dwóch centralnych klas każdego modelu ABM
+//-/////////////////////////////////////////////////////////////
+int StepCounter=0; //GLOBALNY LICZNIK KROKÓW SYMULACJI
 
 class World
 {
-  Agent agents[][];//DWUWYMIAROWA TABLICA AGENTÓW
-  int      env[][];//TABLICA SRODOWISKA - "environment"
+  Agent agents[][]; //DWUWYMIAROWA TABLICA AGENTÓW
+  int      env[][]; //TABLICA ŚRODOWISKA - "environment"
   
-  World(int side)//KONSTRUKTOR ŚWIATA
+  World(int side) //KONSTRUKTOR ŚWIATA
   {
     env=new int[side][2*side];
     agents=new Agent[side][2*side];
@@ -17,7 +17,7 @@ class World
 //BARDZIEJ ZŁOŻONE FUNKCJONALNOŚCI ZOSTAŁY ZDEFINIOWANE JAKO OSOBNE FUNKCJE
 //A NIE METODY KLASY World ZE WZGLĘDU NA OGRANICZENIA SKŁADNI PROCESSINGU
 //NIE POZWALAJĄCEJ SCHOWAĆ GDZIEŚ INDZIEJ MNIEJ ISTOTNYCH METOD KLASY
-///////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////
 
 void initializeModel(World world)
 {
@@ -33,12 +33,12 @@ void visualizeModel(World world)
 
 void modelStep(World world)
 {
-   //environmentChange(world.env);//W tej symulacji na razie niepotrzebne
+   //environmentChange(world.env); //W tej symulacji na razie niepotrzebne
    agentsChange(world.agents);
    sheduleAgents(world.agents,world.env,StepCounter);
    StepCounter++;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////////
 //  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM: WORLD OF AGENTS FOR FILL UP
-///////////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////////

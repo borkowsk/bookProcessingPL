@@ -24,7 +24,7 @@ final float   rightmargin=WEST_EAST-margin;
 final float   topmargin=margin;
 final float   bottommargin=NORD_SOUTH-margin;
 
-ArrayList<Bird> birds;     ///< wszystkie nasze ptaki w kontenerze z jezyka JAVA
+ArrayList<Bird> birds;     ///< wszystkie nasze ptaki w kontenerze z języka JAVA
 
 void initBirds()
 {
@@ -72,4 +72,4 @@ void draw()
   decisions();
 }
 
-/// @date 2026-01-15 (modified)
+/// @date 2026-06-12 (zmodyfikowany)

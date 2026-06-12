@@ -5,18 +5,18 @@
 int FR=50; //Na ile kroków dzielimy sekundę?
 float h=height/2;
 float x=width/2;
-float vh=0;//prędkość pionowa w pikselach/SEKUNDE (!)
-float vx=0;//prędkość pozioma
+float vh=0; //prędkość pionowa w pikselach/SEKUNDĘ (!)
+float vx=0; //prędkość pozioma
 float maxV=150;
-float B=0.90; //Wydajność odbicia sprężystego 1-B = ile energi kinetycznej się rozprasza nie wraca do prędkości po odbiciu
+float B=0.90; //Wydajność odbicia sprężystego 1-B = ile energii kinetycznej się rozprasza nie wraca do prędkości po odbiciu
 
 void setup() //Jest wykonywane raz - po uruchomieniu
 {
   size(500,500);
   h=height/2;
   x=width/2;
-  //noSmooth();//Bez wygładzania lini? Po prostu odkomentować 
-  background(0,0,200);//rgB
+  //noSmooth(); //Bez wygładzania linii? Po prostu odkomentować 
+  background(0,0,200); //rgB
   frameRate(FR);
 }
 
@@ -35,7 +35,7 @@ void draw() //Jest wykonywane w niewidocznej pętli
   
   ellipse(x,height-h,25,25);
   
-  h+=vh*1/FR; //Powieksz wysokość o drogę czyli prędkość pomnożąną przez jednostkę czasu
+  h+=vh*1/FR; //Powiększ wysokość o drogę czyli prędkość pomnożoną przez jednostkę czasu
   x+=vx*1/FR; //Powiększ położenie poziome
 
   //Odbijamy od ścianek okna! Upraszczamy mechanizm odbicia
@@ -48,19 +48,19 @@ void draw() //Jest wykonywane w niewidocznej pętli
   if(height<h)
   {
     vh=-vh*B;
-    h=height;//Trochę oszukujemy
+    h=height; //Trochę oszukujemy
   }
   else //A jakby to wykomentować?
   if(x<0)
   {
      vx=-vx*B;
-     x=0;//Trochę oszukujemy
+     x=0; //Trochę oszukujemy
   }
   else
   if(width<x)
   {
      vx=-vx*B;
-     x=width;//Trochę oszukujemy
+     x=width; //Trochę oszukujemy
      //print(x,' ');
   }
 }

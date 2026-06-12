@@ -1,18 +1,18 @@
-// TRÓJWYMIAROWA gra w zycie.
+// TRÓJWYMIAROWA "gra w życie".
 //See: https://content.wolfram.com/sites/13/2023/02/16-4-7.pdf
 //4,5/5 ; 5,..,7/6 ; 5,6/5 ; 6,..,8/5 (?) ; 2,3/5 ;  7,8/5
 int SIDE=61;    // bok świata
-int MINNEIB=7;  // najmniejsza dozwolonba liczba sąsiadów
-int MAXNEIB=8;  // najwieksza dozwolonba liczba sąsiadów
-int BIRNEIB=5;  // liczba sąsiadów konieczna do ozywienia komórki
+int MINNEIB=7;  // najmniejsza dozwolona liczba sąsiadów
+int MAXNEIB=8;  // największa dozwolona liczba sąsiadów
+int BIRNEIB=5;  // liczba sąsiadów konieczna do ożywienia komórki
 
-float DENSITY=0.33; // poczatkowa gęstość komórek
+float DENSITY=0.33; // początkowa gęstość komórek
 
 int FRAMES=10; // liczba klatek na sekundę
 color BACKGROUND=0; // kolor tła
 
 int CELLS=0;   // M/SIDE - bok komórki
-int TRANS=228; //nieprzeroczystość żywych komórek
+int TRANS=228; //nieprzezroczystość żywych komórek
 int CELLDIV=3; //ile razy obiekt w komórce jest mniejszy od rozmiarów komórki.
 
 float RotX=-0.05; // rotacja względem X
@@ -117,11 +117,11 @@ void visualiseWorld()
       for (int c=0; c<SIDE; c++)
       {
         int state=theWorld[a][b][c];
-        switch(state) { //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w konmórce
-        case 0:continue;//fill(0, 0, 0, 32); break; 
+        switch(state) { //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w komórce
+        case 0:continue; //fill(0, 0, 0, 32); break; 
         case 1:fill(255, 255, (c*255.0)/SIDE, TRANS);
           break;
-        default:fill(255, 255, 255); //To się pojawiac nie powinno
+        default:fill(255, 255, 255); //To się pojawiać nie powinno
           break;
         }
 

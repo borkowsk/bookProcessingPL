@@ -1,9 +1,9 @@
 /// Narzędzia bitowe dla algorytmów ewolucyjnych.  
 //-//////////////////////////////////////////////
-/// @date 2026-06-11 (modified)
+/// @date 2026-06-12 (zmodyfikowany)
 // Skomentowane w standardzie Doxygen.
 
-/// Tworzy string z reprezentacją hexadecymalną liczby typu integer (32-bitowy).
+/// Tworzy string z reprezentacją heksadecymalną liczby typu integer (32-bitowy).
 /// @param sou - wartość wejściowa.
 /// @param USE_BITS - ograniczenie liczby bitów.
 public String toHex(int sou,int USE_BITS)
@@ -12,7 +12,7 @@ public String toHex(int sou,int USE_BITS)
   return hex(sou,form);
 }
 
-/// Tworzy string z reprezentacją hexadecymalną liczby typu long integer (64 bitowy).
+/// Tworzy string z reprezentacją heksadecymalną liczby typu long integer (64 bitowy).
 /// @param sou - wartość wejściowa.
 /// @param USE_BITS - ograniczenie liczby bitów.
 public String toHex(long sou,int USE_BITS)
@@ -81,7 +81,7 @@ public static long toGray(long n) {
 
 /// Dekodowanie 32 bitowej liczby ze znakiem w kodzie Graya.
 /// @param g - liczba zakodowana kodem Graya.
-/// @return liczba `g` zdakodowana na kod NKB.
+/// @return liczba `g` zdekodowana na kod NKB.
 public static int fromGray(int g) {
     g ^= (g >>> 16);
     g ^= (g >>> 8);
@@ -93,7 +93,7 @@ public static int fromGray(int g) {
 
 /// Dekodowanie 64 bitowej liczby ze znakiem w kodzie Graya.
 /// @param g - liczba zakodowana kodem Graya.
-/// @return liczba `g` zdakodowana na kod NKB.
+/// @return liczba `g` zdekodowana na kod NKB.
 public static long fromGray(long g) {
     g ^= (g >>> 32);
     g ^= (g >>> 16);
@@ -138,7 +138,7 @@ public static long fromGrayU32(int g) {
     g ^= (g >>> 2);
     g ^= (g >>> 1);
     
-    // Krok 2: Konwertujemy zdekodowany int na bezznakowy long (maska 0xFFFFFFFFL)
+    // Krok 2: Konwertujemy zdekodowany int na bez-znakowy long (maska 0xFFFFFFFFL)
     return g & 0xFFFFFFFFL;
 }
 /// @}
@@ -192,7 +192,7 @@ public static long fromGrayU32(int g) {
   
 /// @}  
 
-/// @name Funkcje kodujące mniejsze geny o dlugosci do 31 bitów w ciagu 64 bitów.
+/// @name Funkcje kodujące mniejsze geny o długości do 31 bitów w ciągu 64 bitów.
 /// @details
 /// Do upakowania wielu genów w jednym 64-bitowym ciągu (long) idealnie nadają się operacje na maskach bitowych.
 /// W poniższych implementacjach przyjmujemy standardową konwencję, gdzie bit o indeksie 0 to najmniej znaczący bit 
@@ -202,8 +202,8 @@ public static long fromGrayU32(int g) {
 /// @{
   
 /// Funkcja wycina określoną liczbę bitów (length) zaczynając od pozycji start_pos (włącznie).
-/// @details Przesuwa je na sam początek ciagu, zwracając jako czystą wartość int (unsigned).
-/// @returns WYEKSTRACHOWANY CIĄGU BITÓW na liczbie typu `int` (32 bity).
+/// @details Przesuwa je na sam początek ciągu, zwracając jako czystą wartość int (unsigned).
+/// @returns WYEKSTRACHOWANY CIĄG BITÓW na liczbie typu `int` (32 bity).
 public static int get_bits(long value, int pos, int length) 
 {                                                                               assert(0<=pos && pos < 64);
     // 1. Przesuwamy interesujące nas bity na samą prawą stronę (pozycję 0)
@@ -235,9 +235,9 @@ public static long put_bits(long old_value, int pos, int length, int put_value)
 }
 /// @}
 
-/// Funkcj3 do odwracania wartości konkretnego bitu (do użycia w mutacjach).
+/// Funkcja do odwracania wartości konkretnego bitu (do użycia w mutacjach).
 /// @param sou - wartość wejściowa do zmutowania.
-/// @param pos - okresla w jakiej pozycji flip-flop-ujemy bit.
+/// @param pos - określa w jakiej pozycji flip-flop-ujemy bit.
 /// @param USE_BITS - ograniczenie liczby bitów gdzie może zajść zmiana.
 /// @return liczba `sou` z odwróconym bitem na pozycji `pos`.
 /// @note POZOSTAŁE BITY. TAKŻE TE POWYŻEJ `USE_BITS` NIE ULEGAJĄ ZMIANIE.
@@ -253,7 +253,7 @@ public  int switch_bit(int sou,int pos,int USE_BITS)
   }//else Pozycja jest poprawna.
   
   int bit=0x1<<pos; // Ustawianie pozycji na masce.
-  return sou^bit;   // Przełącznie bitu wg. maski. (xor should do the job).
+  return sou^bit;   // Przełączenie bitu wg. maski. (xor should do the job).
 }
 
 
@@ -267,13 +267,13 @@ public  long switch_bit(long sou,int pos,int USE_BITS)
   }//else Pozycja jest poprawna.
   
   long bit=0x1<<pos; // Ustawianie pozycji na masce.
-  return sou^bit;    // Przełącznie bitu wg. maski. (xor should do the job).
+  return sou^bit;    // Przełączenie bitu wg. maski. (xor should do the job).
 }
 /// @}
 
 /// @name Funkcje do wykonywania crossing-over.
 /// @details 
-///   Działa prosto przy założeniu upraszczającym, że zawsze poczatkowa część jest od pierwszego rodzica, 
+///   Działa prosto przy założeniu upraszczającym, że zawsze początkowa część jest od pierwszego rodzica, 
 ///   a od pozycji "pos" mamy bity od drugiego rodzica. Jeśli chcesz uzyskać efekt odwrotny to...
 ///   Zamień kolejność rodziców w wywołaniu!
 /// @{
@@ -305,7 +305,7 @@ public static long cross_over(long parent1, long parent2, int pos)
 void tests()
 {
   int testi=0x00FFAA11;
-  long testl=0x1100AABBC0DDEEFFl;//0x8100000A000000EFl;//0x1001010110000000l;//0x1100AABBC0DDEEFFl;
+  long testl=0x1100AABBC0DDEEFFl; //0x8100000A000000EFl; //0x1001010110000000l; //0x1100AABBC0DDEEFFl;
   
   println("\nLiczby 32 bitowe ze znakiem:\n============================");
   println("NKB:",testi);

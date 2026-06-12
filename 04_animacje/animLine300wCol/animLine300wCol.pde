@@ -1,4 +1,4 @@
-//Color line animation
+//Kolorowa animacja ruchu linii
 
 void setup() 
 {

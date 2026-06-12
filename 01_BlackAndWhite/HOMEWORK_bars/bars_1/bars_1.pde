@@ -17,7 +17,7 @@ line(0,0,0,height-1); //Pionowa linia
 line(0,0,5,10); //Strzałka
 textAlign(LEFT,TOP);text(maxd,0,0); //Wartość max w oknie
 
-line(0,height-1,width,height-1); //Horizontalna
+line(0,height-1,width,height-1); //Horyzontalna
 //line(width,height-1,width-10,height-5); //Strzałka
 
 //Słupki

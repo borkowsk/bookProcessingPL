@@ -2,7 +2,7 @@
 
 size(500,500);
 background(0,0,200); //rgB - BLUE
-noSmooth(); //Bez wygładzania lini 
+noSmooth(); //Bez antyaliasingu
 
 ellipse(250, 250, 200, 200); //Elipsa pod spodem
 for(int i=0;i<256;i+=10)

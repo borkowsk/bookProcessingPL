@@ -1,5 +1,5 @@
 //Wykres funkcji dwu zmiennych w trybie proceduralnym
-/////////////////////////////////////////////////////////
+//-///////////////////////////////////////////////////////
 
 float mojaFunkcja(float x,float y) //TO JEST WIZUALIZOWANA FUNKCJA TRYGONOMETRYCZNA
 {
@@ -13,8 +13,8 @@ void setup()
   size(500,500);
   smooth();
   background(255);
-  krokX=(PI*2)/width; //Jaki fragment X na jedną kolumnę okna o długości width
-  krokY=(PI*2)/height; //Jaki fragment Y na jeden wiersz okna o wysokości height
+  krokX=(PI*2)/width; //Jaki fragment X na jedną kolumnę okna o długości `width`
+  krokY=(PI*2)/height; //Jaki fragment Y na jeden wiersz okna o wysokości `height`
   mnozZ=255;
   uklad();
   //blendMode(REPLACE);
@@ -39,7 +39,7 @@ void draw() //Rysuje wykres kolumna po kolumnie
   {
       uklad();
   }
-  k++; //Tu musimy sami zadbac o powiększanie licznika
+  k++; //Tu musimy sami zadbać o powiększanie licznika
 }
 
 void uklad()  //rysunek układu współrzędnych

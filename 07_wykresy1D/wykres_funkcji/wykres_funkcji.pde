@@ -23,7 +23,7 @@ println('x','\t','y');   //Nagłówki kolumn na konsoli
 for(int k=0;k<1000;k++)  //Przejście po wszystkich kolumnach pikseli
 {
   float x=k*krokX;       //Przeliczenie kolumny okna na x 
-  float y=sin(x);        //Obliczenie wartości funklcji dla danego x
+  float y=sin(x);        //Obliczenie wartości funkcji dla danego x
   int  w=250-round(y/krokY); //Przeliczenie x na numer wiesza, 
                              //pamiętając że wiersze pikseli są numerowane od góry, 
                              //a funkcja sinus ma wartości z zakresu -1 do 1

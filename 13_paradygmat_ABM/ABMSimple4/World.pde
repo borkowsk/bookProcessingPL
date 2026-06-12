@@ -1,24 +1,24 @@
-/// The world & its dynamics.
-/// @date 2025-01-13 (modification)
+/// Świat i jego dynamika (zmiana stanu).
+/// @date 2026-06-12 (modyfikacja)
 //*/////////////////////////////////////////////////////////////////////////////
 
 class World
 {
-  Agent[][]  plane=new Agent[WSide][WSide]; //!< the surface of the world where agents "live".
-  int        numberOfAgents=0;              //!< actual number of agents.
+  Agent[][]  plane=new Agent[WSide][WSide]; //!< powierzchnia świata, na której „żyją” agenci.
+  int        numberOfAgents=0;              //!< rzeczywista liczba agentów.
   
-  void initialise() //!< pre-filling the world
+  void initialise() //!< wstępne wypełnianie świata
   {
     for(int row=0;row<WSide;row++)
      for(int col=0;col<WSide;col++)
-      if(random(1.0)<Density) // Agents are only in certain places.
+      if(random(1.0)<Density) // Agenci znajdują się tylko w określonych miejscach.
       {
         plane[row][col]=new Agent();
         numberOfAgents++;
       }
   }
   
-  void update() //!< Monte Carlo update of the world, i.e. the simulation step.
+  void update() //!< Aktualizacja świata metodą Monte Carlo, czyli krok symulacji.
   {
     int square=WSide*WSide;
     for(int i=0;i<square;i++)
@@ -29,7 +29,7 @@ class World
       {
          plane[row][col].update();
          
-         // Requested move.
+         // Prośba o przeniesienie.
          int dcol,drow;
          switch( plane[row][col].direction ){
             case N:       dcol= 0; drow=-1; break;
@@ -44,15 +44,15 @@ class World
             default: dcol= 0; drow= 0; break;
             }
          
-         // Requested position
+         // Pożądana pozycja.
          int ncol=(WSide+col+dcol)%WSide;
          int nrow=(WSide+row+drow)%WSide;
          
-         // The action depends on the empty space in the new position.
+         // Akcja zależy od pustego miejsca w nowej pozycji.
          if(plane[nrow][ncol]==null)
          {
-           plane[nrow][ncol]=plane[row][col]; // To a new place.
-           plane[row][col]=null; // Very important: The normal world does not allow bilocation!
+           plane[nrow][ncol]=plane[row][col]; // Do nowego miejsca.
+           plane[row][col]=null; // Bardzo ważne: W normalnym świecie bilokacja nie jest dozwolona!
          }
          else
          {
@@ -63,4 +63,4 @@ class World
   }
 }
 
-World theWorld=null; ///< A single variable representing the world is initialized during setup.
+World theWorld=null; ///< Podczas konfiguracji inicjowana jest ta pojedyncza zmienna reprezentująca świat.

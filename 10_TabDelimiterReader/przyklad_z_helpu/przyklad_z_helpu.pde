@@ -3,7 +3,7 @@ BufferedReader reader;
 String line;
  
 void setup() {
-  // Open the file from the createWriter() example
+  //Otwórz plik jak w przykładzie createWriter()
   reader = createReader("data.txt"); 
   size(200,200);
   background(0);
@@ -11,25 +11,25 @@ void setup() {
 
 /*
 void exit(){
-  reader.close();//Exception w analizie kodu! Błąd PROCESSINGU
+  reader.close(); //"Exception" w analizie kodu! Błąd PROCESSINGU
   super.exit();
 }
 */
 
 void draw() {
   try {
-    line = reader.readLine(); //Wykonujemy czytanie ZABEZPIECZONE lini
+    line = reader.readLine(); //Wykonujemy czytanie ZABEZPIECZONE linii
   } catch (IOException e) {
     e.printStackTrace();
     line = null;
   }
   if (line == null) {
-    // Stop reading because of an error or file is empty
+    //Przerwij czytanie z powodu błędu lub pustego pliku
     noLoop();  
-    //reader.close();//Exception w analizie kodu! Błąd PROCESSINGU
+    //reader.close(); //"Exception" w analizie kodu! Błąd PROCESSINGU
   } else {
     println(line);
-    String[] pieces = split(line, TAB);//Dzielimy linie tam gdzie są tabulatory
+    String[] pieces = split(line, TAB); //Dzielimy linie tam gdzie są tabulatory
     int x = int(pieces[0]);
     int y = int(pieces[1]);
     int s = int(pieces[2]);

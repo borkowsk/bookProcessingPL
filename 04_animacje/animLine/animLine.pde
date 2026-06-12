@@ -1,4 +1,4 @@
-//Animacja lini  
+//Animacja linii  
 
 void setup() {
   frameRate(4);

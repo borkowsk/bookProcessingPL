@@ -1,13 +1,13 @@
 //Dwuwymiarowy, DETERMINISTYCZNY automat komórkowy - reguła "ZSUMUJ Z SĄSIADAMI I WEŹ MODULO". SYNCHRONICZNY.
 //Zasiewanie tablicy na początku z zadaną gęstością lub pojedynczą komórką
 //Wyswietlanie optymalizowane tablicą zmian (Changed)
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-int WorldSize=252;//Ile chcemy elementów w linii?
-int[][] WorldOld=new int[WorldSize][WorldSize];//Tworzenie tablic - w Processingu zawsze za pomocą alokacji
+//-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+int WorldSize=252; //Ile chcemy elementów w linii?
+int[][] WorldOld=new int[WorldSize][WorldSize]; //Tworzenie tablic - w Processingu zawsze za pomocą alokacji
 int[][] WorldNew=new int[WorldSize][WorldSize];
-boolean[][] Changed=new boolean[WorldSize][WorldSize];//Flagi zmiany do rysowania
+boolean[][] Changed=new boolean[WorldSize][WorldSize]; //Flagi zmiany do rysowania
 
-float IDens=0.0;//Początkowa gęstość w tablicy
+float IDens=0.0; //Początkowa gęstość w tablicy
 int Div=6; //Jaki dzielnik w regule automatu
 int S=1; //Bok celki
 
@@ -15,7 +15,7 @@ void setup()
 {
   size(253,266);    //  size(253,270);    //Okno nie do końca kwadratowe - miejsce na napis
   
-  surface.setResizable(true);//https://github.com/processing/processing/wiki/Window-Size-and-Full-Screen
+  surface.setResizable(true); //https://github.com/processing/processing/wiki/Window-Size-and-Full-Screen
   
   noSmooth();
   if(IDens>0)
@@ -25,7 +25,7 @@ void setup()
     {
       Changed[i][j]=true;
       if(random(1.0)<IDens)
-        WorldOld[i][j]=(int)(random(Div));//trzeba zmienić typ, bo tablica przechowuje int a nie float
+        WorldOld[i][j]=(int)(random(Div)); //trzeba zmienić typ, bo tablica przechowuje int a nie float
       else
         WorldOld[i][j]=0;
     }
@@ -39,7 +39,7 @@ void setup()
       WorldOld[i][j]=0;
      }
       
-    WorldOld[WorldSize/2][WorldSize/2]=1;//Tylko jeden w środku
+    WorldOld[WorldSize/2][WorldSize/2]=1; //Tylko jeden w środku
   }
   frameRate(20);
 }
@@ -47,10 +47,10 @@ void setup()
 int t=0;
 void draw()
 {  
-  S=min(width/WorldSize,height/WorldSize);//Min żeby zachować kwadratowość
+  S=min(width/WorldSize,height/WorldSize); //Użycie "min" żeby zachować "kwadratowość".
   //println(S);
   noStroke();
-  for(int i=0;i<WorldOld.length;i++)//Wizualizacja czyli "rysowanie na ekranie" 
+  for(int i=0;i<WorldOld.length;i++) //Wizualizacja czyli "rysowanie na ekranie" 
     for(int j=0;j<WorldOld.length;j++) 
     {
       switch(WorldOld[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w komórce
@@ -60,14 +60,14 @@ void draw()
       case 2:fill(255,0,0);break;
       case 1:fill(0,0,255);break;
       case 0:fill(0,0,0);break;
-      default: fill(0,255,0);//To się pojawiac nie powinno
+      default: fill(0,255,0); //To się pojawiać nie powinno
       break;
       }
       if(Changed[i][j]) //Na WorldNew jest stara zawartość - czyli ta co na ekranie 
         rect(i*S,j*S,S,S);
     }
   
-  for(int i=0;i<WorldOld.length;i++)//Zmiana stanu automatu
+  for(int i=0;i<WorldOld.length;i++) //Zmiana stanu automatu
   {
        //Reguła - "ZSUMUJ Z SĄSIADAMI I WEŹ MODULO"
        //Zamiast ignorować brzegi można zrobić liczenie indeksów sąsiadów z zawijaniem dzięki reszcie z dzielenia
@@ -84,10 +84,10 @@ void draw()
                  +WorldOld[right][j]
                  +WorldOld[i][up]
                  +WorldOld[i][dw]              
-                 ;//suma z pięciu komórek brana potem modulo 3
+                 ; //suma z pięciu komórek brana potem modulo 3
       
-         WorldNew[i][j]=ile % Div;//Nowy stan zapisujemy na drugą tablicę
-         Changed[i][j]=(WorldNew[i][j] !=0 || WorldOld[i][j]!=0);//Czy trzeba odrysować? point() jest kosztowne wbrew pozorom
+         WorldNew[i][j]=ile % Div; //Nowy stan zapisujemy na drugą tablicę
+         Changed[i][j]=(WorldNew[i][j] !=0 || WorldOld[i][j]!=0); //Czy trzeba odrysować? point() jest kosztowne wbrew pozorom
        }
    }
    
@@ -96,15 +96,15 @@ void draw()
    WorldOld=WorldNew;
    WorldNew=WorldTmp;
    
-   t++;//Kolejne pokolenie/krok/rok
+   t++; //Kolejne pokolenie/krok/rok
    fill(128);
-   rect(0,WorldSize,width,height-WorldSize);//Czyszczący prostokąt
+   rect(0,WorldSize,width,height-WorldSize); //Czyszczący prostokąt
    fill(255);
    text("ST: "+t+" Fr: "+frameRate,10,height);
 }
 
-//////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////
 // Autor: Wojciech T. Borkowski
 // Materiały do podręcznika "Processing w edukacji i symulacji
 // https://github.com/borkowsk/sym4processing/tree/master/ProcessingWEdukacji
-//////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////

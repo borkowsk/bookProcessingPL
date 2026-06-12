@@ -1,4 +1,4 @@
-/// \file \brief Tool for made video from simulation
+/// \brief Tool for made video from simulation
 //* PL: Narzędzie do tworzenia wideo z symulacji
 //*////////////////////////////////////////////////////////////////////////////////////
 /// --> http://funprogramming.org/VideoExport-for-Processing/examples/basic/basic.pde
@@ -7,7 +7,7 @@
 
 /// \warning: The module is not supported by Processing2C ++ tool! 
 
-import com.hamoid.*;// Here we import the necessary library containing the VideoExport class
+import com.hamoid.*; // Here we import the necessary library containing the VideoExport class
 
 /// USAGE
 //* PL: UŻYCIE:
@@ -21,7 +21,7 @@ import com.hamoid.*;// Here we import the necessary library containing the Video
 //*
 //*                                          // Klasa VideoExport musi mieć dostęp do 
 //*                                          // obiektu aplikacji Processingu
-//*                                          // Najlepiej wywołać na koncu setupu. 
+//*                                          // Najlepiej wywołać na końcu setupu. 
 //*                                          // UWAGA!!!: Okno musi mieć PARZYSTE rozmiary
 //*
 ///  FirstVideoFrame();                      // Optional. Initial second sequence for title and copyright
@@ -30,22 +30,22 @@ import com.hamoid.*;// Here we import the necessary library containing the Video
 /// We call Next Video Frame for each frame of the movie, most often in the draw () function:
 //* PL: NextVideoFrame wywołujemy dla każdej klatki filmu, najczęściej w funkcji draw():
 ///
-///  NextVideoFrame();//Video frame
+///  NextVideoFrame(); //Video frame
 ///
 ///     ... and at the end of the video we call CloseVideo:
 //* PL: ... a na koniec filmu wywołujemy CloseVideo:
 ///
-///  CloseVideo();// Ideally in exit ()
+///  CloseVideo(); // Ideally in exit ()
 //*                  PL: Najlepiej w exit()
 
 
 VideoExport        videoExport; ///< CLASS object from additional library - must be installed
                                 //*  PL: Obiekt KLASY z dodatkowej biblioteki - trzeba zainstalować
                                  
-static int         videoFramesFreq=0;///< How many frames per second for the movie. It doesn't have to be the same as in frameRate!
+static int         videoFramesFreq=0; ///< How many frames per second for the movie. It doesn't have to be the same as in frameRate!
                                      //   PL: Ile klatek w sekundzie filmu. Nie musi być to samo co w frameRate!   
 
-static boolean     videoExportEnabled=false;///< Has film making been initiated?
+static boolean     videoExportEnabled=false; ///< Has video making been initiated?
                                             //*  PL: Czy tworzenie filmu zostało zainicjowane?
   
 ///< Copyright of your movie  
@@ -58,8 +58,8 @@ String copyrightNote="(c) A.Nowak & W.Borkowski @ ISS University of Warsaw";
 void initVideoExport(processing.core.PApplet parent, String Name,int Frames)
 {
   videoFramesFreq=Frames;
-  videoExport = new VideoExport(parent,Name); //Klasa VideoExport musi mieć dostep do obiektu aplikacji Processingu
-  videoExport.setFrameRate(Frames);//Nie za szybko
+  videoExport = new VideoExport(parent,Name); //Klasa VideoExport musi mieć dostęp do obiektu aplikacji Processingu
+  videoExport.setFrameRate(Frames); //Nie za szybko
   videoExport.startMovie();
   fill(0,128,255);text(Name,1,height-20);
   videoExportEnabled=true;
@@ -74,8 +74,8 @@ void FirstVideoFrame()
      fill(0,128,255);text(copyrightNote,1,height); 
      //text(videoExport.VERSION,width/2,height);
      delay(200);
-     for(int i=0;i<videoFramesFreq;i++)// Must be a second or something ...
-       videoExport.saveFrame();//Video frame
+     for(int i=0;i<videoFramesFreq;i++) // Must be a second or something ...
+       videoExport.saveFrame(); //Video frame
   }
 }
 
@@ -84,7 +84,7 @@ void FirstVideoFrame()
 void NextVideoFrame()
 {  
    if(videoExportEnabled)
-     videoExport.saveFrame();//Video frame
+     videoExport.saveFrame(); //Video frame
 }
                      
 /// This is what we call when we want to close the movie file.
@@ -105,11 +105,11 @@ void CloseVideo()
    fill(0);
    text(copyrightNote,1,height);
 
-   for(int i=0;i<videoFramesFreq;i++)//Have to last about one second
-       videoExport.saveFrame();//Video frames for final freeze
+   for(int i=0;i<videoFramesFreq;i++) //Have to last about one second
+       videoExport.saveFrame(); //Video frames for final freeze
        
-   videoExport.saveFrame();//Video frame - LAST
-   videoExport.endMovie();//Koniec filma
+   videoExport.saveFrame(); //Video frame - LAST
+   videoExport.endMovie(); //Koniec filma
   }
 }
 

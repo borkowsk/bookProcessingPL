@@ -1,24 +1,24 @@
-/// The world & its dynamics.
-/// @date 2025-01-13 (modification)
+/// Świat i jego dynamika (zmiana stanu).
+/// @date 2026-06-12 (modyfikacja)
 //*/////////////////////////////////////////////////////////////////////////////
 
 class World
 {
-  Agent[][]  plane=new Agent[WSide][WSide]; //!< the surface of the world where agents "live".
-  int        numberOfAgents=0;              //!< actual number of agents.
+  Agent[][]  plane=new Agent[WSide][WSide]; //!< powierzchnia świata, na której „żyją” agenci.
+  int        numberOfAgents=0;              //!< rzeczywista liczba agentów.
   
-  void initialise() //!< pre-filling the world
+  void initialise() //!< wstępne wypełnianie świata
   {
     for(int row=0;row<WSide;row++)
      for(int col=0;col<WSide;col++)
-      if(random(1.0)<Density) // Agents are only in certain places.
+      if(random(1.0)<Density) // Agenci znajdują się tylko w określonych miejscach.
       {
         plane[row][col]=new Agent();
         numberOfAgents++;
       }
   }
   
-  void update() //!< Updating the state of the world, i.e. the simulation step.
+  void update() //!< Aktualizacja stanu świata, czyli krok symulacji.
   {
     for(int row=0;row<WSide;row++)
       for(int col=0;col<WSide;col++)
@@ -27,4 +27,4 @@ class World
   }
 }
 
-World theWorld=null; ///< A single variable representing the world is initialized during setup.
+World theWorld=null; ///< Podczas konfiguracji inicjowana jest ta pojedyncza zmienna reprezentująca świat.

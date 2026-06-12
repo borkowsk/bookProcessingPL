@@ -1,11 +1,11 @@
 //Dwuwymiarowy, DETERMINISTYCZNY automat komórkowy - reguła "ZSUMUJ Z SĄSIADAMI I WEŹ MODULO". Kroki synchroniczne
 //Zasiewanie tablicy na początku z zadaną gęstością lub pojedynczą komórką
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-int WorldSize=513;//Ile chcemy elementów w linii?
+//-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+int WorldSize=513; //Ile chcemy elementów w linii?
 int Div=5;
-int[][] WorldOld=new int[WorldSize][WorldSize];//Tworzenie tablic - w Processingu zawsze za pomocą alokacji
+int[][] WorldOld=new int[WorldSize][WorldSize]; //Tworzenie tablic - w Processingu zawsze za pomocą alokacji
 int[][] WorldNew=new int[WorldSize][WorldSize];
-float IDens=0.0;//Początkowa gęstość w tablicy
+float IDens=0.0; //Początkowa gęstość w tablicy
 
 void setup()
 {
@@ -28,21 +28,21 @@ void setup()
 int t=0;
 void draw()
 {  
-  for(int i=0;i<WorldOld.length;i++)//Wizualizacja czyli "rysowanie na ekranie" 
+  for(int i=0;i<WorldOld.length;i++) //Wizualizacja czyli "rysowanie na ekranie" 
   for(int j=0;j<WorldOld.length;j++) 
   {
-    switch(WorldOld[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w konmórce
+    switch(WorldOld[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w komórce
     case 3:stroke(128,128,0);break;
     case 2:stroke(255,0,0);break;
     case 1:stroke(0,0,255);break;
     case 0:stroke(0,0,0);break;
-    default: stroke(0,255,0);//To się pojawiac nie powinno
+    default: stroke(0,255,0); //To się pojawiać nie powinno
     break;
     }
     point(i,j);
   }
   
-  for(int i=0;i<WorldOld.length;i++)//Zmiana stanu automatu
+  for(int i=0;i<WorldOld.length;i++) //Zmiana stanu automatu
   {
        //Reguła - "ZSUMUJ Z SĄSIADAMI I WEŹ MODULO"
        //liczenie indeksów sąsiadów z zawijaniem modulo
@@ -56,9 +56,9 @@ void draw()
          
          int ile = WorldOld[i][j]
                  +WorldOld[left][j]+WorldOld[right][j]
-                 +WorldOld[i][up]+WorldOld[i][dw];//suma pięciu brana potem modulo 3
+                 +WorldOld[i][up]+WorldOld[i][dw]; //suma pięciu brana potem modulo 3
       
-         WorldNew[i][j]=ile % Div;//Nowy stan zapisujemy na drugą tablicę
+         WorldNew[i][j]=ile % Div; //Nowy stan zapisujemy na drugą tablicę
        }
    }
    
@@ -67,13 +67,13 @@ void draw()
    WorldOld=WorldNew;
    WorldNew=WorldTmp;
    
-   t++;//Kolejne pokolenie/krok/rok
+   t++; //Kolejne pokolenie/krok/rok
    fill(255);
    text("ST:"+t+" Fr:"+frameRate,10,30);
 }
 
-//////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////
 // Autor: Wojciech T. Borkowski
 // Materiały do podręcznika "Processing w edukacji i symulacji
 // https://github.com/borkowsk/sym4processing/tree/master/ProcessingWEdukacji
-//////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////

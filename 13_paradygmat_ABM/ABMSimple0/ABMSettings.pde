@@ -1,6 +1,6 @@
-/// Global constants & variables.
-/// @date 2025-01-13 (begin)
+/// Stałe i zmienne globalne.
+/// @date 2026-06-12 (begin)
 //*/////////////////////////////////////////////////////////////////////////////
-String Model="ABMTest"; ///< unique model name
+String Model="ABMTest"; ///< unikalna nazwa modelu
 
 int WSide=50;

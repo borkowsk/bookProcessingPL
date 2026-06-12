@@ -1,6 +1,6 @@
 /// Dwuwymiarowy algorytm genetyczny.
 //-///////////////////////////////////////////////////////////
-/// @date 2026-06-11 (modified)
+/// @date 2026-06-12 (zmodyfikowany)
 
 import java.lang.Math;
 
@@ -11,7 +11,7 @@ int     population_size=500;       ///< Rozmiar populacji rozwiązań.
 float   selection_rate=0.20;       ///< Jaką część populacji wymieniamy w każdej generacji (kroku algorytmu).
 float   mutation_rate=0.015;       ///< Jaki jest poziom mutacji (może mieć różne interpretacje!)
 boolean use_float_code=true;       ///< Czy liczby kodujemy jako zmiennoprzecinkowe? Ma to większy sens dla szukania minimum niż maksimów.
-boolean maximize=false;            ///< Czy szukamy maksimum funkcji? Gdy false to szukamy minimum.
+boolean maximize=false;            ///< Czy szukamy maksimum funkcji? Gdy "false" to szukamy minimum.
 boolean selection_by_duels=true;   ///< Czy używamy selekcji przez pojedynki czy klasycznej - z sortowaniem.
 /// @}
 
@@ -36,7 +36,7 @@ double Rastrigin2D(double x, double y)
   double result = 20 + (x*x - 10*Math.cos(2*Math.PI*x)) 
                      + (y*y - 10*Math.cos(2*Math.PI*y));
   return result;
-} //<>//
+} 
 
 //void calculate_fitnesses(GAPopulation pop)
 //{
@@ -80,11 +80,11 @@ void draw_function(int opacity)
   }
 }
 
-///// @name Para wartości aktualnie najlepszego rozwiązania
-///// @{
+//-/// @name Para wartości aktualnie najlepszego rozwiązania
+//-/// @{
 //double best_fit=-Double.MAX_VALUE;
 //double x_best=-Double.MAX_VALUE;
-///// @}
+//-/// @}
 
 //void find_the_best(GAPopulation pop)
 //{
@@ -114,7 +114,7 @@ void draw_function(int opacity)
 //  }
 //}
 
-//// Rysuje populacje.
+//-// Rysuje populacje.
 //void draw_population(GAPopulation pop)
 //{ 
 //  stroke(255,0,0);noFill();

@@ -1,10 +1,10 @@
 // Synchronizacja/Desynchronizacja w parze dwu iteracji równania logistycznego 
-/////////////////////////////////////////////////////////////////////
-static float DefaultAlfa=0.150000000000;//Siła symetrycznego związku lub antyzwiązku
-static boolean Sync=false;//Czy związek czy "strategiczna desynchronizacja"
+//-///////////////////////////////////////////////////////////////////
+static float DefaultAlfa=0.150000000000; //Siła symetrycznego związku lub antyzwiązku
+static boolean Sync=false; //Czy związek czy "strategiczna desynchronizacja"
 
 //Parametry wizualizacji
-static boolean WithScatter=false; //Czy wyświetlać scatter plot stanów?
+static boolean WithScatter=false; //Czy wyświetlać "scatter plot" stanów?
 static boolean WithEllipses=true; //Czy w ogóle wyświetlać elipsy stanów?
 static boolean Clean=true; //Czy czyścić poprzedni stan
 static boolean Continuous=true; //Czy morfować pośrednie stany ("oszustwo" dla tego modelu!)
@@ -42,10 +42,10 @@ class singiel
   void next4coupleASync(singiel F,singiel S)
   {
     double pom=F.x2;
-    F.x2=F.x2*(1-F.alfa)+S.x2*F.alfa;//Pierwszy łapie
+    F.x2=F.x2*(1-F.alfa)+S.x2*F.alfa; //Pierwszy łapie
     //F.x2=F.x2+(F.x2>S.x2 ? (1-F.x2)*F.alfa : -(F.x2)*F.alfa); //Pierwszy ucieka - DO TESTU, ALE WYNIK NUDNY
     S.x2=S.x2+(S.x2>pom  ? (1-S.x2)*S.alfa : -(S.x2)*S.alfa); //ale drugi ucieka - TROCHĘ OSZUKUJE 
-    F.next(); //Policzenie stanu następnego z uwzględnieniem wpływu sasiada
+    F.next(); //Policzenie stanu następnego z uwzględnieniem wpływu sąsiada
     S.next(); // ---/ /---
   }
 
@@ -55,7 +55,7 @@ singiel First,Second; //Daw układy - oscylatory
 //Zmienne sterowania "pętlą" wizualizacji
 int viscounter=0;
 int stecounter=0;
-float xfo,xso;//Przed poprzednie stany - do wizualizacji "continous"
+float xfo,xso; //Przed poprzednie stany - do wizualizacji "continous"
 
 static int radius=400;
 static int vert=300;
@@ -140,8 +140,8 @@ void draw()
   
   if(++viscounter==VISUAL)
   { 
-   xfo=First.getX1();//Stany przed-poprzednie
-   xso=Second.getX1();//Do wizualizacji ciągłej
+   xfo=First.getX1(); //Stany przed-poprzednie
+   xso=Second.getX1(); //Do wizualizacji ciągłej
    if(Sync)
      next4coupleSync(First,Second);
    else

@@ -1,6 +1,6 @@
-// Agent is a one of two central class of each ABM model
-// Agent need to be initialised & they need logic of change 
-///////////////////////////////////////////////////////////////
+// Agent jest jedną z dwóch centralnych klas każdego modelu ABM
+// Agent musi zostać zainicjowany i musi mieć logikę zmian
+//-/////////////////////////////////////////////////////////////
 
 void initializeAgents(Agent[][] agents)
 {
@@ -46,10 +46,10 @@ void  changeAgents(Agent[] agents)
       && random(1)<agents[a].stress)
       {
         int target=(int)random(0,agents.length);
-        if(agents[target]==null)//Jest miejsce
+        if(agents[target]==null) //Jest miejsce
         {
-          agents[target]=agents[a];//Przeprowadzka
-          agents[a]=null;//Wymeldowanie ze starego miejsca
+          agents[target]=agents[a]; //Przeprowadzka
+          agents[a]=null; //Wymeldowanie ze starego miejsca
         }
       }
     }
@@ -92,16 +92,16 @@ void  changeAgents(Agent[][] agents)
         int tara=(int)random(0,agents.length);
         int tarb=(int)random(0,agents[a].length);
         
-        if(agents[tara][tarb]==null)//Jest miejsce
+        if(agents[tara][tarb]==null) //Jest miejsce
         {
-          agents[tara][tarb]=agents[a][b];//Przeprowadzka
-          agents[a][b]=null;//Wymeldowanie ze starego miejsca
+          agents[tara][tarb]=agents[a][b]; //Przeprowadzka
+          agents[a][b]=null; //Wymeldowanie ze starego miejsca
         }
       }
     }
   }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM: BASIC INITIALISATION & EVERY STEP CHANGE
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//-//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM: BASIC INITIALIZATION & EVERY STEP CHANGE
+//-//////////////////////////////////////////////////////////////////////////////////////////////////////////

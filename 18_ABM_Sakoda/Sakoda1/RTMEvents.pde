@@ -1,5 +1,5 @@
 //  Dopasowana do modelu obsługa zdarzeń
-///////////////////////////////////////////////////
+//-/////////////////////////////////////////////////
 int searchedX=-1;
 int searchedY=-1;
 boolean Clicked=false;
@@ -13,7 +13,7 @@ void mouseClicked()
   Clicked=true;
   theSelected=null;
   searchedX=mouseX;
-  searchedY=mouseY; //Searching should be implemented in visialisation!
+  searchedY=mouseY; //Wyszukiwanie powinno być zaimplementowane w wizualizacji!
 }
 
 void keyPressed() 
@@ -32,7 +32,7 @@ void keyPressed()
   case '9': STEPSperVIS=200;background(255,255,200);text("StPerV: "+STEPSperVIS,1,16);break;
 //  case '0': STEPSperVIS=1;DeltaMC=0.2;text("DeltaMC: "+DeltaMC,1,16);break;
   case ' ': save(modelName+"."+nf((float)TheWorld.getTimeStep(),6,5)+".PNG");
-            //write(world,modelName+"."+nf((float)StepCounter,6,5));//Aktualny stan ekosystemu
+            //write(world,modelName+"."+nf((float)StepCounter,6,5)); //Aktualny stan systemu
             break;
   case ESC: simulationRun=!simulationRun; break;
   case 's': simulationRun=false; break;
@@ -53,6 +53,6 @@ void keyPressed()
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////
 //  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM EVENTS TEMPLATE
-///////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////

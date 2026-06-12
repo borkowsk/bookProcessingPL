@@ -1,6 +1,6 @@
-// Agent is a one of two central class of each ABM model
-// Agent need to be initialised & they need logic of change 
-///////////////////////////////////////////////////////////////
+// Agent jest jedną z dwóch centralnych klas każdego modelu ABM
+// Agent musi zostać zainicjowany i musi mieć logikę zmian
+//-/////////////////////////////////////////////////////////////
 
 void initializeAgents(Agent[][] agents)
 {
@@ -9,7 +9,7 @@ void initializeAgents(Agent[][] agents)
     if(random(1)<density)
     {
       Agent curr=new Agent();
-      //...additional initialisation code... EXP.:  curr.initialise();
+      //...dodatkowy kod inicjujący... EXP.:  curr.initialise();
       agents[a][b]=curr;
     }
 }
@@ -20,7 +20,7 @@ void initializeAgents(Agent[] agents)
   if(random(1)<density)
   {
     Agent curr=new Agent();
-    //...additional initialisation code... EXP.:  curr.initialise();
+    //...dodatkowy kod inicjujący... EXP.:  curr.initialise();
     agents[a]=curr;
   }
 }
@@ -48,6 +48,6 @@ void  dummyChangeAgents(Agent[][] agents)
   }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//-//////////////////////////////////////////////////////////////////////////////////////////////////////////
 //  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM: BASIC INITIALISATION & EVERY STEP CHANGE
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//-//////////////////////////////////////////////////////////////////////////////////////////////////////////

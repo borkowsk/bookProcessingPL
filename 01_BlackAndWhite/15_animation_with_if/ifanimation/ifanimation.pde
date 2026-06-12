@@ -1,5 +1,5 @@
-// Animacja w reakcji na ruch myszy
-// src: https://openprocessing.org/sketch/825836/
+// Animacja w reakcji na ruch myszy.
+// Src: https://openprocessing.org/sketch/825836/
 
 void setup()
 {

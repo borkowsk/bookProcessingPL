@@ -1,5 +1,5 @@
-/// Simple example of Agent Base Model. Mandatory procedures.
-/// @date 2025-01-13 (begin)
+/// Prosty przykład modelu agentowego. Obowiązkowe procedury.
+/// @date 2026-06-12 (begin)
 //*/////////////////////////////////////////////////////////////////////////////
 
 void setup()

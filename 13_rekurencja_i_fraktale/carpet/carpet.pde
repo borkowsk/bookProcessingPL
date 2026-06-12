@@ -1,5 +1,5 @@
-/// RECURSIVE PATTERNS – THE SIERPINSKI CARPET
-/// Wersja uproszczona "dywanu Sierpińskiego"
+/// WZORY REKURSYWNE - RECURSIVE PATTERNS
+/// THE SIERPINSKI CARPET - Wersja uproszczona "dywanu Sierpińskiego"
 //-/////////////////////////////////////////////////////////////////////////////////////////////
 int limit=1;
  

@@ -1,4 +1,4 @@
-/// Dwuwymiarowy, probalilistyczny (kroki MC) automat komórkowy - reguła SIR
+/// Dwuwymiarowy, probabilistyczny (kroki MC) automat komórkowy - reguła SIR
 /// Zasiewanie tablicy na początku z zadaną gęstością zdrowych oraz pojedynczą komórką zarażona
 /// LICZBA INTERAKCJI 4, ale prawdopodobieństwo zarażenia nie równe 1 tylko PTransfer 
 /// CHOROBA trwa u zarażonego w zależności od PRecovery lub PDeath
@@ -10,9 +10,9 @@ int[][] World=new int[WorldSize][WorldSize]; //Tworzenie tablicy "świata"
                                              //- in Processing always using allocation (operator `new`)
 
 float IDens=0.99; //Początkowa gęstość w tablicy
-                  // QUESTION: Jaka jest gęstość progowa,
-                  //przy której epidemia zaatakuje ZAWSZE cały świat? (o ile już się zacznie)
-                  //Choć mogą być małe rejony, które ominęła
+                  //PYTANIE: Jaka jest gęstość progowa,
+                  //         przy której epidemia zaatakuje ZAWSZE cały świat? (o ile już się zacznie)
+                  //         Choć mogą być małe rejony, które ominęła
 
 
 //`final` to coś w rodzaju stałych ;-)
@@ -63,11 +63,11 @@ void draw()
   //STANY: Empty=0; Susceptible=1; Infected=2; Recovered=3;
   for(int a=0;a<World.length*World.length;a++) //Tyle losowań ile komórek
   {
-       // Drowing agent coordinates
+       //Współrzędne agenta
        int i=(int)random(World.length);
        int j=(int)random(World.length);
        
-       //Jesli pusty lub zdrowy zdrowy to nic nie robi
+       //Jeśli pusty lub zdrowy zdrowy to nic nie robi
        if(World[i][j]!=Infected) continue;
        
        //Wyliczenie lokalizacji sąsiadów

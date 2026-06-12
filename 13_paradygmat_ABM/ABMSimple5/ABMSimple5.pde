@@ -1,5 +1,5 @@
-/// Simple example of Agent Base Model.
-/// @date 2025-01-13 (modification)
+/// Prosty przykład modelu agentowego.
+/// @date 2026-06-12 (modyfikacja)
 //*/////////////////////////////////////////////////////////////////////////////
 
 void setup()
@@ -21,7 +21,7 @@ void draw()
   visualise(theWorld);
   theWorld.update();
   
-  text(str(frameCount)+"("+str(frameRate)+")",3,height-3); // 3 pixels margins.
+  text(str(frameCount)+"("+str(frameRate)+")",3,height-3); // 3 piksele marginesu.
 }
 
 void exit()

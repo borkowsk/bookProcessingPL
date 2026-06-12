@@ -1,4 +1,4 @@
-//Demo gwiezdnego nieba - duże okno i duzy statek
+//Demo gwiezdnego nieba - duże okno i duży statek
 
 void setup()
 {

@@ -1,6 +1,6 @@
 //Elipsa z grubym z szarym konturem
 
-size(200,200);//okno 200x200
+size(200,200); //okno 200x200
 
 stroke(128);
 strokeWeight(2); //grubszy kontur

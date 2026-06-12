@@ -23,4 +23,4 @@ void moveBirds()
    }
 }
 
-/// @date 2026-01-15 (modified)
+/// @date 2026-06-12 (zmodyfikowany)

@@ -1,14 +1,14 @@
-//Control parameters
-float Ones=0.5; //How many "ones" in the array
-int N=10;       //array side
+//Parametry kontroli
+float Ones=0.5; //Ile „jedynek” jest początkowo w tablicy
+int N=10;       //Bok macierzy
 
-//For visualisation
-int S=20;       //cell width & height
+//Dla wizualizacji
+int S=20;       //szerokość i wysokość komórki
 
-//2D "World" of individuals
+//Dwuwymiarowy „świat” jednostek (indywiduów)
 int A[][] = new int[N][N];
 
-//Initialisation
+//Inicjalizacja
 void setup()
 {
   size(505,505);
@@ -22,15 +22,15 @@ void setup()
 }
 
 int Step=0;
-void DoMonteCarloStep()//Implementation of dynamic
+void DoMonteCarloStep() //Implementacja dynamiki
 {
    println("Step "+Step);
-   for(int a=0;a<N*N;a++) //as many times as number of cells 
+   for(int a=0;a<N*N;a++) //tyle razy, ile wynosi liczba komórek 
    {
      int i=int(random(N));
      int j=int(random(N));
      
-     int impact=0; //Calculate summ of impacts
+     int impact=0; //Obliczona suma wpływów
      for(int m=i-1;m<=i+1;m++)
       for(int n=j-1;n<=j+1;n++)
       {
@@ -44,15 +44,15 @@ void DoMonteCarloStep()//Implementation of dynamic
        else
        A[i][j]=-1;    
    }
-   Step++;//Counting of steps
+   Step++; //Zliczanie kroków
 }
 
-//Running - visualisation and dynamics
+//Running - wizualizacja oraz dynamika (zmiana stanu)
 int frame=0;
 void draw()
 {
- print((frame++)+" ");//Counting of frames
- for(int i=0;i<N;i++)//visualisation
+ print((frame++)+" "); //Zliczanie ramek
+ for(int i=0;i<N;i++) //Wizualizacja
   for(int j=0;j<N;j++)
   {
     if(A[i][j]==1)
@@ -66,9 +66,9 @@ void draw()
     rect(i*S,j*S,S,S);
   }  
   
-  if(mousePressed==true)//if something on input
+  if(mousePressed==true) //jeśli coś na wejściu
   {
-      DoMonteCarloStep();//dynamics
-      mousePressed=false;//A jak to wykomentować?
+      DoMonteCarloStep(); //Dynamika (zmiana stanu)
+      mousePressed=false; //A jak to wykomentować?
   }
 }

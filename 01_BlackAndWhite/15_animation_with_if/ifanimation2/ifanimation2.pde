@@ -1,5 +1,5 @@
-// Ciekawsza animacja oparta o ruch myszki
-// src: https://openprocessing.org/sketch/825836/
+// Ciekawsza animacja oparta o ruch myszki.
+// Src: https://openprocessing.org/sketch/825836/
 
 void setup()
 {

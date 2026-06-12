@@ -111,7 +111,7 @@ void thinkAndDoBoids(Bird boid,int myIndex)
                      (yvel_avg - boid.vy)*matchingfactor);
       }
       
-      // Dodaj wkład unikania do prędkości (take z czynnikiem skali)
+      // Dodaj wkład unikania do prędkości (`take` z czynnikiem skali)
       boid.vx = boid.vx + (close_dx*avoidfactor);
       boid.vy = boid.vy + (close_dy*avoidfactor);
   
@@ -129,7 +129,7 @@ void thinkAndDoBoids(Bird boid,int myIndex)
   
       // Oblicz nowa prędkość boidu.
       // (Powolne! Wyszukaj algorytm „alfa max plus beta min”)
-      float speed = sqrt(boid.vx*boid.vx + boid.vy*boid.vy); // Funkcja sqrt jest dość "droga"
+      float speed = sqrt(boid.vx*boid.vx + boid.vy*boid.vy); // Funkcja `sqrt` jest dość "droga"
   
       // Wymuszaj minimalne i maksymalne prędkości
       if (speed < minspeed)
@@ -144,10 +144,10 @@ void thinkAndDoBoids(Bird boid,int myIndex)
           boid.vy = (boid.vy/speed)*maxspeed;
       }
       
-      // Aktualizacja pozycji boida - jest w worldphysics!
+      // Aktualizacja pozycji boida - jest w `worldphysics`!
       //boid.x = boid.x + boid.vx;
       //boid.y = boid.y + boid.vy;
 }
 
 
-/// @date 2026-01-15 (modified)
+/// @date 2026-06-12 (zmodyfikowany)

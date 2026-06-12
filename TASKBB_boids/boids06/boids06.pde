@@ -7,7 +7,7 @@ final int MAX_CEIL=200;    ///< maksymalny pułap lotu
 final int HM_BIRDS=100;    ///< ile ptaków
 final boolean TARGETED=false;  ///< Czy otrzymują swoje cele w ramach inicjalizacji?
 
-final boolean VIEW_TARGETING=true; ///< Show lines for current targets?
+final boolean VIEW_TARGETING=true; ///< Pokazać linie dla bieżących celów?
 
 // Parametry algorytmu Boids (patrz: https://people.ece.cornell.edu/land/courses/ece4760/labs/s2021/Boids/Boids.html)
 final float   protectedRange=min(NORD_SOUTH,WEST_EAST)/50.0; ///< „Zakres, w którym odlatują od innych”
@@ -28,7 +28,7 @@ final float   southMargin=NORD_SOUTH-margin;
 final float   groundMargin=max(protectedRange,MAX_CEIL*0.05);
 final float   ceilMargin=MAX_CEIL*0.95;
 
-ArrayList<Bird> birds;     ///< wszystkie nasze ptaki w kontenerze z jezyka JAVA
+ArrayList<Bird> birds;     ///< wszystkie nasze ptaki w kontenerze z języka JAVA
 
 void initBirds()
 {
@@ -79,4 +79,4 @@ void draw()
   //text(str(frameRate)+" frm/sec",10,height-10);
 }
 
-/// @date 2026-01-15 (modified)
+/// @date 2026-06-12 (zmodyfikowany)

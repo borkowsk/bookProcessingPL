@@ -1,6 +1,6 @@
 // Synchronizacja w parze dwu iteracji równania logistycznego 
-/////////////////////////////////////////////////////////////////////
-static float DefaultAlfa=0.20000000000;//Siła symetrycznego związku
+//-///////////////////////////////////////////////////////////////////
+static float DefaultAlfa=0.20000000000; //Siła symetrycznego związku
 
 //Parametry wizualizacji
 static final boolean Clean=false; //Czy czyścić poprzedni stan
@@ -42,7 +42,7 @@ int viscounter=0;
 int stecounter=0;
 int vert=300;
 
-float xFo,xSo;//Przed poprzednie stany - do wizualizacji "continous"
+float xFo,xSo; //Przed poprzednie stany - do wizualizacji "continous"
 
 void setup()
 {
@@ -85,15 +85,15 @@ void draw()
   if(Continuous)
   {
     //noStroke();
-    fill(0,160,120);//,256/VISUAL);
-    float pp=(float)viscounter/VISUAL;//Który etap morfingu (0..1)
+    fill(0,160,120); //,256/VISUAL);
+    float pp=(float)viscounter/VISUAL; //Który etap morfingu (0..1)
     
-    float af=pp*(First.getX1()-xFo);//Os A
-    float bf=pp*(First.getX2()-First.getX1());//Os B pierwszego
+    float af=pp*(First.getX1()-xFo); //Os A
+    float bf=pp*(First.getX2()-First.getX1()); //Os B pierwszego
     ellipse(pos  ,vert,round((xFo+af)*radius),round((First.getX1()+bf)*radius) ); //println("pp:"+pp+" A:"+round((xFo+af)*radius)+" B:"+round((First.getX1()+bf)*radius)+" af:"+af+" bf:"+bf);
     
-    af=pp*(Second.getX1()-xSo);//Os A
-    bf=pp*(Second.getX2()-Second.getX1());//Os B drugiego
+    af=pp*(Second.getX1()-xSo); //Os A
+    bf=pp*(Second.getX2()-Second.getX1()); //Os B drugiego
     ellipse(pos*3,vert,round((xSo+af)*radius),round((Second.getX1()+bf)*radius) );
   }
   else
@@ -106,10 +106,10 @@ void draw()
   
   if(++viscounter==VISUAL)
   { 
-   xFo=First.getX1();//Stany przed-poprzednie ...
-   xSo=Second.getX1();//... do wizualizacji ciągłej
+   xFo=First.getX1(); //Stany przed-poprzednie ...
+   xSo=Second.getX1(); //... do wizualizacji ciągłej
    
-   next4couple(First,Second);//TYLKO CO "VISUAL" RAMEK JEST SYMULACJA
+   next4couple(First,Second); //TYLKO CO "VISUAL" RAMEK JEST SYMULACJA CZYLI ZMIANA STANU
    
    //println("x:"+xFo+" "+First.getX1()+" "+First.getX2());
    stroke(30+stecounter,30+stecounter/2,stecounter/4);

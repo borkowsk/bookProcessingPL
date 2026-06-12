@@ -171,8 +171,8 @@ void thinkAndDoBoids(Bird boid,int my_index)
           boid.vz = (boid.vz/speed)*maxSpeed;
       }
       
-      // Aktualizacja pozycji boida - jest w worldphysics!
+      // Aktualizacja pozycji boida - jest w `worldphysics`!
 }
 
 
-/// @date 2026-01-15 (modified)
+/// @date 2026-06-12 (zmodyfikowany)

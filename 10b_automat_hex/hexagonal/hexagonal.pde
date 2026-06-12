@@ -1,5 +1,5 @@
 //Dwuwymiarowy, DETERMINISTYCZNY automat komórkowy - reguła "ZSUMUJ Z SĄSIADAMI I WEŹ MODULO". Kroki synchroniczne
-// NA SIATCE Hexagonalnej
+// NA SIATCE Heksagonalnej
 //========================
 int WorldSize=27; //Ile chcemy elementów w linii?
 float IDens=0.00; //Początkowa gęstość w tablicy (0 oznacza inicjację w środku)
@@ -9,7 +9,7 @@ int[][] World=new int[WorldSize][WorldSize];
 
 float CellSize=22; //Użyjemy możliwości podawania współrzędnych ekranu jako `float`
 
-void settings() /// SPECJALNA FUNCJA POZWALAJĄCA UŻYĆ WYRAŻENIA OKREŚLAJĄCEGO ROZMIARY OKNA ORAZ INNYCH USTAWIEŃ OKNA
+void settings() /// SPECJALNA FUNKCJA POZWALAJĄCA UŻYĆ WYRAŻENIA OKREŚLAJĄCEGO ROZMIARY OKNA ORAZ INNYCH USTAWIEŃ OKNA
 {
    //noSmooth(); //Jeśli istnieje funkcja `settings()` to ta komenda musi być w niej i przed `size()`
    //Proporcje okna 3:2
@@ -21,7 +21,7 @@ void setup() /// KLASYCZNY SETUP JEST URUCHAMIANY PO `settings()`
   background(16);
   initialize(); //Inicjalizacja świata
   visualize();  //pierwsza wizualizacja świata
-  visualise_connections(); //wizializacja połączen/interakcji komórek
+  visualise_connections(); //wizualizacja połączeń/interakcji komórek
   frameRate(9);
 }
 
@@ -51,7 +51,7 @@ void initialize() /// Inicjalizacja świata
 
 // hexagon(center x-coordinate, center y-coordinate, width, height)
 // Źródło: https://forum.processing.org/two/discussion/21083/creating-a-simple-function-to-draw-a-hexagon.html
-void hexagon(float x, float y, float gsX, float gsY) ///< "Narzędzie" do rysowania hexagonu
+void hexagon(float x, float y, float gsX, float gsY) ///< "Narzędzie" do rysowania heksagonu
 {  
   float sqrt3=sqrt(3);
   gsX/=4;
@@ -72,7 +72,7 @@ void visualize() /// Wizualizacja świata
   for(int i=0;i<World.length;i++)
   for(int j=0;j<World.length;j++) 
   {
-    switch(World[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w konmórce
+    switch(World[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w komórce
     case 3:fill(128,128,0);break;
     case 2:fill(255,0,0);break;
     case 1:fill(0,0,255);break;
@@ -84,7 +84,7 @@ void visualize() /// Wizualizacja świata
     //Użyjemy możliwości podawania współrzędnych ekranu jako `float`
     float offsetY=CellSize*0.5; //Połowa wysokości elipsy
     float offsetX=offsetY*1.5;  //Połowa szerokości elipsy
-    float lineIsEven=(j%2==0?offsetX:0); //Co drugi wiersz będzie bardziej przesuniety!
+    float lineIsEven=(j%2==0?offsetX:0); //Co drugi wiersz będzie bardziej przesunięty!
     float X=offsetX+i*1.5*CellSize+lineIsEven;
     float Y=offsetY+j*CellSize;
     hexagon(X,Y,CellSize*1.5,CellSize);
@@ -100,7 +100,7 @@ void visualise_connections() ///Wizualizacja połączeń w prawo i w dół
   {    
     //Użyjemy możliwości podawania współrzędnych ekranu jako `float`
     float offsetY=CellSize*0.5; //Połowa wysokości elipsy
-    float offsetX=offsetY*1.5;  //Połowa szarokości elipsy
+    float offsetX=offsetY*1.5;  //Połowa szerokości elipsy
     float X=offsetX+i*1.5*CellSize+(j%2==0?offsetX:0);
     float Y=offsetY+j*CellSize;
     
@@ -138,7 +138,7 @@ void visualise_connections() ///Wizualizacja połączeń w prawo i w dół
 
 void change() ///zmiana świata - tu asynchroniczna Monte Carlo
 {
-  for(int a=0;a<World.length*World.length;a++)//Tyle losowań ile komórek/agentów
+  for(int a=0;a<World.length*World.length;a++) //Tyle losowań ile komórek/agentów
   {
        //Losowanie komórki/agenta 
        int i=(int)random(World.length);
@@ -165,8 +165,8 @@ void change() ///zmiana świata - tu asynchroniczna Monte Carlo
    }
 }
 
-//////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////
 // Autor: Wojciech T. Borkowski
 // Materiały do podręcznika "Processing w edukacji i symulacji
 // https://github.com/borkowsk/sym4processing/tree/master/ProcessingWEdukacji
-//////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////

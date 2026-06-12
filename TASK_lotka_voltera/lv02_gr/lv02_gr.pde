@@ -1,33 +1,33 @@
-//Lotka–Volterra equations
+//Równanie Lotka–Volterra
 //https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations
 //https://pl.wikipedia.org/wiki/R%C3%B3wnanie_Lotki-Volterry
 //
-float X=350;//x is the number of prey (for example, rabbits);
-float Y=10;//y is the number of some predator (for example, foxes);
+float X=350; //x jest liczbą ofiar (na przykład królików);
+float Y=10; //;
 
-//α, β, γ, δ are positive real parameters describing the interaction of the two species.
-float alpha=0.2;//Prey growth
-float beta=0.01;//interaction of prey with predators
-float gamma=beta/10.0;//the growth of predators depends on the number of pray
-float delta=0.05;//the mortality of predators
+//α, β, γ, δ są dodatnimi parametrami rzeczywistymi opisującymi interakcję dwóch gatunków.
+float alpha=0.2; //Wzrost ofiar
+float beta=0.01; //Interakcja ofiar z drapieżnikami
+float gamma=beta/10.0; //Jak wzrost drapieżników zależy od liczby ofiar
+float delta=0.05; //śmiertelność drapieżników
 
-float Tstep=0.3;//Time step. As short as possible ;-)
-int N=1000;//Number if steps
+float Tstep=0.3; //Krok czasowy. Tak krótki, jak to możliwe ;-)
+int N=1000; //Liczba kroków
 size(1000,500);
 
 stroke(255,0,0);
 println("α=",alpha,"β=",beta,"γ=",gamma,"δ=",delta);
 for(int i=0;i<N;i++)
 {
-  float oldX=X;//Local variable is valid only inside its block of code
+  float oldX=X; //Zmienna lokalna jest ważna tylko w obrębie bloku kodu
   println(i,"X:",X," Y:",Y);
-  //How X & Y changes in "infinitely short" time step
+  //Jak zmieniają się X i Y w „nieskończenie krótkim” kroku czasowym
   X=X + Tstep * (alpha*X-beta*X*Y);
   Y=Y + Tstep * (gamma*oldX*Y-delta*Y);
-  //Visualisation
-  stroke(0,255,0);//GREEN for X
+  //Wizualizacja
+  stroke(0,255,0); //GREEN dla X
   ellipse(i,500-X,3,3);
-  stroke(255,0,0);//RED for Y
+  stroke(255,0,0); //RED dla Y
   ellipse(i,500-Y,3,3);
 }
 

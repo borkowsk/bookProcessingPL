@@ -44,14 +44,14 @@ int radius=200;int pos=radius;int counter=0;
 
 void draw()
 {
-  point(pos,150);point(pos*3,150);//KONTROLA POZYCJI
+  point(pos,150);point(pos*3,150); //KONTROLA POZYCJI
   stroke(0);
   fill(100+counter*50);
   
   ellipse(pos  ,150,round(First.x1*radius),round(First.x2*radius));
   ellipse(pos*3,150,round(Second.x1*radius),round(Second.x2*radius));
   
-  if(++counter==2)//co drugi raz
+  if(++counter==2) //co drugi raz
   { 
    First.next();
    Second.next();

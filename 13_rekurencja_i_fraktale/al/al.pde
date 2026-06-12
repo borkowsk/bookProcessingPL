@@ -1,4 +1,4 @@
-/// RECURSIVE PATTERNS – "BISECT" LINE
+/// WZORY REKURSYWNE - RECURSIVE PATTERNS – "BISECT" LINE
 /// Po prostu linia, opcjonalnie przerywana, powstająca rekurencyjnie
 //-///////////////////////////////////////////////////////////////////
 float limit=10;
@@ -14,10 +14,10 @@ void setup()
   
 void bline(float x1, float y1,float x2, float y2)
 {
-   float d=sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)); //Dlugość
+   float d=sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)); //Długość
    
-   if ( d < limit) //czy mięścimy się w limicie długości
-      return; //println(d);//kontrola
+   if ( d < limit) //czy mieścimy się w limicie długości
+      return; //println(d); //kontrola
 
    int xs=(int)(x1+x2)/2; //Obliczenie środka
    int ys=(int)(y1+y2)/2;   

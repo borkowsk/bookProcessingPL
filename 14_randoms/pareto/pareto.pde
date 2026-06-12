@@ -1,13 +1,13 @@
-/// Program dop testowania różnych sposobów losowania
+/// Program do testowania różnych sposobów losowania
 //-////////////////////////////////////////////////////////////////////////////
 /// http://www.javamex.com/tutorials/random_numbers/xorshift.shtml#.WT6NEzekKXI
 /// https://math.stackexchange.com/questions/1777367/how-to-generate-a-random-number-from-a-pareto-distribution
 //-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/// W tym wypadku rozkład pareto ale oparty na 64 bitowym generatorze XORshift
-//-///////////////////////////////////////////////////////////////////////////
+/// W tym wypadku rozkład Pareto, ale oparty na 64 bitowym generatorze XORshift
+//-////////////////////////////////////////////////////////////////////////////
 
-/// XOR SHIFT random generator - flat distribution:
-//-////////////////////////////////////////////////
+/// XOR SHIFT random generator - flat distribution (Generator losowy XOR SHIFT - rozkład płaski)
+//-////////////////////////////////////////////////////////////////////////////////////////////
 
 /// Seed...
 long xl=123456789L;
@@ -15,7 +15,7 @@ long xl=123456789L;
 /// Helper...
 double mianownik=(double)9223372036854775807L; //9,223,372,036,854,775,807 <--- max long 
 
-/// Calculation...
+/// OBLICZANIE...
 double MyRandom2()
 {
   xl ^= (xl << 21);
@@ -24,8 +24,8 @@ double MyRandom2()
   return (Math.abs(xl)/mianownik);
 }
 
-// Pareto distribution from flat distribution
-double a = 41.4104*(1-0.01); //Kształt- im większe tym ostrzej skośny rozkład
+// Rozkład Pareto z rozkładu płaskiego
+double a = 41.4104*(1-0.01); //Kształt - im większe tym ostrzej skośny rozkład
 double b =  6.82053374; //Skalowanie - im większe tym większy zakres. 
                         //Wartość 6.n dobrana do zakresu 0..1
 double limit = 1; //Akceptujemy tylko wartości od 0 do limit. 
@@ -38,8 +38,8 @@ double MyRandomPareto()
   { 
    rndval = MyRandom2();
    double inv_fun_denom = Math.pow(1-rndval , 1/a);
-   rndval = (b/inv_fun_denom)-b; //adding the -b did the trick //<>//
-  }while(rndval>limit); //Akceptujemy tylko wartości od 0 do limit
+   rndval = (b/inv_fun_denom)-b; //dodanie `-b` robi robotę
+  }while(rndval>limit); //Akceptujemy tylko wartości od 0 do `limit`
   
   return rndval;
 }
@@ -51,7 +51,7 @@ int N=0; //Licznik losowań
 //Pomocnicze zmienne do sensownej wizualizacji:
 int ReqFrames=10; //Ile ramek na sekundę chcemy
 int NumOfProbesPerDraw=100; //Ile losowań w jednej ramce
-int MaxBasket=100; //Do skalowania słypków. Początkowo coś musi być. 
+int MaxBasket=100; //Do skalowania słupków. Początkowo coś musi być. 
 
 void setup()
 {
@@ -66,7 +66,7 @@ void draw()
   //Trochę losowań
   for(int s=0;s<NumOfProbesPerDraw;s++)
   {
-    double rndval=MyRandomPareto(); //MyRandom1();//Powinno być w zakresie 0..1
+    double rndval=MyRandomPareto(); //MyRandom1(); //Powinno być w zakresie 0..1
     
     //Testowanie spełnienia założenia:
     if(rndval<0) { println("Niemożliwe!!! rndval=",rndval); continue;}

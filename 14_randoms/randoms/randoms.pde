@@ -1,11 +1,11 @@
 //Program dop testowania różnych sposobów losowania
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // https://en.wikipedia.org/wiki/Normal_distribution#Generating_values_from_normal_distribution
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//-////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 double MyRandom0()
 {
-  return random(0,1);//Random z Processingu
+  return random(0,1); //Random z Processingu
   //zamiast można wpisać inne generatory 
 }
 
@@ -33,15 +33,15 @@ double MyRandom2() //http://www.javamex.com/tutorials/random_numbers/xorshift.sh
 double MyRandomM() // M od "manipulacje"
 {
   //return random(0,1);
-  //return Math.random();//Druga wersja - random z Javy
-  //return Math.random()*Math.random();//Mnożenie 2 rozkladów 
-  //return Math.random()*Math.random()*Math.random();//Mnożenie 3 rozkladów
-  //return Math.random()*Math.random()*Math.random()*Math.random()*Math.random()*Math.random();//Mnożenie 6 rozkladów
-  //return (Math.random()+Math.random())/2;//Dodanie 2
-  //return (Math.random()+Math.random()+Math.random())/3;//Dodanie 3
-  //return (Math.random()+Math.random()+Math.random()+Math.random()+Math.random()+Math.random())/6;//Dodawanie 6 rozkladów
+  //return Math.random(); //Druga wersja - random z Javy
+  //return Math.random()*Math.random(); //Mnożenie 2 rozkładów 
+  //return Math.random()*Math.random()*Math.random(); //Mnożenie 3 rozkładów
+  //return Math.random()*Math.random()*Math.random()*Math.random()*Math.random()*Math.random(); //Mnożenie 6 rozkładów
+  //return (Math.random()+Math.random())/2; //Dodanie 2
+  //return (Math.random()+Math.random()+Math.random())/3; //Dodanie 3
+  //return (Math.random()+Math.random()+Math.random()+Math.random()+Math.random()+Math.random())/6; //Dodawanie 6 rozkładów
   return (Math.random()+Math.random()+Math.random()+Math.random()+Math.random()+Math.random()+
-          Math.random()+Math.random()+Math.random()+Math.random()+Math.random()+Math.random())/12;//Dodawanie 12 rozkladów
+          Math.random()+Math.random()+Math.random()+Math.random()+Math.random()+Math.random())/12; //Dodawanie 12 rozkładów
 }
 
 int NumOfBaskets=100;
@@ -66,7 +66,7 @@ void draw()
   //Trochę losowań
   for(int s=0;s<NumOfProbesPerDraw;s++)
   {
-    double rndval=MyRandom0(); //MyRandomM();//Powinno być w zakresie 0..1
+    double rndval=MyRandom0(); //MyRandomM(); //Powinno być w zakresie 0..1
      
     //Testowanie spełnienia założenia.
     if(rndval<0) { println("Niemożliwe!!! rndval=",rndval); continue;}

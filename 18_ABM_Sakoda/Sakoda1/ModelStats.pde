@@ -1,5 +1,5 @@
-// Simulation have to collect and write down statistics from every step
-///////////////////////////////////////////////////////////////////////////////////////
+// Symulacja musi zbierać i zapisywać statystyki z każdego kroku
+//-/////////////////////////////////////////////////////////////////////////////////////
 PrintWriter outstat;
 
 void initializeStats()
@@ -7,7 +7,7 @@ void initializeStats()
   String FileName=modelName+="_s"+side+"d"+density+"i"+Number_of_identities
                            +"_"+year()+'.'+nf(month(),2)+'.'+nf(day(),2)+'.'+nf(hour(),2)+'.'+nf(minute(),2)+'.'+nf(second(),2)+'.'+millis();
   outstat=createWriter(FileName+".out");
-  outstat.println("$STEP\tAlive\tStress\t");//<-- complete the header fields!
+  outstat.println("$STEP\tAlive\tStress\t"); //<-- uzupełnia pola nagłówka!
 }
 
 float meanStress=0;
@@ -36,7 +36,7 @@ void doStatisticsOnAgents(Agent[] agents)
    
    meanStress=(float)(summ/liveCount);
    
-   //outstat should be closed in exit() --> see Exit.pde
+   //outstat powinien zostać zamknięty w exit()--> Exit.pde
 }
 
 void doStatisticsOnAgents(Agent[][] agents)
@@ -62,9 +62,9 @@ void doStatisticsOnAgents(Agent[][] agents)
    
    meanStress=(float)(summ/liveCount);
    
-   //outstat should be closed in exit() --> see Exit.pde
+   //outstat powinien zostać zamknięty w exit()--> Exit.pde
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////
 //  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM: STATISTICS LOG TEMPLATE
-///////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////

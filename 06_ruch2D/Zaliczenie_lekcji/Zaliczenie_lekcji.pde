@@ -56,7 +56,7 @@ void keyPressed() {
 
 
 float FR=50;
-float vh=200;//prędkość
+float vh=200; //prędkość
 float vx=100;
 float maxV=100;
 float h=0;

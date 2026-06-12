@@ -1,5 +1,5 @@
-/// The agent: its atributes, random initialisation and methods
-/// @date 2025-01-13 (begin)
+/// Agent: jego atrybuty, losowa inicjalizacja i metody
+/// @date 2026-06-12 (begin)
 //*/////////////////////////////////////////////////////////////////////////////
 
 class Agent

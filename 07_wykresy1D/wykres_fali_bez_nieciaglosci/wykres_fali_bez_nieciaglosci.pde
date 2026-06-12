@@ -35,8 +35,8 @@ void wykres()
     float x=k*krokX+startX;    //Przeliczenie kolumny okna na x z uwzględnieniem przesunięcia o startX 
     float y=mojaFunkcja(x);    //Obliczenie wartości funkcji dla danego x
     int  w=250-round(y/krokY); //Przeliczenie x na numer wiesza, 
-    line(oldk,oldw,k,w);       //Nakreślenie lini od punktu poprzedniego do aktualnego
-    oldk=k;oldw=w;             //Zapamietanie pozycji punktu
+    line(oldk,oldw,k,w);       //Nakreślenie linii od punktu poprzedniego do aktualnego
+    oldk=k;oldw=w;             //Zapamiętanie pozycji punktu
   }
 }
 

@@ -1,18 +1,18 @@
 // Obliczanie liczby Pi metodą Monte Carlo
 // https://pl.wikipedia.org/wiki/Metoda_Monte_Carlo
-////////////////////////////////////////////////////////////////////////////
+//-//////////////////////////////////////////////////////////////////////////
 
 int nst=20000; //Ile losowań na ramkę - 
                //u mnie 15000 daje już prawie maksymalną wydajność
 int n=0;  //short n = 0; //Używając typu short można bardzo szybko sprawdzić 
-int nk=0; //short nk = 0;//czy działa ZABEZPIECZENIE NA ROZMIAR int'a
+int nk=0; //short nk = 0; //czy działa ZABEZPIECZENIE NA ROZMIAR int'a
 double s;
 
 void setup()
 {
   size(500,500);
   frameRate(10000);
-  noSmooth();//To przyśpiesza mniej więcej 5x
+  noSmooth(); //To przyśpiesza mniej więcej 5 razy!
 }
 
 void keyPressed()
@@ -27,31 +27,31 @@ void keyPressed()
 
 void draw() //Jest wykonywane w niewidocznej, nieskończonej pętli
 {
-  for(int i=0;i<nst;i++)//Więcej niż 1 losowanie na ramkę wyświetlania
+  for(int i=0;i<nst;i++) //Więcej niż 1 losowanie na ramkę wyświetlania
   {
     float x = random(1.0) * 2 - 1;
     float y = random(1.0) * 2 - 1;
     n++; //kolejna próba 
     
-    //ZABEZPIECZENIE NA ROZMIAR int'a
-    if(n<0)//PRZEWINĄŁ się int!!!
+    //ZABEZPIECZENIE NA ROZMIAR int-a
+    if(n<0) //PRZEWINĄŁ się int!!!
     {
-      n--;//Przewijamy z powrotem
-      textSize(18);//Trochę większy font
+      n--; //Przewijamy z powrotem
+      textSize(18); //Trochę większy font
       text("Pi = " + (4. * ( (double)nk )/( (double) n ) ),0,height);
-      noLoop();//Koniec powtarzania pętli draw()
-               //Niestety oznacza to też brak reakcji na zdarzenia!
-      break;//Przerwanie wewnętrznej pętli
+      noLoop(); //Koniec powtarzania pętli `draw()`
+                //Niestety oznacza to też brak reakcji na zdarzenia!
+      break; //Przerwanie wewnętrznej pętli
     }
     
-    if(x*x + y*y <= 1) //równanie okregu
+    if(x*x + y*y <= 1) //równanie okręgu
     {
         nk++;          //punkt wewnątrz
-        stroke(255, nk % 256, 0);//kolor czerwono-zółty
+        stroke(255, nk % 256, 0); //kolor czerwono-żółty
     }
     else               //punkt na zewnątrz
     {
-        stroke( n % 100 );//kolor ciemno szary
+        stroke( n % 100 ); //kolor ciemno szary
     }
   
     point(x*width,y*height);

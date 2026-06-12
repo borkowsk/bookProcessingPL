@@ -1,4 +1,4 @@
-//Processing examples for Perlin noise
+//Przykład użycia "Perlin Noise" w Processingu
 //https://en.wikipedia.org/wiki/Perlin_noise
 
 void setup() {
@@ -12,10 +12,10 @@ void draw()
 }
 
 float xoff = 0.0;
-float yoff = 0.1;   // 2nd dimension of perlin noise
+float yoff = 0.1;   // Drugi wymiar szumu Perlina
 
 void draw0() {
-  stroke(random(256),0,0);//stroke(frameCount%256,2*frameCount/100,0);//stroke(0, 10);
+  stroke(random(256),0,0); //stroke(frameCount%256,2*frameCount/100,0); //stroke(0, 10);
   xoff = xoff + .01;
   float n = noise(xoff) * width;
   line(n, 0, n, height);
@@ -61,24 +61,24 @@ void draw4() { //https://processing.org/examples/noisewave.html
   background(51);
 
   fill(255);
-  // We are going to draw a polygon out of the wave points
+  // Narysujemy wielokąt z punktów fali
   beginShape(); 
   
   float xoff = 0;       // Option #1: 2D Noise
   //float xoff = yoff; // Option #2: 1D Noise
   
-  // Iterate over horizontal pixels
+  // Iterujemy po pikselach poziomych
   for (float x = 0; x <= width; x += 10) {
-    // Calculate a y value according to noise, map to 
+    // Obliczone wartości y na podstawie szumu, nanosimy na mapę
     float y = map(noise(xoff, yoff), 0, 1, height/10,height); // Option #1: 2D Noise
     // float y = map(noise(xoff), 0, 1, 200,300);    // Option #2: 1D Noise
     
-    // Set the vertex
+    // Ustawiamy wierzchołek
     vertex(x, y); 
-    // Increment x dimension for noise
+    // Zwiększenie wymiaru x dla szumu
     xoff += 0.05;
   }
-  // increment y dimension for noise
+  // Zwiększenie wymiaru y dla szumu
   yoff += 0.01;
   vertex(width, height);
   vertex(0, height);

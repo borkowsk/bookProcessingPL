@@ -5,24 +5,24 @@
 double Q=10; //Ładunek
 double Eps0=8.854187817E-12; // F/m  https://pl.wikipedia.org/wiki/Przenikalno%C5%9B%C4%87_elektryczna
 double Eps0b=1/(36*PI)*1E-9;
-double Scale=0.0000001; //Ile metrów ma jeden pixel obrazu
+double Scale=0.0000001; //Ile metrów ma jeden piksel obrazu
 
 size(550,500);
-int x=(width-50)/2; //Położenie hor
-int y=height/2; //Położenie vert
+int x=(width-50)/2; //Położenie hor.
+int y=height/2; //Położenie vert.
 
 //Wizualizacja natężenia pola
 double Cns=(1.0/(4*PI*Eps0));
-double Min=Cns*(Q/(2*(x*Scale)*(x*Scale))); //Min wartość nateżenia
+double Min=Cns*(Q/(2*(x*Scale)*(x*Scale))); //Min wartość natężenia
 double Max=Cns*(Q/(1*Scale*Scale)); //... i maksymalna
 
 for(int i=0;i<width-50;i++)
  for(int j=0;j<height;j++)
  {
    if(i==x && j==y) continue;
-   double rx=(i-x)*Scale; // odleglość horyzontana w [m]
+   double rx=(i-x)*Scale; // odległość horyzontalna w [m]
    double ry=(j-y)*Scale; // odległość wertykalna w [m]
-   //double r=Math.sqrt(rx*rx+ry*ry); //Odległość euklidesa   
+   //double r=Math.sqrt(rx*rx+ry*ry); //Odległość Euklidesa   
    //double E=Cns*(Q/(r*r)); //Natężenie ze wzoru
    double E=Cns*(Q/(rx*rx+ry*ry));
    //print(rx," ",ry," ",r," ->",E,"->");

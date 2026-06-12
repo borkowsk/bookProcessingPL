@@ -1,6 +1,6 @@
 /// Bardzo prosty algorytm genetyczny z samymi mutacjami.
 //-///////////////////////////////////////////////////////////
-/// @date 2026-06-11 (modified)
+/// @date 2026-06-12 (zmodyfikowany)
 
 import java.lang.Math;
 
@@ -8,9 +8,9 @@ import java.lang.Math;
 /// @{
 int     TEMPO=1;                   ///< Ile kroków algorytmu na sekundę?
 int     population_size=500;       ///< Rozmiar populacji rozwiązań.
-float   selection_rate=0.33;       ///< Jaką część populacji wymieniamy w kazdej generacji (kroku algorytmu).
-float   mutation_rate=0.005;       ///< Jaki jest poziom mutacji (może miec różne interpretacje!)
-boolean maximize=false;            ///< Czy szukamy maksimum funkcji? Gdy false to szukamy minimum.
+float   selection_rate=0.33;       ///< Jaką część populacji wymieniamy w każdej generacji (kroku algorytmu).
+float   mutation_rate=0.005;       ///< Jaki jest poziom mutacji (może mieć różne interpretacje!)
+boolean maximize=false;            ///< Czy szukamy maksimum funkcji? Gdy "false" to szukamy minimum.
 boolean selection_by_duels=false;  ///< Czy używamy selekcji przez pojedynki czy klasycznej - z sortowaniem.
 /// @}
 
@@ -28,7 +28,7 @@ GAPopulation Pop;
 /// * Minimum globalne (Dno): Wynosi dokładnie 0.0 dla punktu `x = 0`.
 /// * Maksimum globalne (Szczyt): Wynosi około 40.35 dla punktów \(x \approx \pm 4.523\).
 /// * por.: https://www.wikiwand.com/en/Rastrigin_function . Są tam tez odnośniki do 
-///   innych funkcji ciekawych jako banchmarki dla algorytmów optymalizacyjnych.
+///   innych funkcji ciekawych jako benchmarki dla algorytmów optymalizacyjnych.
 double Rastrigin(double x)
 {
   return 10+x*x-10*Math.cos(2*x*Math.PI);

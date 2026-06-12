@@ -6,7 +6,7 @@ String line;
  
 void setup() {
   frameRate(100);
-  // Open the file from the createWriter() example
+  //Otwórz plik jak w przykładzie createWriter()
   reader = createReader(FileName);    
 }
  
@@ -19,7 +19,7 @@ void draw() {
   }
   
   if (line == null) {
-    // Stop reading because of an error or file is empty
+    //Przerwij czytanie z powodu błędu lub pustego pliku
     noLoop();  
   } else {
     int[] xyz=new int[3];

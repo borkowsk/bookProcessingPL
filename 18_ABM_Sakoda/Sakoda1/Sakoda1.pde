@@ -1,25 +1,25 @@
-//   Sakoda inspired AGENT BASE MODEL utilized 1D or 2D dicrete geometry
-//   implemented by Wojciech Borkowski
-/////////////////////////////////////////////////////////////////////////////////////////
+//   Zainspirowany Sakodą model AGENTOWY wykorzystujący dyskretną geometrię 1D lub 2D
+//   @author Wojciech Borkowski
+//-///////////////////////////////////////////////////////////////////////////////////////
 
-//Model parameters
-int side=100;//side of main table
+//Parametry modelu
+int side=100; //długość boku głównej macierzy
 String modelName="ABMSakoda";
 float density=0.55;
 
-World TheWorld=new World(side);//... but also will be initialised inside setup()
+World TheWorld=new World(side); //... ale również zostanie zainicjowany wewnątrz setup()
 
-//Parameters of visualisation etc...
-int cwidth=8; //size of cell
+//Parametry wizualizacji etc...
+int cwidth=8; //
 int STATUSHEIGH=40;
 int STEPSperVIS=1;
 int FRAMEFREQ=20;
 boolean WITH_VIDEO=false;
-boolean simulationRun=true;//Start/stop flag
+boolean simulationRun=true; //Flaga startu/stopu
 
 void setup()
 {
-  //Graphics
+  //Grafika
   size(800,840);
   frameRate(FRAMEFREQ);
   background(255,255,200);
@@ -27,10 +27,10 @@ void setup()
   
   //Model
   TheWorld.initializeModel();
-  initializeStats();//Wykomentowanie blokuje tworzenie pliku log!
+  initializeStats(); //Wykomentowanie blokuje tworzenie pliku log!
   TheWorld.makeStatistics();
   
-  //Window 
+  //Okno 
   println("REQUIRED SIZE OF PAINTING AREA IS "+(cwidth*side)+"x"+(cwidth*side+STATUSHEIGH));
   cwidth=(height-STATUSHEIGH)/side;
     
@@ -40,14 +40,14 @@ void setup()
     FirstVideoFrame();
   }
   
-  //Finishing setup stage
-  println("CURRENT SIZE OF PAINTING AREA IS "+width+"x"+height);//-myMenu.bounds.height???
-  visualizeModel(TheWorld);//First time visualisation
+  //Zakończenie etapu konfiguracji
+  println("CURRENT SIZE OF PAINTING AREA IS "+width+"x"+height); //-myMenu.bounds.height???
+  visualizeModel(TheWorld); //Pierwszy raz wizualizacja
   if(!simulationRun)
     println("PRESS 'r' or 'ESC' to start simulation");
   else
     println("PRESS 's' or 'ESC' to pause simulation");
-  NextVideoFrame();//It utilise inside variable to check if is enabled
+  NextVideoFrame(); //Wykorzystuje zmienną wewnętrzną do sprawdzenia, czy jest włączone
 }
 
 void draw()
@@ -59,11 +59,11 @@ void draw()
   
   writeStatusLine();
   
-  if(!simulationRun //When simulation was stopped only visualisation should work
-  || TheWorld.getTimeStep() % STEPSperVIS == 0 ) //But when model is running, visualisation shoud be done from time to time
+  if(!simulationRun //Po wstrzymaniu symulacji powinna działać tylko wizualizacja
+  || TheWorld.getTimeStep() % STEPSperVIS == 0 ) //Ale gdy model jest uruchomiony, wizualizacja powinna być wykonywana od czasu do czasu
   {
     visualizeModel(TheWorld);
-    NextVideoFrame();//It utilise inside variable to check if is enabled
+    NextVideoFrame(); //Wykorzystuje zmienną wewnętrzną do sprawdzenia, czy jest włączone
   }
 
 }
@@ -79,6 +79,6 @@ void writeStatusLine()
   text(TheWorld.getTimeStep()+")  Fps:"+ frameRate,0,side*cwidth+STATUSHEIGH-2);
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////
 //  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM SAKODA MAIN 
-///////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////

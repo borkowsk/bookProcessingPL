@@ -1,21 +1,21 @@
 // Przykład klasy
-////////////////////////////////////////////////
+//-//////////////////////////////////////////////
 
   class singiel //Klasa oscylatora chaotycznego - typ złożony
   { //POLA/ATRYBUTY:
     float r; //Parametr kontroli
-    float al;//Parametr sprzężenia
-    float x1,x2;//Stan aktualny i poprzedni
+    float al; //Parametr sprzężenia
+    float x1,x2; //Stan aktualny i poprzedni
     
     //Konstruktor
     singiel(float iX,float iR,float iAlpha)
-    //każda klasa ma choć jedną metodę, ktora nazywa sie jak nazwa klasy
+    //każda klasa ma choć jedną metodę, która nazywa się jak nazwa klasy
     {
       x1=x2=iX;r=iR;al=iAlpha;
     }
     
     //METODY:
-    float alpha()//R/O dostęp do pola pod inną nazwą
+    float alpha() //R/O dostęp do pola pod inną nazwą
     {
       return al;
     }

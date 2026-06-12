@@ -15,4 +15,4 @@ void sortBirds() ///< Sortowanie, bo ptaki lecące niżej muszą być narysowane
     });
 }
 
-/// @date 2025-12-10 (modified)
+/// @date 2026-06-12 (zmodyfikowany)

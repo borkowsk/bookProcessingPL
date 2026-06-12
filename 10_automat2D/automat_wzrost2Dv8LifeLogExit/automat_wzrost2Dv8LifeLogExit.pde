@@ -1,4 +1,4 @@
-/// LIFE CONWAYA i KUZYNI z zapisem do logu
+/// LIFE Conway'a i KUZYNI z zapisem do logu
 //=================================================================================
 /// Dwuwymiarowy, DETERMINISTYCZNY automat komórkowy - reguła Life ożywanie-śmierc
 /// Kroki synchroniczne i SĄSIEDZTWO MOORE'a !!!
@@ -10,9 +10,9 @@ int[][] WorldOld=new int[WorldSize][WorldSize]; //Tworzenie tablic "świata"
 int[][] WorldNew=new int[WorldSize][WorldSize];
 
 float IDens=0.33; //Początkowa gęstość w tablicy
-//boolean self=false; //w Life Conwaya niepotrzebne, ale może jeszcze przydać się poźniej
+//boolean self=false; //w Life Conway'a niepotrzebne, ale może jeszcze przydać się później
 int     birth=3; //Ile potrzeba do zrodzenia nowej komórki
-int     minim=2; //Najmniej liczne sąsiedzwtwo pozwalające na przeżycie
+int     minim=2; //Najmniej liczne sąsiedztwo pozwalające na przeżycie
 int     maxim=3; //Najbardziej liczne sąsiedztwo pozwalające na przeżycie
 
 String SEPARATOR="\t"; //Tabulator daje format TAB-DELIMITED, a "," lub ";" format CSV (+-)
@@ -66,8 +66,8 @@ void visualAndStats()
       switch(WorldOld[i][j]){ //Instrukcja wyboru pozwala nam wybrać dowolny kolor w zależności od liczby w komórce     
       case 1:stroke(255,255,0);jedynki++;break; //Normalnie tylko to
       case 0:stroke(0,0,0);zera++;break; //Lub to
-      default: stroke(255,0,0); //To się pojawiac nie powinno - jest po to żeby wychwywytywac błędy w implementacji
-      break;//case N:stroke( , , );break; /*w Life Conwaya potrzebne tylko dwa kolory, ale schemat może przydać się poźniej*/
+      default: stroke(255,0,0); //To się pojawiać nie powinno - jest po to żeby wychwytywać błędy w implementacji
+      break; //case N:stroke( , , );break; /*w Life Conway'a potrzebne tylko dwa kolory, ale schemat może przydać się później*/
       }
       if( (WorldOld[i][j] != WorldNew[i][j]) ) //na WorldNew jest stara zawartość 
         point(i,j); //Rysujemy tylko nową (Usprawnienie 2.)
@@ -99,14 +99,14 @@ void draw()
                  +WorldOld[right][j]     //w prawo
                  +WorldOld[i][up]        //w górę
                  +WorldOld[i][dw]        //w dół    
-                 //rogi czyli uzupełnienie do sąsiedzwta Moora
+                 //rogi czyli uzupełnienie do sąsiedztwa Moora
                  +WorldOld[right][dw]
                  +WorldOld[left][dw]
                  +WorldOld[right][up]
                  +WorldOld[left][up]
                  ; //suma z dziewięciu komórek brana potem modulo Div
       
-        if(WorldOld[i][j]==0) //Nowourodzenie
+        if(WorldOld[i][j]==0) //Nowo-urodzenie
         {
           if(ile==birth)
              WorldNew[i][j]=1; //Nowy stan zapisujemy na drugą tablicę

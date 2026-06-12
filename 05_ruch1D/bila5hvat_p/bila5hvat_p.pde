@@ -7,23 +7,23 @@ int FR=50; //Na ile kroków dzielimy sekundę?
 void setup() //Jest wykonywane raz - po uruchomieniu
 {
   size(500,500);
-  //noSmooth(); //Bez wygładzania lini? Po prostu odkomentować 
+  //noSmooth(); //Bez wygładzania linii? Po prostu odkomentować 
   fill(250,250,0);
   frameRate(FR);
 }
 
 float h=0;
-float v=300; //prędkość w pikselach/SEKUNDE (!)
+float v=300; //Prędkość w pikselach/SEKUNDĘ (!)
 float a=-50; //Przyśpieszenie/hamowanie
 
 void draw() //Jest wykonywane w niewidocznej pętli
 {
   //Wizualizacja
-  background(0,0,200);//rgB
+  background(0,0,200); //rgB
   ellipse(width/2,height-h,25,25);
   
   //Właściwy model
-  v+=a*1/FR; //Powiększ prędkość o zmianę prędkości czyli przyśpieszenie pomnozone przez jednostkę czasu 
+  v+=a*1/FR; //Powiększ prędkość o zmianę prędkości czyli przyśpieszenie pomnożone  przez jednostkę czasu 
   h+=v*1/FR; //Powiększ wysokość o drogę czyli prędkość pomnożoną przez jednostkę czasu
   //print(v,' '); //,h,"; ");
   //print(h," ");

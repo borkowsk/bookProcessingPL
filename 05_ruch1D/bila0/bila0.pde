@@ -5,7 +5,7 @@
 void setup() //Jest wykonywane raz - po uruchomieniu
 {
   size(500,500);
-  noSmooth();  //Bez wygładzania lini 
+  noSmooth();  //Bez antyaliasingu
   fill(255,0,0);
 }
 

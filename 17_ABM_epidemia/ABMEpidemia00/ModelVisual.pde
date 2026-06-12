@@ -1,5 +1,5 @@
-// World full of agents need method of visualisation on screen/window
-////////////////////////////////////////////////////////////////////////////
+// Świat pełen agentów wymaga metody wizualizacji na ekranie/oknie
+//-//////////////////////////////////////////////////////////////////////////
 
 void visualizeAgents(Agent[][] agents)
 {
@@ -22,7 +22,7 @@ void visualizeAgents(Agent[][] agents)
     }
     
     noStroke();
-    rect(b*cwidth,a*cwidth,cwidth,cwidth);//WŁAŚCIWE RYSOWANIE a jest pionowe
+    rect(b*cwidth,a*cwidth,cwidth,cwidth); //WŁAŚCIWE RYSOWANIE a jest pionowe
                                           //bo tak leżą w pamięci tablice 2D
    }
 }
@@ -48,13 +48,13 @@ void visualizeAgents(Agent[] agents)
     
     int t=StepCounter%side;
     noStroke();
-    rect(a*cwidth,t*cwidth,cwidth,cwidth);//WŁAŚCIWE RYSOWANIE 
+    rect(a*cwidth,t*cwidth,cwidth,cwidth); //WŁAŚCIWE RYSOWANIE 
     
     stroke(255);
-    line(0,(t+1)*cwidth+1,width,(t+1)*cwidth+1);//LINIA CZASU TERAŹNIEJSZEGO
+    line(0,(t+1)*cwidth+1,width,(t+1)*cwidth+1); //LINIA CZASU TERAŹNIEJSZEGO
    }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-//  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM: BASIC VISUALISATION
-////////////////////////////////////////////////////////////////////////////////////////////////////////
+//-//////////////////////////////////////////////////////////////////////////////////////////////////////
+//  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM: BASIC Wizualizacja
+//-//////////////////////////////////////////////////////////////////////////////////////////////////////

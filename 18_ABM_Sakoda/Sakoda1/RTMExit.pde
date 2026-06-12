@@ -1,21 +1,21 @@
-void exit()          //it is called whenever a window is closed. 
+void exit()          //Funkcja ta jest wywoływana zawsze po zamknięciu okna. 
 {
   noLoop();          //For to be sure...
-  delay(100);        // it is possible to close window when draw() is still working!
-  //write(world,modelName+"."+nf((float)StepCounter,5,5));//end state of the system
+  delay(100);        //Można zamknąć okno, gdy draw() właśnie działa!
+  //write(world,modelName+"."+nf((float)StepCounter,5,5)); //end state of the system
   
   if(outstat!=null)
   {
-    outstat.flush();  // Writes the remaining data to the file
-    outstat.close();  // Finishes the file
+    outstat.flush();  // Zapisuje pozostałe dane do pliku
+    outstat.close();  // Kończy zapis i zamyka plik
   }
   
-  if(WITH_VIDEO) CloseVideo();    //Finalise of Video export
+  if(WITH_VIDEO) CloseVideo();    //Finalizacja eksportu wideo (jeśli działał)
   
   println(modelName,"said: Thank You!");
-  super.exit();       //What library superclass have to do at exit()
+  super.exit();       //Co superklasa z biblioteki musi zrobić przy wyjściu.()
 } 
 
-///////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////
 //  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - EXIT TEMPLATE
-///////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////

@@ -1,7 +1,7 @@
-// Agent is a one of two central class of each ABM model
-// Agents need to be initialised & they need logic of change 
-// HERE ARE 1D alternatives of main procedures
-///////////////////////////////////////////////////////////////
+// Agent jest jedną z dwóch centralnych klas każdego modelu ABM
+// Agenci muszą zostać zainicjowani i potrzebują logiki zmian 
+// PONIŻEJ JEDNOWYMIAROWA alternatywa głównej procedury
+//-/////////////////////////////////////////////////////////////
 
 void initializeAgents(Agent[][] agents)
 {
@@ -21,10 +21,10 @@ void visualizeAgents(Agent[][] agents)
    for(int b=0;b<agents[a].length;b++)
    {
       //Background
-      noStroke();fill(200);//Lepiej dopasowa tło
-      rect(b*cwidth,a*cwidth,cwidth,cwidth);//'a' is vertical!
+      noStroke();fill(200); //Lepiej dopasowane tło
+      rect(b*cwidth,a*cwidth,cwidth,cwidth); //'a' is vertical!
       
-      //Colorisation of agent
+      //Kolorowanie agenta
       if( (curra=agents[a][b]) != null )
       {
         if(curra.stress>0)
@@ -68,7 +68,7 @@ void  changeAgents(Agent[][] agents)
       && agents[a][b+1].identity!=agents[a][b].identity)
         strangers++;  
       
-      agents[a][b].stress=strangers/4.0;//von Neumann neib.  
+      agents[a][b].stress=strangers/4.0; // Sąsiedztwo von Neumanna
       
       //Próba migracji gdy stres doskwiera
       if(agents[a][b].stress>0 
@@ -77,10 +77,10 @@ void  changeAgents(Agent[][] agents)
         int tara=(int)random(0,agents.length);
         int tarb=(int)random(0,agents[a].length);
         
-        if(agents[tara][tarb]==null)//Jest miejsce
+        if(agents[tara][tarb]==null) //Jest miejsce
         {
-          agents[tara][tarb]=agents[a][b];//Przeprowadzka
-          agents[a][b]=null;//Wymeldowanie ze starego miejsca
+          agents[tara][tarb]=agents[a][b]; //Przeprowadzka
+          agents[a][b]=null; //Wymeldowanie ze starego miejsca
         }
       }
     }
@@ -109,7 +109,7 @@ void doStatisticsOnAgents(Agent[][] agents)
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////
 //  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM EXAMPLE: 
-//  2D BASIC INITIALISATION, STEP CHANGE & VISUALISATION
-///////////////////////////////////////////////////////////////////////////////////////////
+//  2D PODSTAWOWA INICJALIZACJA, KROK ZMIANY STANU I Wizualizacja
+//-/////////////////////////////////////////////////////////////////////////////////////////

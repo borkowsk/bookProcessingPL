@@ -13,7 +13,7 @@ void moveBirds()
      if(current.z>=MAX_CEIL)
      {
        current.z=MAX_CEIL;
-       current.vz*=-1; // Czy to sie już kiedykolwiek przydało? DEBUG!
+       current.vz*=-1; // Czy to się już kiedykolwiek przydało? DEBUG!
      }
      else 
      if(current.z<=0)
@@ -23,4 +23,4 @@ void moveBirds()
    }
 }
 
-/// @date 2025-12-10 (modified)
+/// @date 2026-06-12 (zmodyfikowany)

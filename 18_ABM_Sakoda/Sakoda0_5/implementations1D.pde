@@ -1,7 +1,7 @@
-// Agent is a one of two central class of each ABM model
-// Agents need to be initialised & they need logic of change 
-// HERE ARE 1D alternatives of main procedures
-///////////////////////////////////////////////////////////////
+// Agent jest jedną z dwóch centralnych klas każdego modelu ABM
+// Agenci muszą zostać zainicjowani i potrzebują logiki zmian 
+// PONIŻEJ JEDNOWYMIAROWA alternatywa głównej procedury
+//-/////////////////////////////////////////////////////////////
 
 void initializeAgents(Agent[] agents)
 {
@@ -18,7 +18,7 @@ void visualizeAgents(Agent[] agents)
    Agent curra;
    for(int a=0;a<agents.length;a++)
    {
-    //Colorisation    
+    //Kolorowanie    
     if( (curra=agents[a]) != null )
     {
         if(curra.stress>0)
@@ -35,7 +35,7 @@ void visualizeAgents(Agent[] agents)
       fill(128);
     }
     
-    int t=int(TheWorld.getTimeStep()/STEPSperVIS)%side;//Uwzględniamy różne częstości wizualizacji
+    int t=int(TheWorld.getTimeStep()/STEPSperVIS)%side; //Uwzględniamy różne częstości wizualizacji
     rect(a*cwidth,t*cwidth,cwidth,cwidth);
     stroke(255);
     line(0,(t+1)*cwidth+1,width,(t+1)*cwidth+1);
@@ -69,10 +69,10 @@ void  changeAgents(Agent[] agents)
       && random(1.0)<agents[a].stress)
       {
         int target=(int)random(0,agents.length);
-        if(agents[target]==null)//Jest miejsce
+        if(agents[target]==null) //Jest miejsce
         {
-          agents[target]=agents[a];//Przeprowadzka
-          agents[a]=null;//Wymeldowanie ze starego miejsca
+          agents[target]=agents[a]; //Przeprowadzka
+          agents[a]=null; //Wymeldowanie ze starego miejsca
         }
       }
     }
@@ -100,7 +100,7 @@ void doStatisticsOnAgents(Agent[] agents)
    meanStress=(float)(summ/liveCount);
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////
+//-/////////////////////////////////////////////////////////////////////////////////////////
 //  https://www.researchgate.net/profile/WOJCIECH_BORKOWSKI - ABM EXAMPLE: 
-//  1D BASIC INITIALISATION, STEP CHANGE & VISUALISATION
-///////////////////////////////////////////////////////////////////////////////////////////
+//  1D PODSTAWOWA INICJALIZACJA, ZMIANA KROKU I Wizualizacja
+//-/////////////////////////////////////////////////////////////////////////////////////////

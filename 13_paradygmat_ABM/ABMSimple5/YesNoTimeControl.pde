@@ -1,10 +1,10 @@
-/// Simulation control module.
-/// @date 2025-01-13 (modification)
+/// Moduł sterowania symulacją.
+/// @date 2026-06-12 (modyfikacja)
 //*/////////////////////////////////////////////////////////////////////////////
 
-void keyPressed() //when key pressed, the numbers 1 to 9 change the speed and 'Q' ends the simulation.
+void keyPressed() //po naciśnięciu klawisza liczby (od 1 do 9) zmienia się prędkość, a klawisz „Q” kończy symulację.
 {
-  if(key==ESC) key=0; //Do not exit on ESCAPE
+  if(key==ESC) key=0; //Nie wychodzić przez ESCAPE!
   else
   switch(key){
     case '1': frameRate(1); break; 

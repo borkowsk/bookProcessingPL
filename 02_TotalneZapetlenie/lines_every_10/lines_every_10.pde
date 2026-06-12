@@ -1,4 +1,4 @@
-// Petla for z operacją +=
+// Pętla for z operacją +=
 
 size(500,500);
 noSmooth(); //Zakomentuj jedno albo drugie

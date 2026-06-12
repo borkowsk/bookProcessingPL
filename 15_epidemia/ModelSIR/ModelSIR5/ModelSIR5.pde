@@ -1,8 +1,8 @@
-/// Dwuwymiarowy, probalilistyczny (kroki MC) automat komórkowy - reguła SIR
+/// Dwuwymiarowy, probabilistyczny (kroki MC) automat komórkowy - reguła SIR
 /// Zasiewanie tablicy na początku z zadaną gęstością zdrowych oraz pojedynczą komórką zarażona
 /// LICZBA INTERAKCJI 4, ale prawdopodobieństwo zarażenia nie równe 1 tylko PTransfer 
-/// CHOROBA trwa u zarażonego Duration kroków chyba ze umrze (PDeath)
-/// ZBIERAMY STATYSTYKI SUMARYCZNE Z CAŁEJ EPIDEMI: int sumInfected,sumRecovered,sumDeath;
+/// CHOROBA trwa u zarażonego "Duration" kroków chyba że umrze (PDeath)
+/// ZBIERAMY STATYSTYKI SUMARYCZNE Z CAŁEJ EPIDEMII: int sumInfected,sumRecovered,sumDeath;
 //*//////////////////////////////////////////////////////////////////////////////////////////////
 
 int WorldSize=400; //Ile chcemy elementów w linii i ile linii (tablica kwadratowa)
@@ -39,7 +39,7 @@ void setup()
       if(random(1.0)<IDens)
         World[i][j]=Susceptible;
       else
-        World[i][j]=Empty; //Dla pewności, gdyby Empty nie było zero.
+        World[i][j]=Empty; //Dla pewności, gdyby "Empty" nie było zero.
   }
  
  World[WorldSize/2][WorldSize/2]=Infected;
@@ -73,7 +73,7 @@ void draw()
        int i=(int)random(World.length);
        int j=(int)random(World.length);
        
-       //Jesli pusty lub zdrowy to nic nie robimy
+       //Jeśli pusty lub zdrowy to nic nie robimy
        if(World[i][j]<Infected || Recovered<=World[i][j]) continue;
        
        //Wyliczenie lokalizacji sąsiadów
@@ -96,7 +96,7 @@ void draw()
        if(World[i][dw]==Susceptible && random(1) < PTransfer) 
         {World[i][dw]=Infected; sumInfected++;}
 
-       float prob=random(1);//Los na dany dzień
+       float prob=random(1); //Los na dany dzień
        
        if(prob<PDeath) //Albo tego dnia umiera
         {World[i][j]=Empty;sumDeath++;}

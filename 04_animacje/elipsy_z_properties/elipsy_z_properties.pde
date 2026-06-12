@@ -6,14 +6,14 @@ int radius()
   return int(random(W/10));
 }
 
-//Initialisation
+//Inicjalizacja
 void setup()
 {
   size(600,600); //Musi być jak W
   //frameRate(100);
 }
 
-//Running - visualisation and dynamics
+//Running - wizualizacja oraz dynamika (zmiana stanu)
 void draw()
 {
   fill(random(255),random(255),random(255),random(255));

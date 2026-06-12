@@ -6,7 +6,7 @@ float maxd=4; //Jaki największy ruch
 float h=0;    //height/2; //Położenie pionowe
 float x=0;    //width/2;  //Położenie poziome
 
-void setup() //Jest wykonywane raz - po uruchomieniu. Nie musi być na poczatku kodu ale jest
+void setup() //Jest wykonywane raz - po uruchomieniu. Nie musi być na początku kodu ale jest
 {
   size(500,500);
   noSmooth();

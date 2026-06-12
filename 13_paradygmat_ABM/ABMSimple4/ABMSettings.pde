@@ -1,7 +1,7 @@
-/// Global constants & variables.
-/// @date 2025-01-13 (modification)
+/// Stałe i zmienne globalne.
+/// @date 2026-06-12 (modyfikacja)
 //*/////////////////////////////////////////////////////////////////////////////
-String Model="ABMWalkers"; ///< We already know what we want to do.
+String Model="ABMWalkers"; ///< Już wiemy, co chcemy zrobić.
 
-int    WSide=100;        ///< World side.
-float  Density=0.05;     ///< agent population density.
+int    WSide=100;        ///< Długość boku "świata"
+float  Density=0.05;     ///< Gęstość populacji agentów.

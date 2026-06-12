@@ -5,7 +5,7 @@
 void setup() //Jest wykonywane raz - po uruchomieniu
 {
   size(500,500);
-  //noSmooth(); //Bez wygładzania lini? Po prostu odkomentować 
+  //noSmooth(); //Bez wygładzania linii? Po prostu odkomentować 
   fill(250,250,0);
   frameRate(150);
 }

@@ -1,21 +1,21 @@
 //Model dynamicznego wpływu społecznego Nowaka-Latane - wersja "komórkowa" bez zróżnicowania sił
 // Duża i z funkcją exit()
-///////////////////////////////////////////////////////////////////////////////////////////////////
-//Control parameters
-float Ones=0.50; //How many "ones" in the array
-int N=200;       //array side
+//-/////////////////////////////////////////////////////////////////////////////////////////////////
+//Parametry kontroli
+float Ones=0.50; //Ile „jedynek” jest początkowo w tablicy
+int N=200;       //Bok macierzy
 
-//For visualisation
-int S=20;       //cell width & height
+//Dla wizualizacji
+int S=20;       //szerokość i wysokość komórki
 
-//2D "World" of individuals
+//Dwuwymiarowy „świat” jednostek (indywiduów)
 int A[][] = new int[N][N];
 
-//Initialisation
+//Inicjalizacja
 void setup()
 {
   size(805,805);
-  S=width/N; //Agent side size
+  S=width/N; //Długość boku komórki (w wizualizacji)
  
   for(int i=0;i<N;i++)
    for(int j=0;j<N;j++)
@@ -24,19 +24,19 @@ void setup()
     else
     A[i][j]=-1;
     
-   frameRate(10);//Nie za szybko
+   frameRate(10); //Nie za szybko
 }
 
 
 int Step=0;
-void DoMonteCarloStep()//Implementation of dynamic
+void DoMonteCarloStep() //Implementacja dynamiki
 {
-   for(int a=0;a<N*N;a++) //as many times as number of cells 
+   for(int a=0;a<N*N;a++) //tyle razy, ile wynosi liczba komórek 
    {
      int i=int(random(N));
      int j=int(random(N));
      
-     int impact=0; //Calculate summ of impacts
+     int impact=0; //Obliczona suma wpływów
      for(int m=i-1;m<=i+1;m++)
       for(int n=j-1;n<=j+1;n++)
       {
@@ -45,12 +45,12 @@ void DoMonteCarloStep()//Implementation of dynamic
         impact+=A[p][r];
       }
   
-     if(impact>=0)//Majority rule
+     if(impact>=0) //Majority rule - reguła większości.
        A[i][j]=1;
        else
        A[i][j]=-1;    
    }
-   Step++;//Counting of steps
+   Step++; //Zliczanie kroków
 }
 
 int Reds=0;
@@ -63,12 +63,12 @@ void Count()
        Reds++;
 }
 
-//Running - visualisation and dynamics
+//Running - wizualizacja oraz dynamika (zmiana stanu)
 int frame=0;
 void draw()
 {
- //print((frame++)+" ");//Counting of frames
- for(int i=0;i<N;i++)//visualisation
+ //print((frame++)+" "); //Zliczanie ramek
+ for(int i=0;i<N;i++) //Wizualizacja
   for(int j=0;j<N;j++)
   {
     if(A[i][j]==1)
@@ -82,14 +82,14 @@ void draw()
     rect(i*S,j*S,S,S);
   }  
   
-  Count();//Statistics
+  Count(); //Statystyka
   println("Step "+Step+" Reds="+Reds+" White="+(N*N-Reds));
-  DoMonteCarloStep();//dynamics
+  DoMonteCarloStep(); //Dynamika (zmiana stanu)
 }
 
-void exit() //it is called whenever a window is closed. 
+void exit() //Funkcja ta jest wywoływana zawsze po zamknięciu okna. 
 {
   noLoop(); //To be sure / dla pewności ;-)
   println("Thank You");
-  super.exit(); //What library superclass have to do at exit
+  super.exit(); //Co superklasa z biblioteki musi zrobić przy wyjściu.
 } 

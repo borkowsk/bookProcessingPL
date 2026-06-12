@@ -1,53 +1,53 @@
 //Model dynamicznego wpływu społecznego Nowaka-Latane 
 // - wersja "komórkowa" bez zróżnicowania sił
-//////////////////////////////////////////////////////
-//Control parameters
-int N=200;       //array side
-float init=0.010; //How many starts in the array
+//-////////////////////////////////////////////////////
+//Parametry kontroli
+int N=200;       //Bok macierzy
+float init=0.010; //Jaka część zostaje zainicjalizowana.
 float SeedsPerSt=0.005;
 
-//For visualisation
-int S=20;       //cell width & height
+//Dla wizualizacji
+int S=20;       //szerokość i wysokość komórki
 
-//2D "World" of individuals
+//Dwuwymiarowy „świat” jednostek (indywiduów)
 int A[][] = new int[N][N];
 
-//Variables for initialisation
-int initcounter=0;//Ile juz wylosowano
-int initnakrok=0;//Ile w jednym kroku
+//Zmienne do inicjalizacji
+int initcounter=0; //Ile już wylosowano
+int initnakrok=0; //Ile w jednym kroku
 
-//Initialisation
+//Inicjalizacja
 void setup()
 {
   size(805,805);
-  S=width/N; //Agent side size
+  S=width/N; //Długość boku komórki (w wizualizacji)
  
   for(int i=0;i<N;i++)
    for(int j=0;j<N;j++)
     A[i][j]=0;
   
-  initcounter=int(N*N*init);//Ile będzie w ogóle nasion?  
-  initnakrok=int(N*N*SeedsPerSt);//A ile nasion w jednym kroku
+  initcounter=int(N*N*init); //Ile będzie w ogóle nasion?  
+  initnakrok=int(N*N*SeedsPerSt); //A ile nasion w jednym kroku
   
-  frameRate(2);//Nie za szybko
+  frameRate(2); //Nie za szybko
 }
 
-void exit() //it is called whenever a window is closed. 
+void exit() //Funkcja ta jest wywoływana zawsze po zamknięciu okna. 
 {
   noLoop(); //To be sure / dla pewności ;-)
   println("Thank You");
-  super.exit(); //What library superclass have to do at exit
+  super.exit(); //Co superklasa z biblioteki musi zrobić przy wyjściu.
 } 
 
 int Step=0;
-void DoMonteCarloStep()//Implementation of dynamic
+void DoMonteCarloStep() //Implementacja dynamiki
 {
-   for(int a=0;a<N*N;a++) //as many times as number of cells 
+   for(int a=0;a<N*N;a++) //tyle razy, ile wynosi liczba komórek 
    {
      int i=int(random(N));
      int j=int(random(N));
      
-     int impact=0; //Calculate summ of impacts
+     int impact=0; //Obliczona suma wpływów
      for(int m=i-1;m<=i+1;m++)
       for(int n=j-1;n<=j+1;n++)
       {
@@ -56,15 +56,15 @@ void DoMonteCarloStep()//Implementation of dynamic
         impact+=A[p][r];
       }
   
-     if(impact!=0)//Nothing to do when 0
+     if(impact!=0) //Nic nie trzeba robić, gdy jest "0".
      {
-      if(impact>=0)//Majority rule
+      if(impact>=0) //Majority rule - reguła większości.
        A[i][j]=1;
        else
        A[i][j]=-1;
      }
    }
-   Step++;//Counting of steps
+   Step++; //
 }
 
 int Reds=0,Black=0,White=0;
@@ -82,10 +82,10 @@ void Count()
        White++;
 }
 
-//Running - visualisation, stats and dynamics
+//Symulacja: wizualizacja, statystyka i dynamika
 void draw()
 {
- for(int i=0;i<N;i++)//visualisation
+ for(int i=0;i<N;i++) //Wizualizacja
   for(int j=0;j<N;j++)
   {
     if(A[i][j]==0)
@@ -104,9 +104,9 @@ void draw()
     rect(i*S,j*S,S,S);
   }  
   
-  Count();//Statistics
+  Count(); //Statystyka
   println("Step "+Step+" Reds="+Reds+" White="+White+" Black="+Black);
-  DoMonteCarloStep();//dynamics
+  DoMonteCarloStep(); //Dynamika (zmiana stanu)
   
   //Losowanie nasion
   for(int c=0;c<initnakrok;c++)

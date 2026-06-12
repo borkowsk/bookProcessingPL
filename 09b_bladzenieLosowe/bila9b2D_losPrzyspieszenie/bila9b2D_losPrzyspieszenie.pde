@@ -7,17 +7,17 @@ int FR=500; //Na ile kroków dzielimy sekundę?
 void setup() //Jest wykonywane raz - po uruchomieniu
 {
   size(500,500);
-  //noSmooth(); //Bez wygładzania lini? Po prostu odkomentować 
+  //noSmooth(); //Bez wygładzania linii? Po prostu odkomentować 
   background(0,0,200); //rgB
   frameRate(FR);
 }
 
 float h=0;
 float x=0;
-float vh=100; //prędkość pionowa w pikselach/SEKUNDE (!)
+float vh=100; //prędkość pionowa w pikselach/SEKUNDĘ (!)
 float vx=100; //prędkość pozioma
 float ah=-10; //Przyśpieszenie/hamowanie - tylko w pionie
-float M=0.75; //Wydajność odbicia sprężystego 1-B = ile energi kinetycznej się rozprasza nie wraca do prędkości po odbiciu
+float M=0.75; //Wydajność odbicia sprężystego 1-B = ile energii kinetycznej się rozprasza nie wraca do prędkości po odbiciu
 
 float R=random(255),G=random(255),B=random(255);
 void draw() //Jest wykonywane w niewidocznej pętli
@@ -26,7 +26,7 @@ void draw() //Jest wykonywane w niewidocznej pętli
   R+=random(-2.0,2.0);
   G+=random(-2.0,2.0);
   B+=random(-2.0,2.0); //Losuje z zakresu i o tyle powiększa (jaki ujemna to pomniejsza)
-  //print(R,' ');//,G,' ',B,"; ");
+  //print(R,' '); //,G,' ',B,"; ");
   fill(R,G,B);
   stroke(R/2,G/2,B/2);
   ellipse(x,height-h,25,25);
@@ -36,8 +36,8 @@ void draw() //Jest wykonywane w niewidocznej pętli
   vx+=random(-10.0,10.0)*1/FR; //może być asymetryczne - można zobaczyć do czego to prowadzi
   
   //Działanie przyśpieszeń
-  vh+=ah*1/FR; //Powiększ prędkość o zmianę prędkości czyli przyśpieszenie pomnozone przez jednostkę czasu 
-  h+=vh*1/FR;  //Powieksz wysokość o drogę czyli prędkość pomnożąną przez jednostkę czasu
+  vh+=ah*1/FR; //Powiększ prędkość o zmianę prędkości czyli przyśpieszenie pomnożone  przez jednostkę czasu 
+  h+=vh*1/FR;  //Powiększ wysokość o drogę czyli prędkość pomnożoną przez jednostkę czasu
   x+=vx*1/FR;  //Powiększ położenie poziome
 
   //Odbijamy od ścianek okna! Upraszczamy mechanizm odbicia

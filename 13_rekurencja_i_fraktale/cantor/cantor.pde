@@ -1,6 +1,6 @@
-/// RECURSIVE PATTERNS – CANTOR SET (Zbiór Kantora)
-/// Metodą wycinania lini - https://en.wikipedia.org/wiki/Cantor_set
-//-/////////////////////////////////////////////////////////////////
+/// WZORY REKURSYWNE - RECURSIVE PATTERNS – CANTOR SET
+/// Zbiór Kantora rysowany metodą wycinania linii - https://en.wikipedia.org/wiki/Cantor_set
+//-//////////////////////////////////////////////////////////////////////////////////////////
 float limit=3;
  
 void setup() 

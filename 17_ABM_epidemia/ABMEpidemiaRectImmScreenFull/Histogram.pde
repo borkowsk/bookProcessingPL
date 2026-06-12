@@ -1,15 +1,15 @@
 // Bardzo prosty histogram agentów wg jednej właściwości
-/////////////////////////////////////////////////////////////////////
-int Max=0;//Max wspólny dla całej symulacji
+//-///////////////////////////////////////////////////////////////////
+int Max=0; //Max wspólny dla całej symulacji
 
 void histogram(Agent[][] agents,float startx,float starty,float hight)
-//Funkcja przechodzi po wszystkich agentach i zlicza wg. klas odpornosci.
+//Funkcja przechodzi po wszystkich agentach i zlicza wg. klas odporności.
 {
   int NumOfBaskets=100;
   int Basket[]=new int[NumOfBaskets+1];
   int N=0; //Licznik żywych
-  //int Max=0;//Albo Max resetowany dla każdego kroku
-  Agent curra;//Pomocniczy uchwyt agenta
+  //int Max=0; //Albo Max resetowany dla każdego kroku
+  Agent curra; //Pomocniczy uchwyt agenta
   
   //Zliczanie 
   for(int a=0;a<agents.length;a++)
@@ -20,10 +20,10 @@ void histogram(Agent[][] agents,float startx,float starty,float hight)
         && curra.state!=Death //Uwzględniamy zmarłych przy statystyce
     )
     {
-      N++;//Żywy
-      int cl=round(curra.immunity*NumOfBaskets);//Z odporniością w klasie "cl"
-      Basket[cl]++;//Doliczamy go
-      if(Basket[cl]>Max) Max=Basket[cl];//Sprawdzamy czy nie urosło "Max"
+      N++; //Żywy
+      int cl=round(curra.immunity*NumOfBaskets); //Z odpornością w klasie "cl"
+      Basket[cl]++; //Doliczamy go
+      if(Basket[cl]>Max) Max=Basket[cl]; //Sprawdzamy czy nie urosło "Max"
     }
    }
    
