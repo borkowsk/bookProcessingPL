@@ -1,29 +1,34 @@
 /// Populacja agentów genetycznych do rozwiązywania jednowymiarowych problemów.
 //-////////////////////////////////////////////////////////////////////////////
-/// @date 2026-06-12 (last modyfikacja)
+/// @date 2026-06-16 (last modyfikacja)
 import java.lang.Math;
 import java.util.Arrays;
 import java.util.Comparator;
 
-/// @brief "GAgatek" czyli agent algorytmu genetycznego.
+/// @brief "GAgatek2G" czyli agent algorytmu genetycznego z dwoma genami.
 /// @details
 /// Gagatek to potoczne określenie oznaczające figlarza, łobuziaka lub osobę lekkomyślną, 
 /// zdolną do nieodpowiedzialnych wybryków i drobnych wykroczeń.  
 /// Synonimami są tu m.in. urwis, ancymonek, ziółko czy spryciarz.
-class GAgatek implements Comparable
+class GAgatek2G implements Comparable
 {
-  int       gene; ///< Geny są inicjowane w konstruktorze.
+  /// @name Geny. Są inicjowane w konstruktorze.
+  /// @{
+  int       geneX;
+  int       geneY;
+  /// @}
+  
   double fitness; ///< Fitness to dopiero określi środowisko.
   
-  GAgatek(int i_gene){ gene=i_gene;fitness=-Double.MAX_VALUE; }
+  GAgatek2G(int i_geneX,int i_geneY){ geneX=i_geneX; geneY=i_geneY;fitness=-Double.MAX_VALUE; }
   
-  void reset_gene(int i_gene) { gene=i_gene;fitness=-Double.MAX_VALUE; }
+  void reset_genes(int i_geneX,int i_geneY) {  geneX=i_geneX; geneY=i_geneY;fitness=-Double.MAX_VALUE; }
   
   //double get_fitness() { return fitness; }
   
   int compareTo(Object o)
   {
-    GAgatek other=(GAgatek)o;
+    GAgatek2G other=(GAgatek2G)o;
     if (this.fitness < other.fitness) return 1;
     if (this.fitness > other.fitness) return -1;
     return 0;
@@ -31,64 +36,143 @@ class GAgatek implements Comparable
   
 }//_EndOfClass
 
+/// Sposoby kodowania liczby zmiennoprzecinkowej na liczbie całkowitej.
+enum GENE_CODING{ 
+                  NKB, ///< Naturalne Kodowanie Binarne zmapowanego zakresu.
+                  GRY, ///< Kodowanie Graya zmapowanego zakresu.
+                  FLA, ///< Bezposrednia reinterpretacja bitowa float-->int.
+                  FLR  ///< Zakres reinterpretowany bitowo float-->int.
+                };
+
 /// Populacja "gagatków" zajmuje się implementacją podstawowych operacji genetycznych.
 /// @details Nie implementujemy crossing-over bo w problemach jednowymiarowych nie ma potrzeby jego używania.
 class GAPopulation
 {
-  GAgatek[] all;
+  GAgatek2G[] all;
   
-  double  minx,maxx,range;  ///< Zakres wartości x w jakim szukamy.
-  boolean     float_coded; ///< Czy używamy kodowania zmiennoprzecinkowego?
+  double  minx,maxx,rangex;  ///< Zakres wartości 'x' w jakim szukamy.
+  double  miny,maxy,rangey;  ///< Zakres wartości 'y' w jakim szukamy.
+  GENE_CODING       coding;  ///< Jaki rodzaj używamy kodowania liczb na genach?
   
   /// @brief Konstruktor.
-  GAPopulation(int population_size,double min_x,double max_x,boolean use_float)
+  GAPopulation(int population_size,double min_x,double max_x,double min_y,double max_y,GENE_CODING use_coding)
   {
-    all=new GAgatek[population_size];
+    all=new GAgatek2G[population_size];
     
     minx=min_x;maxx=max_x;
-    range=max_x-min_x;
-    float_coded=use_float;
+    rangex=max_x-min_x;
+    
+    miny=min_y;maxy=max_y;
+    rangey=max_y-min_y;
+    
+    coding=use_coding;
     
     for(int i=0;i<population_size;i++)
     {
-      double r=Math.random()*range;
-      int as_NKB=map_(r,range);
+      double rx=Math.random()*rangex;
+      double ry=Math.random()*rangey;
+  
+      int coded_x=Integer.MAX_VALUE;
+      int coded_y=Integer.MAX_VALUE;
       
-      float f=(float)(minx+r); ///< Żeby można było podejrzeć w debugerze różnicę z `r`.
-      int as_float=reinterpret(f);
+      switch(coding){
+        case NKB: 
+          coded_x=map_(rx,rangex);
+          coded_y=map_(ry,rangey);
+        break;
+        case GRY:
+          coded_x=toGray(map_(rx,rangex));
+          coded_y=toGray(map_(ry,rangey));
+        break;
+        case FLA: // Bezposrednia reinterpretacja bitowa float-->int.
+        {
+          float fx=(float)(minx+rx);
+          float fy=(float)(miny+ry);
+          coded_x=reinterpret((float)(fx));
+          coded_y=reinterpret((float)(fy));
+        }
+        break;
+        case FLR: // Zakres reinterpretowany bitowo float-->int.
+          coded_x=reinterpret((float)(rx));
+          coded_y=reinterpret((float)(ry));
+        break;
+        default:
+        println("Invalid gene encoding specifier!"); exit();
+        break;
+      } //EndOfSwitch  
+      
+      all[i]=new GAgatek2G(coded_x,coded_y);
       
       //Test kodowania
-      println('*',minx+r,'\t',r,'\t',
-              toBin(as_NKB,32),'\t',minx+unmap_(as_NKB,range),'\t',
-              toBin(as_float,32),'\t',reinterpret(as_float,(float)(minx),(float)(maxx)) 
-              );
+      println("*x*\t",minx+rx,'\t',rx,'\t',toBin(coded_x,32),'\t',this.get_x_val(i));
+      println("*y*\t",miny+ry,'\t',ry,'\t',toBin(coded_y,32),'\t',this.get_y_val(i),'\n');
               
-      if(float_coded)
-        all[i]=new GAgatek(as_float);
-      else
-        all[i]=new GAgatek(as_NKB);
     }
   }
   
   // Akcesory:
   //==========
   
-  /// @brief Odczytanie wartości zakodowanej w genie konkretnego gagenta.
-  double get_val(int index)
+  /// @brief Odczytanie wartości 'x' zakodowanej w genie konkretnego gagenta.
+  double get_x_val(int index)
   {                                      assert(index<all.length);
-    int from_gene=all[index].gene;
-    if(float_coded)
-    {
-      float uncoded=reinterpret(from_gene,(float)(minx),(float)(maxx));
-      if(uncoded==0) 
-              print("*");
-      if(Float.isNaN(uncoded))
-        return minx; 
-      else
-        return uncoded;
-    }
-    else
-      return minx+unmap_(from_gene,range);  // NKB
+    int from_gene=all[index].geneX;
+    
+    switch(coding){
+        case NKB: // Naturalne Kodowanie Binarne zmapowanego zakresu.
+          return minx+unmap_(from_gene,rangex);
+        case GRY: // Kodowanie Graya zmapowanego zakresu.
+          return minx+unmap_(fromGray(from_gene),rangex);
+        case FLA: // Bezposrednia reinterpretacja bitowa float-->int.
+        {
+          float uncoded=reinterpret(from_gene,(float)(minx),(float)(maxx));
+          if(Float.isNaN(uncoded))
+            return minx; 
+          else
+            return uncoded;
+        }
+        case FLR: // Zakres reinterpretowany bitowo float-->int.
+        {
+          double uncoded=minx+reinterpret(from_gene,0f,(float)(rangex));
+          if(Double.isNaN(uncoded))
+            return minx; 
+          else
+            return uncoded;
+        }
+        default: //To się nie powinno nigdy zdarzać!
+            return Double.NaN;
+    } 
+  }
+  
+  /// @brief Odczytanie wartości 'y' zakodowanej w genie konkretnego gagenta.
+  double get_y_val(int index)
+  {                                      assert(index<all.length);
+    int from_gene=all[index].geneY;
+    
+    switch(coding){
+        case NKB: // Naturalne Kodowanie Binarne zmapowanego zakresu.
+          return miny+unmap_(from_gene,rangey);
+        case GRY: // Kodowanie Graya zmapowanego zakresu.
+          return miny+unmap_(fromGray(from_gene),rangey);
+        case FLA: // Bezposrednia reinterpretacja bitowa float-->int.
+        {
+          float uncoded=reinterpret(from_gene,(float)(miny),(float)(maxy));
+          if(Float.isNaN(uncoded))
+            return miny; 
+          else
+            return uncoded;
+        }
+        case FLR: // Zakres reinterpretowany bitowo float-->int.
+        {
+          double uncoded=miny+reinterpret(from_gene,0f,(float)(rangey));
+          if(Double.isNaN(uncoded))
+            return miny; 
+          else
+            return uncoded;
+        }
+        default: //To się nie powinno nigdy zdarzać!
+            return Double.NaN;
+    } 
   }
   
   /// @brief Ustawienie nowej wartości fitness uzyskanej "ze środowiska".
@@ -117,8 +201,8 @@ class GAPopulation
       // Kod sortowania odwrotnego (malejąco po fitness):
       Arrays.sort(all, new Comparator() {
         public int compare(Object o1, Object o2) {
-          GAgatek g1 = (GAgatek) o1;
-          GAgatek g2 = (GAgatek) o2;
+          GAgatek2G g1 = (GAgatek2G) o1;
+          GAgatek2G g2 = (GAgatek2G) o2;
           
           // Odwrotne sortowanie: g2 porównujemy z g1
           if (g2.fitness > g1.fitness) return -1;
@@ -137,13 +221,7 @@ class GAPopulation
     if(index<32)
     {
       int mutated=switch_bit(parent_gene,index,32); //z mutacją
-      float uncoded=reinterpret( mutated,(float)(minx),(float)(maxx) ); //Dla sprawdzenia
-      if( !Float.isNaN( uncoded ) )
-      {
-          if(uncoded==0) 
-              print("!");
-          return mutated; //Akceptujemy mutacje tylko gdy nie jest "letalna".
-      }
+      return mutated;
     }
 
     return parent_gene; //Bez mutacji bo trafił poza bity albo poza wymaganą dziedzinę.
@@ -163,8 +241,9 @@ class GAPopulation
     for(int i=border;i<all.length;i++)
     {
       int parent_index=(int)random(0,border-1);                             assert(parent_index<border);
-      int new_gene=randomized_clone(all[parent_index].gene);
-      all[i].reset_gene(new_gene); //Przy okazji czyści stary fitness żeby mógł zostać policzony od nowa.
+      int new_gene_x=randomized_clone(all[parent_index].geneX);
+      int new_gene_y=randomized_clone(all[parent_index].geneY);
+      all[i].reset_genes(new_gene_x,new_gene_y); //Przy okazji czyści stary fitness żeby mógł zostać policzony od nowa.
     }
   }
   
@@ -182,7 +261,7 @@ class GAPopulation
     int N=(int)(selection_r*all.length); //Ile nowych potomków, czyli ile pojedynków.
     for(int pair=0;pair<N;pair++)
     {
-      GAgatek A=null,B=null;
+      GAgatek2G A=null,B=null;
       int indexA=-1,indexB=-1;
       
       do{ //Losowanie par z uniknięciem walk samobójczych i z nowymi dziećmi.
@@ -195,16 +274,24 @@ class GAPopulation
       if(maximize) //Czy szukamy maksimum?
       {
         if(A.fitness>B.fitness) //Wygrywa A
-          B.reset_gene(randomized_clone(A.gene));
+        {
+          B.reset_genes(randomized_clone(A.geneX),randomized_clone(A.geneY));
+        }
         else //Wygrywa B, nawet jak ma równy fitness. Chodzi o to żeby jakaś "wymiana pokoleń" wciąż zachodziła.
-          A.reset_gene(randomized_clone(B.gene));
+        {
+          A.reset_genes(randomized_clone(B.geneX),randomized_clone(B.geneY));
+        }
       }
       else //Alternatywnie szukamy minimum.
       {
         if(A.fitness<B.fitness) //Wygrywa A
-          B.reset_gene(randomized_clone(A.gene));
+        {
+          B.reset_genes(randomized_clone(A.geneX),randomized_clone(A.geneY));
+        }
         else //Wygrywa B, nawet jak ma równy fitness. Chodzi o to żeby jakaś "wymiana pokoleń" wciąż zachodziła.
-          A.reset_gene(randomized_clone(B.gene));
+        {
+          A.reset_genes(randomized_clone(B.geneX),randomized_clone(B.geneY));
+        }
       }
     }
   }
