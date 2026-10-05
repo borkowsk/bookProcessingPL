@@ -1,0 +1,2 @@
+Folder jest miejscem na pliki ramek, z których można zrobić potem film, 
+używając MovieMaker-a z Processingu.

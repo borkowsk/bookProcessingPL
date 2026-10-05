@@ -136,7 +136,7 @@ void draw() // modifies global t,WorldOld,WorldNew
         case REFRACTORY_8: WorldNew[i][j] = CellState.REFRACTORY_9; break;
         
         case REFRACTORY_9:
-          // Ostatni stan refrakcji oznacza pełną regenerację i powrót do spoczynku
+          // Wyjście z ostatniego stanu refrakcji oznacza pełną regenerację i powrót do spoczynku
           WorldNew[i][j] = CellState.RESTING;
           break;
       }
