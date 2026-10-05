@@ -1,15 +1,15 @@
-/// Greenberg-Hastings Model: Excitable media with 9 refractory states.
-/// TWO-dimensional, SYNCHRONOUS, Moore, deterministic cellular automaton.
-/// @date 2026-10-05 (last modification)
-//-/////////////////////////////////////////////////////////////////////////
+/// Model Greenberga-Hastingsa: ośrodek pobudliwy z 9 stanami refrakcji.
+/// Dwuwymiarowy, synchroniczny, deterministyczny automat komórkowy z sąsiedztwem Moore’a.
+/// @date 2026-10-05 (ostatnia modifikacja)
+//-///////////////////////////////////////////////////////////////////////////////////////
 
-final int WorldSide=601; // How many cells do we want in one line?
+final int WorldSide=601; //< Ile komórek chcemy mieć w jednym wierszu?
 
-// Definicja wszystkich 11 stanów przy użyciu enum
+/// Definicja wszystkich 11 stanów przy użyciu enum
 enum CellState {
-  RESTING,          // Stan spoczynku (0)
-  EXCITED,          // Stan pobudzenia (1)
-  REFRACTORY_1,     // Pierwszy stan refrakcji (2)
+  RESTING,          //< Stan spoczynku (0)
+  EXCITED,          //< Stan pobudzenia (1)
+  REFRACTORY_1,     //< Pierwszy stan refrakcji (2)
   REFRACTORY_2,
   REFRACTORY_3,
   REFRACTORY_4,
@@ -17,7 +17,7 @@ enum CellState {
   REFRACTORY_6,
   REFRACTORY_7,
   REFRACTORY_8,
-  REFRACTORY_9      // Ostatni, dziewiąty stan refrakcji
+  REFRACTORY_9      //< Ostatni, dziewiąty stan refrakcji
 }
 
 CellState[][] WorldOld = new CellState[WorldSide][WorldSide]; 
@@ -26,7 +26,7 @@ CellState[][] WorldNew = new CellState[WorldSide][WorldSide];
 
 void setup()
 {
-  size(601,601);    //square window
+  size(601,601);     //okno kwadratowe z dostępnymi środkowymi indeksami (niepoarzyste!)
   frameRate(999); 
   noSmooth();
   
@@ -80,7 +80,7 @@ void visualisation()
           break;
       }
       
-      point(j,i); //the horizontal dimension of the array is the SECOND index
+      point(j,i); //Wymiar poziomy tablicy to DRUGI indeks.
     }
 }
 
@@ -154,7 +154,7 @@ void draw() // modifies global t,WorldOld,WorldNew
   //saveFrame("../movie/GH-######.png");
 }
 
-//For more fun ;-)
+//Dla lepszej zabawy!
 void mousePressed()
 {
   int i=mouseX;

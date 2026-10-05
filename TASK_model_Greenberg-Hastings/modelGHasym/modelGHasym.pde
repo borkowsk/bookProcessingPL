@@ -1,22 +1,23 @@
-/// Greenberg-Hastings Model: Excitable media simulation.
-/// TWO-dimensional, SYNCHRONOUS, Moore, deterministic cellular automaton.
-//-/////////////////////////////////////////////////////////////////////////
+/// Model Greenberga-Hastingsa: symulacja ośrodków pobudliwych.
+/// Dwuwymiarowy, synchroniczny, deterministyczny automat komórkowy z sąsiedztwem Moore’a.
+/// @date 2026-10-05 (ostatnia modifikacja)
+//-///////////////////////////////////////////////////////////////////////////////////////
 
-final int   WorldSide=601; //< How many cells do we want in one line?
-final float Dens=0.5;      //< Lower density works great for initial excitation seeds 
+final int   WorldSide=601; //< Ile komórek chcemy mieć w jednym wierszu?
+final float Dens=0.5;      //< Gęstość początkowa zarodków wzbudzenia
 
-// Cell states: 0 - Resting/Quiescent, 1 - Excited, 2 - Refractory
+// Stany komórki: 0 – spoczynkowy, 1 – pobudzony, 2 – refrakcyjny
 final int   STATE_RESTING = 0;
 final int   STATE_EXCITED = 1;
 final int   STATE_REFRACTORY = 2;
 
-int[][] WorldOld=new int[WorldSide][WorldSide]; //< We need two "worlds" for the old...
-int[][] WorldNew=new int[WorldSide][WorldSide]; //< And for new state of the simulation.
+int[][] WorldOld=new int[WorldSide][WorldSide]; //< Potrzebujemy dwóch „światów” dla poprzednich...
+int[][] WorldNew=new int[WorldSide][WorldSide]; //< ... i nowych stanów symulacji.
 
 
 void setup()
 {
-  size(601,601);    //square window
+  size(601,601);    //okno kwadratowe z dostępnymi środkowymi indeksami (niepoarzyste!)
   frameRate(999); 
   noSmooth();
   
@@ -50,43 +51,42 @@ void visualisation()
   for(int i=0;i<WorldSide;i++)
     for(int j=0;j<WorldSide;j++)
     {
-      // Color-coding for three states
-      if(WorldOld[i][j] == STATE_EXCITED)         stroke(255, 0, 100); //Red/Pink for Excited
-      else if(WorldOld[i][j] == STATE_REFRACTORY) stroke(0, 0, 255);   //Blue for Refractory
-      else                                        stroke(0);           //Black for Resting
-      
-      point(j,i); //the horizontal dimension of the array is the SECOND index
+      // Oznaczenie kolorami trzech stanów
+      if(WorldOld[i][j] == STATE_EXCITED)         stroke(255, 0, 100); //Czerwonawy dla "Excited"
+      else if(WorldOld[i][j] == STATE_REFRACTORY) stroke(0, 0, 255);   //Niebieski dla "Refractory"
+      else                                        stroke(0);           //Czarny dla "Resting"      
+      point(j,i); //Wymiar poziomy tablicy to DRUGI indeks.
     }
 }
 
 int t=0;
 void draw() //Modifies global t,WorldOld,WorldNew
 {  
-  visualisation(); //Draw the current world
+  visualisation(); //Narysuj aktualny świat
   
-  for(int i=0;i<WorldSide;i++) //Now the cellular automaton state change [cite: 13]
+  for(int i=0;i<WorldSide;i++) //Przejdźmy teraz do zmiany stanu automatu komórkowego
   {
     int right = (i+1) % WorldSide;
     int left  = (WorldSide+i-1) % WorldSide;
      
     for(int j=0;j<WorldSide;j++) 
     {
-      // GREENBERG-HASTINGS RULES:
-      //-/////////////////////////
+      // REGUŁA GREENBERGA-HASTINGSA:
+      //-////////////////////////////
       if (WorldOld[i][j] == STATE_EXCITED) 
       {
-        WorldNew[i][j] = STATE_REFRACTORY; //Excited cells automatically become refractory
+        WorldNew[i][j] = STATE_REFRACTORY; //Pobudzone komórki przechodzą w stan refrakcji
       } 
       else if (WorldOld[i][j] == STATE_REFRACTORY) 
       {
-        WorldNew[i][j] = STATE_RESTING;    //Refractory cells automatically recover to resting
+        WorldNew[i][j] = STATE_RESTING;    //Komórki ze stanu refrakcji przechodzą w stan spoczynku
       } 
-      else //STATE_RESTING
+      else //DLA STANU SPOCZYNKU:
       {
         int dw=(j+1) % WorldSide;
         int up=(WorldSide+j-1) % WorldSide;
          
-        // Counting neighbors in the EXCITED state (Moore neighborhood)
+        // Liczenie sąsiadów w stanie POBUDZONYM (sąsiedztwo Moore'a):
         int excitedNeighbors = (
                     (WorldOld[left][j]   == STATE_EXCITED ? 1 : 0)
                  +  (WorldOld[right][j]  == STATE_EXCITED ? 1 : 0)
@@ -98,28 +98,26 @@ void draw() //Modifies global t,WorldOld,WorldNew
                  +  (WorldOld[right][dw] == STATE_EXCITED ? 1 : 0)            
                  );
                  
-        // Resting cell becomes excited if it has at least one excited neighbor
-        WorldNew[i][j] = (excitedNeighbors >= 1 ? STATE_EXCITED : STATE_RESTING); 
+        // Komórka w stanie spoczynku staje się wzbudzona, jeśli ma co najmniej jednego wzbudzonego sąsiada
+        WorldNew[i][j] = (excitedNeighbors >= 1 ? STATE_EXCITED : STATE_RESTING); //A gdy potrzeba DWÓCH lub TRZECH?
       }
     }
   }
    
-  //Swap the arrays 
+  // teraz zamień tablice
   int[][] WorldTmp=WorldOld; 
   WorldOld=WorldNew; 
   WorldNew=WorldTmp; 
    
-  t++; //The next generation/step/year 
+  t++; //Następna generacja/krok/rok 
   fill(255,128); 
   textSize(20); textAlign(LEFT,TOP); text("ST:"+t,0,0); 
 }
 
-//For more fun ;-)
+//Dla lepszej zabawy!
 void mousePressed()
 {
   int i=mouseX;
   int j=mouseY;
   WorldOld[j][i]=STATE_EXCITED;
 }
-
-/// @date 2026-06-20
