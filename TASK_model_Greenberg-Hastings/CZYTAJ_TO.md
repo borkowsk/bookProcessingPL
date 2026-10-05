@@ -9,6 +9,7 @@ komputera [2]. Kolejną zaletą jest to, że – przynajmniej w tym przypadku
 – można udowodnić twierdzenie charakteryzujące te warunki początkowe, 
 które prowadzą do zachowań powtarzalnych [3].
 
+![Ilustracja z uruchomienia modelu](GH-000100.png  "GH model, krok 100")
 
 #Linki
 
@@ -35,4 +36,6 @@ które prowadzą do zachowań powtarzalnych [3].
 * R. Fisch, J. Gravner, D. Griffeath, Metastability in the Greenberg–Hastings model, The Annals of Applied Probability, vol. 3 (1993), 935–967.
 * R. Durrett and J. Steif, Some rigorous results for the Greenberg–Hastings model, Journal of Theoretical Probability vol 4 (1991), 669–690.
 * S. Wolfram, A New Kind of Science, 2003, pg. 1013.
+
+## @date 2026-10-05 (modifikacja)
 
