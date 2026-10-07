@@ -8,6 +8,7 @@ ffmpeg.txt
 
 # Applications products
 *.mp4
+*.mov
 *.txt
 *.log
 *.png
@@ -15,6 +16,9 @@ ffmpeg.txt
 *.zip
 *.lst
 *.out
+
+mov/
+mp4/
 
 
 # compiler-generated binaries (safe to delete)
