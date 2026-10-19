@@ -1,6 +1,6 @@
 /// Bardzo prosty algorytm genetyczny z samymi mutacjami.
 //-///////////////////////////////////////////////////////////
-/// @date 2026-06-12 (zmodyfikowany)
+/// @date 2026-10-19 (zmodyfikowany)
 
 import java.lang.Math;
 
@@ -11,7 +11,7 @@ int     population_size=500;       ///< Rozmiar populacji rozwiązań.
 float   selection_rate=0.20;       ///< Jaką część populacji wymieniamy w każdej generacji (kroku algorytmu).
 float   mutation_rate=0.015;       ///< Jaki jest poziom mutacji (może mieć różne interpretacje!)
 boolean use_float_code=true;       ///< Czy liczby kodujemy jako zmiennoprzecinkowe? Ma to większy sens dla szukania minimum niż maksimów.
-boolean maximize=false;            ///< Czy szukamy maksimum funkcji? Gdy false to szukamy minimum.
+boolean maximize=true;             ///< Czy szukamy maksimum funkcji? Gdy false to szukamy minimum.
 boolean selection_by_duels=true;   ///< Czy używamy selekcji przez pojedynki czy klasycznej - z sortowaniem.
 /// @}
 
